@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+    <link href="<%= asset_path("main/style.css") %>" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" valign="top" bgcolor="#f1fde3">
+          <table width="150" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="8"></td>
+            </tr>
+          </table>
+
+          <% if current_user.gid==1000 %>
+            <%= render :partial => "tree_item", :locals => { :item => [0,'组织管理' ,'机构管理'=>'/groups' } %>
+          <% end %>
+          <%= render :partial => "tree_item", :locals => { :item => [1,'表单管理' ,'上传表单'=>'/uploads/new','管理表单'=>'/uploads'] } %>
+
+          <% if current_user.gid==1000 %>
+            <%= render :partial => "tree_item", :locals => { :item => [2,'用户管理' ,'添加用户'=>'/users/sign_up','管理用户'=>'/users/index'] } %>
+          <% end %>
+
+          <table width="150"  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="6"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <script language="javascript"> 
+      <!-- 
+      function table_display(tab_id,img_id){//显示隐藏程序 
+        // var tab_id;//表格ID 
+        // var img_id;//图片ID 
+
+        var default_img="<%= asset_path("main/left_dot.gif") %>";//默认图片 
+        var on_img="<%= asset_path("main/left_open.gif") %>";//打开时图片 
+        var off_img="<%= asset_path("main/left_dot.gif") %>";//隐藏时图片 
+        if (tab_id.style.display == "none") {//如果为隐藏状态 
+          tab_id.style.display="";//切换为显示状态 
+          console.log(img_id);
+          img_id.src=on_img;
+        }//换图 
+        else{//否则 
+          tab_id.style.display="none";//切换为隐藏状态 
+          img_id.src=off_img;}//换图 
+      }; 
+      //--> 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<% content_for :table_title do %>
+  用户列表
+<% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+  $.ajaxSetTable("/users/0/10");
+});
+</script>
+
+<table id ="_main" width="99%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c0de98" >
+  <thead>
+    <tr>
+      <td width="6%" height="26" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">选择</div></th>
+      <td width="8%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">ID</div></th>
+      <td width="24%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">用户名</div></th>
+      <td width="14%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">所属部门</div></th>
+      <td width="24%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">最后登录</div></th>
+      <td width="7%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class="STYLE2">删除</div></th>
+      <td width="7%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class="STYLE2">编辑</div></th>
+    </tr>
+  </thead>
+</table>
+

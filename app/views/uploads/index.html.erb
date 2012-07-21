@@ -1,0 +1,48 @@
+<%= javascript_include_tag "jquery-ui-1.8.18.custom.min.js" %>
+<%= javascript_include_tag "jquery.smooth-scroll.min.js" %>
+<%= javascript_include_tag "lightbox" %>
+<%= stylesheet_link_tag "lightbox" %>
+
+<% content_for :table_title do %>
+  表单列表
+<% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+  $.current_page=0;
+  $.ajaxSetTable("/uploads/0");
+
+  $("#control").click(function(e){
+    var e=e||window.event;
+    var obj=e.target||e.srcElement;
+    var item=$(obj);
+    if  ( item.is('img') )
+    {
+      if (item.hasClass('next') && $.current_page<$.all_pages-1){
+        $.current_page+=1;
+        $.ajaxSetTable('/uploads/'+$.current_page);
+      }
+      else if (item.hasClass('prev') && $.current_page!=0 ){ 
+        $.current_page-=1;
+        $.ajaxSetTable('/uploads/'+$.current_page);
+      }
+    }
+
+  });
+
+
+});
+</script>
+
+<table id ="_main" width="99%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c0de98" >
+  <thead>
+    <tr>
+      <td width="6%" height="26" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">选择</div></th>
+      <td width="8%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">ID</div></th>
+      <td width="24%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">部门</div></th>
+      <td width="14%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">上传者</div></th>
+      <td width="24%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">时间</div></th>
+      <td width="7%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class="STYLE2">查看</div></th>
+      <td width="7%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class="STYLE2">删除</div></th>
+    </tr>
+  </thead>
+</table>

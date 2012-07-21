@@ -1,0 +1,42 @@
+<h2>给 <span style="font-style:italic;"><%= @group.name %> </span> 授权</h2>
+
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :机构管理 %><br />
+    <% ['C','R','U','D'].each do |e| %>
+      <label> <%= e %>
+        <%= check_box_tag "group[org_group_access][]",
+      e, (checked = true if @group.org_group_access.include?e) %>
+      </label>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :人员管理 %><br />
+    <% ['C','R','U','D'].each do |e| %>
+      <label> <%= e %>
+        <%= check_box_tag "group[org_user_access][]",
+      e, (checked = true if @group.org_user_access.include?e) %>
+      </label>
+    <% end %>
+  </div>
+  <br />
+  
+  <div class="actions">
+    <%= f.submit '授权'%>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @group %> |
+<%= link_to 'Back', groups_path %>
