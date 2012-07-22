@@ -10,6 +10,7 @@
 $(document).ready(function(){
   $.current_page=0;
   $.ajaxSetTable("/uploads/0");
+  $('#table_new_row').attr('href','/uploads/new');
 
   $("#control").click(function(e){
     var e=e||window.event;
