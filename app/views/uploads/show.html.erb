@@ -15,7 +15,7 @@
         <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.id %></span>
       </td>
       <td height="18" bgcolor="#FFFFFF">
-        <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.user.gid %></span>
+        <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.user.groups.map{|g| g.name}.join('/') %></span>
       </td>
       <td height="18" bgcolor="#FFFFFF">
         <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.user.username %></span>

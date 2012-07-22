@@ -12,19 +12,19 @@
       <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.username %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF">
-      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.gid %></span>
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.groups.map{|g| g.name}.join('/') %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF" align="center">
       <span display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= u.last_sign_in_at %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF">
       <div align="center" class="STYLE1">
-        <img src="/assets/tab/images/010.gif" width="9" height="9">[<a href="#" id="del">删除</a>]
+        <img src="/assets/tab/images/037.gif" width="9" height="9">[<a href="/users/<%= u.id %>/edit" target='I1'>编辑</a>]
       </div>
     </td>
     <td height="18" bgcolor="#FFFFFF">
       <div align="center" class="STYLE1">
-        <img src="/assets/tab/images/037.gif" width="9" height="9">[<a href="#">保存</a>]
+        <img src="/assets/tab/images/010.gif" width="9" height="9">[<a href="#" id="del">删除</a>]
       </div>
     </td>
   </tr>

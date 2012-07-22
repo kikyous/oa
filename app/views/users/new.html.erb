@@ -1,7 +1,6 @@
 <h2>添加用户</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(@user, :url => '/users/#{@user.id}') do |f| %>
   <div>
     <% for g in @groups %>
       <label>

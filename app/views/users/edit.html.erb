@@ -1,0 +1,32 @@
+<h2>Edit <%= @user.username.to_s.humanize %></h2>
+
+<%= form_for(@user, :url => "/users/#{@user.id}", :html => { :method => :put }) do |f| %>
+
+  <div><%= f.label :username %><br />
+  <%= f.text_field :username %></div>
+
+  <div>
+    <% for g in @groups %>
+      <label>
+      <%= check_box_tag "group[group_ids][]",
+      g.id, (checked = true if @user.groups.include?g) %>
+      <%= g.name %>
+      </label>
+    <% end %>
+  </div>
+
+  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <%= f.password_field :password, :autocomplete => "off" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+
+<%= link_to "Back", :back %>
