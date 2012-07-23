@@ -1,10 +1,40 @@
-<p id="notice"><%= notice %></p>
+<% @groups.each do |g| %>
+  <tr class="repeat" align="center">
+    <td height="18" bgcolor="#FFFFFF">
+      <div align="center" class="STYLE1">
+        <input name="checkbox" type="checkbox" class="STYLE2" value="checkbox">
+      </div>
+    </td>
+    <td height="18" bgcolor="#FFFFFF" class="STYLE2">
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= g.id %></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= g.name%></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%=  %></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF" align="center">
+      <span display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= g.created_at %></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <div align="center" class="STYLE1">
+        <img src="/assets/tab/images/037.gif" width="9" height="9">[
+        
+        
+        <%= link_to '编辑', edit_group_path(g) ,{:target=>'I1'} %>
+        
+        <!-- <a href="/groups/<%= g.id %>/edit" target='I1'>编辑</a> -->
+        ]
+      </div>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <div align="center" class="STYLE1">
+        <img src="/assets/tab/images/010.gif" width="9" height="9">[
+        <%= link_to '删除', g, method: :delete, data: { confirm: 'Are you sure?' } %>
+        ]
+      </div>
+    </td>
+  </tr>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @group.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>

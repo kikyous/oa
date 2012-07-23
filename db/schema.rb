@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722064758) do
+ActiveRecord::Schema.define(:version => 20120723073537) do
 
   create_table "groups", :force => true do |t|
     t.string   "name",                             :null => false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20120722064758) do
     t.integer "user_id",  :null => false
     t.integer "group_id", :null => false
   end
+
+  create_table "notes", :force => true do |t|
+    t.text     "content"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
   create_table "uploads", :force => true do |t|
     t.string   "picture_file_name"

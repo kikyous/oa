@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  layout "table", :only => [:index]
   # GET /groups
   # GET /groups.json
   def index
@@ -13,7 +14,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @group = Group.find(params[:id])
+    id=params[:id].to_i * 10
+    @groups=Group.limit(10).offset(id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,8 +46,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render json: @group, status: :created, location: @group }
+        format.html { redirect_to groups_url , notice: 'Group was successfully created.'}
       else
         format.html { render action: "new" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -60,7 +61,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to groups_url, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +77,7 @@ class GroupsController < ApplicationController
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to groups_url }
+      format.html { redirect_to groups_url , notice: 'Group was successfully destroy.'}
       format.json { head :no_content }
     end
   end

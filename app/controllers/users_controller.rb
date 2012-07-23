@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
-   @users=User.limit(10).offset(params[:id].to_i)
+    id=params[:id].to_i * 10
+   @users=User.limit(10).offset(id)
   end
 
   def new
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   def create
     resource = User.new(params[:user])
     if resource.save
-      render :json => {:name=> resource}
+      redirect_to users_url
     else
       render :text => 'Failure !'
     end
@@ -37,7 +38,13 @@ class UsersController < ApplicationController
   # the current user in place.
   def update
     @user = User.find(params[:id])
-    if @user.update_with_password(params[:user])
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+    p params
+    p params[:user]
+    if @user.update_attributes(params[:user])
       render :text => 'User was successfully updated.'
     else
       render :text => 'Failure !'
@@ -46,10 +53,10 @@ class UsersController < ApplicationController
 
   # DELETE /resource
   def destroy
-    resource.destroy
-    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-    set_flash_message :notice, :destroyed if is_navigational_format?
-    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_url
+
   end
 
 

@@ -1,10 +1,10 @@
 <% content_for :table_title do %>
-  机构列表
+  Note列表
 <% end %>
 <script type="text/javascript">
 $(document).ready(function(){
-  $.ajaxSetTable("/groups/show/0");
-  $('#table_new_row').attr('href','/groups/new');
+  $.ajaxSetTable("/notes/archive/0");
+  $('#table_new_row').attr('href','/notes/new');
 });
 </script>
 
@@ -12,10 +12,10 @@ $(document).ready(function(){
   <thead>
     <tr>
       <td width="6%" height="26" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">选择</div></th>
-      <td width="8%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">ID</div></th>
-      <td width="16%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">机构名称</div></th>
+      <td width="8%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">标题</div></th>
+      <td width="16%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">用户</div></th>
       <td width="26%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">内容</div></th>
-      <td width="20%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">创建时间</div></th>
+      <td width="20%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class=" STYLE1">时间</div></th>
       <td width="7%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class="STYLE2">编辑</div></th>
       <td width="7%" height="18" background="<%= asset_path("tab/images/tab_14.gif") %>" class="STYLE1"><div align="center" class="STYLE2">删除</div></th>
     </tr>

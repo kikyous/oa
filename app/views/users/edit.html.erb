@@ -8,7 +8,7 @@
   <div>
     <% for g in @groups %>
       <label>
-      <%= check_box_tag "group[group_ids][]",
+      <%= check_box_tag "user[group_ids][]",
       g.id, (checked = true if @user.groups.include?g) %>
       <%= g.name %>
       </label>

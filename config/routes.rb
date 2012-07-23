@@ -1,5 +1,8 @@
 Oa::Application.routes.draw do
 
+  resources :notes
+  get '/notes/archive/:id' , :to => 'notes#archive'
+
   resources :uploads
   resources :groups
 

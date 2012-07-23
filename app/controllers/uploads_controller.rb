@@ -43,6 +43,13 @@ class UploadsController < ApplicationController
     end
   end
 
+  def destroy
+    @upload = Upload.find(params[:id])
+    @upload.destroy
+    redirect_to uploads_url
+
+  end
+
   def show_pic
     @upload = current_picture
     geo = Paperclip::Geometry.from_file(@upload.picture.to_file(:original))

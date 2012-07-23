@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :uploads
+  has_many :notes
   has_and_belongs_to_many :groups
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
