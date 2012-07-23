@@ -43,6 +43,24 @@
       .STYLE7 {font-size: 12}
       .home ,.next,.prev,.last {cursor:pointer;}
       td[colspan] {font-style:italic}
+
+
+      .alert-success {
+        background-color: #DFF0D8;
+        border-color: #D6E9C6;
+        color: #468847;
+      }
+      .alert {
+        padding: 8px 35px 8px 14px;
+        margin-bottom: 18px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        background-color: #FCF8E3;
+        border: 1px solid #FBEED5;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        color: #C09853;
+      }
       -->
     </style>
     <%= javascript_include_tag "application" %>
@@ -98,6 +116,26 @@
       }
 
     </script>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+        <a class="close" data-dismiss="alert" href="#">X</a>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-success">
+        <%= flash[:alert] %>
+        <a class="close" data-dismiss="alert" href="#">X</a>
+      </div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="alert alert-success">
+        <%= flash[:error] %>
+        <a class="close" data-dismiss="alert" href="#">X</a>
+      </div>
+    <% end %>
+
 
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>

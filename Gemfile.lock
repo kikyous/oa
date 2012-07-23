@@ -32,6 +32,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.0)
+    cancan (1.6.8)
     cocaine (0.2.1)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
@@ -105,6 +106,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  cancan
   devise
   jquery-rails
   paperclip

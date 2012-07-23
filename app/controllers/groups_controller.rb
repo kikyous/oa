@@ -1,4 +1,12 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class GroupsController < ApplicationController
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to groups_url, :alert => '您没有权限进行操作'
+  end
+
   layout "table", :only => [:index]
   # GET /groups
   # GET /groups.json
@@ -27,6 +35,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
+    authorize! :create, @group
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +46,7 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    authorize! :update, @group
   end
 
   # POST /groups

@@ -13,12 +13,10 @@
             </tr>
           </table>
 
-          <% org_group_access=current_user.groups.map{|g| g.org_group_access.include? 'R' }.include?true %>
-          <% org_user_access=current_user.groups.map{|g| g.org_user_access.include? 'R' }.include?true %>
           <% attr = [0,'组织管理',{}] %>
-          <% attr.last['机构管理'] ='/groups' if org_group_access %>
-          <% attr.last['人员管理'] ='/users' if org_user_access %>
-          <% if org_group_access or org_user_access %>
+          <% attr.last['机构管理'] ='/groups' if can? :read , Group %>
+          <% attr.last['人员管理'] ='/users' if can? :read , User %>
+          <% if 1 %>
             <%= render :partial => "tree_item", :locals => { :item => attr } %>
           <% end %>
           <%= render :partial => "tree_item", :locals => { :item => [1,'表单管理' ,'上传表单'=>'/uploads/new','管理表单'=>'/uploads'] } %>

@@ -8,6 +8,7 @@ gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'devise'
 gem 'paperclip'
+gem 'cancan'
 
 gem 'jquery-rails'
 # Gems used only for assets and not required
