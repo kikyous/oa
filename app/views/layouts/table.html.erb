@@ -80,6 +80,10 @@
           $.all_pages=Math.ceil($.all_pages);
           $('#msg').text("共"+all_record+"条纪录，当前第"+($.current_page+1)+"/"+$.all_pages+"页，每页"+records_perpage+"条纪录");
       }
+      $("a.close").click(function(){
+      $(this).parent().fadeOut();
+      return false;
+      })
         // ajaxSetTable("/users/0/10");
         // $("#table_new_row").click(function(){
         //   $('<tr class="repeat" align="center"><td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><input name="checkbox" type="checkbox" class="STYLE2" value="checkbox" /></div></td><td height="18" bgcolor="#FFFFFF" class="STYLE2"><span align="center"  display:block;line-height:100%; class="STYLE2 STYLE1">点此修改</span></td><td height="18" bgcolor="#FFFFFF"><span align="center"  display:block;line-height:100%; class="STYLE2 STYLE1">点此修改</span></td><td height="18" bgcolor="#FFFFFF"><span align="center"  display:block;line-height:100%; class="STYLE2 STYLE1">点此修改</span></td><td height="18" bgcolor="#FFFFFF" align="center" ><span display:block;line-height:100%; class="STYLE2 STYLE1">点此修改</span></td><td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><img src="<%= asset_path("tab/images/010.gif") %>" width="9" height="9" />[<a href="#" id="del">删除</a>]</div></td><td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><img src="<%= asset_path("tab/images/037.gif") %>" width="9" height="9" />[<a href="#">保存</a>]</div></td></tr>').insertAfter($("#_main tr:last")); BindEvent();

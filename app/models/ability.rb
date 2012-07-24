@@ -2,7 +2,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-      p "##########################################################################################"
     
       user ||= User.new # guest user (not logged in)
       ga= user.groups.map{|g| g.org_group_access}

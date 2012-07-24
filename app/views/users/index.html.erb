@@ -3,8 +3,26 @@
 <% end %>
 <script type="text/javascript">
 $(document).ready(function(){
-  $.ajaxSetTable("/users/0");
+  $.current_page=0;
+  $.ajaxSetTable("/users/archive/0");
   $('#table_new_row').attr('href','/users/new');
+
+  $("#control").click(function(e){
+    var e=e||window.event;
+    var obj=e.target||e.srcElement;
+    var item=$(obj);
+    if  ( item.is('img') )
+    {
+      if (item.hasClass('next') && $.current_page<$.all_pages-1){
+        $.current_page+=1;
+        $.ajaxSetTable('/users/archive/'+$.current_page);
+      }
+      else if (item.hasClass('prev') && $.current_page!=0 ){ 
+        $.current_page-=1;
+        $.ajaxSetTable('/users/archive/'+$.current_page);
+      }
+    }
+  });
 });
 </script>
 

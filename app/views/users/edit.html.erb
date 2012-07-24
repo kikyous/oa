@@ -2,7 +2,7 @@
 
 <%= form_for(@user, :url => "/users/#{@user.id}", :html => { :method => :put }) do |f| %>
 
-  <div><%= f.label :username %><br />
+  <div><%= f.label "用户名" %><br />
   <%= f.text_field :username %></div>
 
   <div>
@@ -15,14 +15,14 @@
     <% end %>
   </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div><%= f.label "密码" %> <i>(留空，如果你不想改变它)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label "确认密码" %><br />
   <%= f.password_field :password_confirmation %></div>
 
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "修改" %></div>
 <% end %>
 
 <br />

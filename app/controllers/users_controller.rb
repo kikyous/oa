@@ -1,36 +1,48 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class UsersController < ApplicationController
-  before_filter :require_admin_access
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to users_url, :alert => '您没有权限进行此操作'
+  end
+
   layout "table", :only => [:index]
   def index
   end
 
-  def show
+  def archive
     id=params[:id].to_i * 10
-   @users=User.limit(10).offset(id)
+    @users=User.limit(10).offset(id)
+    @count=User.count
+    # authorize! :read, User
   end
 
   def new
     @groups=Group.all
     @user=User.new
-    # resource = build_resource({})
-    # respond_with resource
+    authorize! :create, @user
   end
 
   # POST /resource
   def create
-    resource = User.new(params[:user])
-    if resource.save
-      redirect_to users_url
-    else
-      render :text => 'Failure !'
+    @user = User.new(params[:user])
+    authorize! :create, @user
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to users_url , notice: '用户 被成功创建.'}
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
     # GET /resource/edit
   def edit
     @user = User.find(params[:id])
+    authorize! :update, @user
     @groups=Group.all
-    render :edit
   end
 
   # PUT /resource
@@ -38,24 +50,31 @@ class UsersController < ApplicationController
   # the current user in place.
   def update
     @user = User.find(params[:id])
+    authorize! :update, @user
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    p params
-    p params[:user]
-    if @user.update_attributes(params[:user])
-      render :text => 'User was successfully updated.'
-    else
-      render :text => 'Failure !'
+    respond_to do |format|
+      if @group.update_attributes(params[:user])
+        format.html { redirect_to users_url, notice: '用户 被成功修改.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /resource
   def destroy
     @user = User.find(params[:id])
+    authorize! :destroy, @user
     @user.destroy
-    redirect_to users_url
+    respond_to do |format|
+      format.html { redirect_to users_url , notice: '用户 被成功删除 .'}
+      format.json { head :no_content }
+    end
 
   end
 

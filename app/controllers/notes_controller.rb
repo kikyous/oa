@@ -25,6 +25,7 @@ class NotesController < ApplicationController
   def archive
     id=params[:id].to_i * 10
     @notes=Note.limit(10).offset(id)
+    @count=Note.count
 
     # respond_to do |format|
     #   format.html # show.html.erb
