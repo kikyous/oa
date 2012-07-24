@@ -1,0 +1,36 @@
+<% @notes.each do |n| %>
+  <tr class="repeat" align="center">
+    <td height="18" bgcolor="#FFFFFF">
+      <div align="center" class="STYLE1">
+        <input name="checkbox" type="checkbox" class="STYLE2" value="checkbox">
+      </div>
+    </td>
+    <td height="18" bgcolor="#FFFFFF" class="STYLE2">
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= n.title %></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= n.user.username%></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= n.content %></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF" align="center">
+      <span display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= n.created_at %></span>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <div align="center" class="STYLE1">
+        <img src="/assets/tab/images/037.gif" width="9" height="9">[<a href="/notes/<%= n.id %>/edit" target='I1'>编辑</a>]
+      </div>
+    </td>
+    <td height="18" bgcolor="#FFFFFF">
+      <div align="center" class="STYLE1">
+        <img src="/assets/tab/images/010.gif" width="9" height="9">[
+        <%= link_to '删除', n, method: :delete, data: { confirm: '确定删除 ?' } %>
+        ]
+      </div>
+    </td>
+  </tr>
+<% end %>
+<script type="text/javascript">
+  $.all_record= <%= @count %> ;
+</script>

@@ -1,0 +1,16 @@
+<%= form_tag("/messages/create") do %>
+  <div>  
+    <%= label_tag(:to, "收件人") %> <br />
+    <%= text_field_tag("to") %>
+  </div>
+  <div>  
+  <%= label_tag(:title, "主题") %> <br />
+  <%= text_field_tag("message[subject]") %>
+  </div>
+  <div>  
+  <%= label_tag(:content, "内容") %> <br />
+  <%= text_area_tag("message[body]") %>
+  </div>
+  <br />
+  <%= submit_tag("发送") %>
+<% end %>
