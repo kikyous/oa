@@ -6,7 +6,10 @@ class MessagesController < ApplicationController
   end
 
   def archive
-    @conversations = current_user.received_messages.map{|m| m.conversation.reverse}.uniq{|m| m[0].id}
+    id=params[:id].to_i * 10
+    @conversations = current_user.messages.where(:ancestry => nil).limit(10).offset(id)
+    @count=current_user.messages.where(:ancestry => nil).count
+
   end
 
   def index
@@ -18,12 +21,19 @@ class MessagesController < ApplicationController
     @conversation.each do |m|
       m.mark_as_read unless m.opened
     end
+
   end
 
   def reply
     message=current_user.messages.with_id(params[:conversation]).first
-    # message.reply(params[:message])
-    current_user.reply_to(message,params[:message])
+    
+    respond_to do |format|
+      if reply=current_user.reply_to(message,params[:message])
+        format.html { render :partial => "message", :locals => { :message => reply } }
+      else
+        format.html { render :text => "error occur!" }
+      end
+    end
   end
     
 
@@ -33,6 +43,12 @@ class MessagesController < ApplicationController
 
   def create
     @to = User.find_by_username(params[:to])
-    current_user.send_message(@to, params[:message])
+    respond_to do |format|
+      if message=current_user.send_message(@to, params[:message])
+        format.html { redirect_to "/messages/#{message.id}" }
+      else
+        format.html { render :text => "error occur!" }
+      end
+    end
   end
 end

@@ -1,23 +1,13 @@
-<% f=@conversation.shift %>
-  <div class="topic">
-  <label for="">主题:</label> <br />
+<%= javascript_include_tag "application" %>
+<% f=@conversation.first %>
+<div class="topic">
   <%= f.topic %>
-  </div>
-  <br />
-  <br />
-  <div class="body">
-    <%=user=find_user(f.sent_messageable_id).username %>:
-    <%= f.body %>
-  </div>
+</div>
+<br />
 
-
-<% @conversation.each do |r| %>
-  <div class="body">
-    <%=find_user(r.sent_messageable_id).username %>:
-    <%= r.body %>
-  </div>
-<% end %>
-
+<div id="content">
+  <%= render :partial => "message", :collection => @conversation %>
+</div>
 
 <%= form_tag("/messages/reply", :method => "post") do %>
   <%= hidden_field_tag "conversation" , f.id %> 
@@ -29,3 +19,25 @@
   <%= submit_tag("发送") %>
 <% end %>
 
+<style type="text/css" media="screen">
+  .message {
+border-top: 1px solid #DDD;
+padding: 8px 10px;
+margin: 0 -10px;
+}
+  .info {
+font-size: 12px;
+color: #BBB;
+}
+</style>
+<script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+    $("input[type=submit]").click(function(){
+      $.post("/messages/reply",$("form").serialize(),function(result){
+        $("#content").append(result);
+      });
+      $("#message_body").val("");
+      return false;
+    });
+  });
+</script>

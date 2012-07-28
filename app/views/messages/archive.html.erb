@@ -6,20 +6,20 @@
       </div>
     </td>
     <td height="18" bgcolor="#FFFFFF" class="STYLE2">
-      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= msg_status m.last %></span>
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= msg_status m.conversation.first %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF">
-      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= find_user(m.first.sent_messageable_id).username %></span>
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= find_user(m.sent_messageable_id).username %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF">
-      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= m.first.topic %></span>
+      <span align="center" display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= m.topic %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF" align="center">
-      <span display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= m.first.created_at %></span>
+      <span display:block;line-height:100%;="" class="STYLE2 STYLE1"><%= m.created_at %></span>
     </td>
     <td height="18" bgcolor="#FFFFFF">
       <div align="center" class="STYLE1">
-        <img src="/assets/tab/images/037.gif" width="9" height="9">[<a href="/messages/<%= m.first.id %>" target='I1'>回复</a>]
+        <img src="/assets/tab/images/037.gif" width="9" height="9">[<a href="/messages/<%= m.id %>" target='I1'>回复</a>]
       </div>
     </td>
     <td height="18" bgcolor="#FFFFFF">

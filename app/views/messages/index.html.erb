@@ -1,5 +1,5 @@
 <% content_for :table_title do %>
-  信息列表
+  信件列表
 <% end %>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -22,10 +22,7 @@ $(document).ready(function(){
         $.ajaxSetTable('/messages/archive/'+$.current_page);
       }
     }
-
   });
-
-
 });
 </script>
 
