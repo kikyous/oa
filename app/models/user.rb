@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_messageable
+
   has_many :uploads
   has_many :notes
   has_and_belongs_to_many :groups

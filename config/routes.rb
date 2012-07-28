@@ -2,13 +2,16 @@ Oa::Application.routes.draw do
 
   resources :messages do
      collection do
-        get "get_unread_msg"
+        get "get_unread"
      end
   end
+  get '/messages/archive/:id' , :to => 'messages#archive'
+
   resources :notes
   get '/notes/archive/:id' , :to => 'notes#archive'
 
   resources :uploads
+
   resources :groups
   get '/groups/archive/:id' , :to => 'groups#archive'
 

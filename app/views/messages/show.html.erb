@@ -1,14 +1,31 @@
-<p id="notice"><%= notice %></p>
+<% f=@conversation.shift %>
+  <div class="topic">
+  <label for="">主题:</label> <br />
+  <%= f.topic %>
+  </div>
+  <br />
+  <br />
+  <div class="body">
+    <%=user=find_user(f.sent_messageable_id).username %>:
+    <%= f.body %>
+  </div>
 
-<p>
-  <b>Title:</b>
-  <%= @note.title %>
-</p>
-<p>
-  <b>Content:</b>
-  <%= @note.content %>
-</p>
+
+<% @conversation.each do |r| %>
+  <div class="body">
+    <%=find_user(r.sent_messageable_id).username %>:
+    <%= r.body %>
+  </div>
+<% end %>
 
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= form_tag("/messages/reply", :method => "post") do %>
+  <%= hidden_field_tag "conversation" , f.id %> 
+  <%= hidden_field_tag "message[topic]", "Re: #{f.topic}" %> 
+  <div>
+    <%= text_area_tag "message[body]" %> 
+  </div>
+
+  <%= submit_tag("发送") %>
+<% end %>
+

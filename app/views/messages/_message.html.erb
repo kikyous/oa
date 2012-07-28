@@ -1,0 +1,17 @@
+<div class="message">
+  <div class="message_checkbox">
+  <%= check_box_tag "message_checkbox_#{message.id}" %>
+  </div>
+  <div class="message_user_avatar"></div>
+  <div class="message_and_body">
+    <div class="topic">
+      <%= link_to message.topic, message_path(message.id) %>
+    </div>
+    <div class="body">
+      <%= message.body %>
+    </div>
+  </div>
+  <div class="message_destroy">
+  <%= link_to 'X', message_path(message.id), :method => :delete %>
+  </div>
+</div>
