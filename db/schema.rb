@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20120730100541) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.integer  "supl_contract_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end
@@ -69,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120730100541) do
   create_table "supl_contracts", :force => true do |t|
     t.string   "caption"
     t.integer  "supplier_id"
+    t.string   "attach_ids"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

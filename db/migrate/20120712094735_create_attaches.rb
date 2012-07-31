@@ -5,7 +5,7 @@ class CreateAttaches < ActiveRecord::Migration
       t.string   :picture_content_type
       t.integer  :picture_file_size
       t.datetime :picture_updated_at
-      t.references :supl_contract
+      # t.references :supl_contract
       t.timestamps
     end
   end

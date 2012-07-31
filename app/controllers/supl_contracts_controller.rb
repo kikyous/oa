@@ -35,9 +35,15 @@ class SuplContractsController < ApplicationController
   end
 
   def create
+    begin
+      params[:supl_contract][:attach_ids]=params[:supl_contract][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+      
     supl_contract = SuplContract.new(params[:supl_contract])
     if supl_contract.save
-      render :text ,'asdfasd'
+      redirect_to supl_contracts_path
     else
       #todo handle error
       render :json => { :result => 'error'}, :content_type => 'text/html'

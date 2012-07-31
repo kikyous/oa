@@ -1,5 +1,5 @@
 class SuplContract < ActiveRecord::Base
   belongs_to :supplier
-  attr_accessible :caption,:supplier_id
-  has_many :attaches
+  attr_accessible :caption,:supplier_id,:attach_ids
+  # has_many :attaches
 end

@@ -3,6 +3,7 @@ class CreateSuplContracts < ActiveRecord::Migration
     create_table :supl_contracts do |t|
       t.string :caption
       t.references :supplier
+      t.string   :attach_ids
 
       t.timestamps
     end

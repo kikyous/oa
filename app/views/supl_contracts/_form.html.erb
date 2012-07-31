@@ -1,3 +1,16 @@
+<style type="text/css">
+  #file_upload_progress {
+    background: url(<%= asset_path("uploads/progressbar.gif") %>);
+  }
+
+  #file_upload_progress  {
+    display: none;
+    width: 150px;
+    height: 15px;
+  }
+</style>
+
+
 <%= form_for(@supl_contract) do |c| %>
   <% if @supl_contract.errors.any? %>
     <div id="error_explanation">
@@ -10,21 +23,66 @@
       </ul>
     </div>
   <% end %>
+  <%= c.label "供应商" %><br />
   <%= collection_select(:supl_contract, :supplier_id, Supplier.all, :id, :name) %>
 
   <div class="field">
-    <%= c.label :caption %><br />
-    <%= c.text_field :caption %>
+    <%= c.label "说明" %><br />
+    <%= c.text_area :caption %>
   </div>
   <div class="actions">
-    <%= c.submit %>
+    <%= c.submit "提交合同"%>
   </div>
 
 <% end %>
 
-<%= form_for @supl_contract.attaches.build, :html => { :id => "fileupload", :multipart => true } do |c| %>
+<%= form_tag "/attaches",  :id => "fileupload", :multipart => true  do |c| %>
   <%= file_field_tag 'attach[picture]', :multiple => true %>
   <div class="fileupload-loading"></div>
   <div id="file_upload_progress"></div>
+  <%#  <%= c.submit '上传'%>
   <br>
 <% end %>
+
+<table id="doneFile">
+    <tbody></tbody>
+</table>
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<%= javascript_include_tag "jquery.ui.widget.js" %>
+<%= javascript_include_tag "jquery.iframe-transport.js" %>
+<%= javascript_include_tag "jquery.fileupload.js" %>
+
+<script>
+  $(function () {
+    function d(b){
+      if ( isNaN(b))
+      return;
+      dws=['b','Kb','Mb'];
+      for(i=0;i<3;i++){
+        dw=dws[i];
+        if (b<1024) break;
+        b=b/1024;
+      }
+      return b.toFixed(2)+dw;
+    };
+    $('#fileupload').fileupload({
+      done: function (e, data) {
+        console.log(data.result.id);
+        $("#new_supl_contract").append('<input type="hidden" name="supl_contract[attach_ids][]" value='+data.result.id+'\>')
+        $("#doneFile>tbody").append('<tr class="template-upload fade in">  <td class="name"><span>'+data.result.picture_file_name+'</span></td> <td class="size"><span>'+d(data.result.picture_file_size)+'</span></td> <td class="progess"><span>100 %</span></td> </tr>');
+      },
+      start: function (e) {
+        console.log("starting");
+        $("#file_upload_progress").fadeIn();
+      },
+      stop:function (e) {
+        $("#file_upload_progress").fadeOut();
+      },
+
+    });
+  });
+
+
+</script>
+

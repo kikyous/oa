@@ -1,5 +1,5 @@
 class Attach < ActiveRecord::Base
-  belongs_to :supl_contract
+  # belongs_to :supl_contract
   attr_accessible :picture
   
   has_attached_file :picture
