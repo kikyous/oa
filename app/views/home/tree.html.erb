@@ -14,7 +14,7 @@
           </table>
 
           <%= render "tree_item", { :item => [10,'办公桌' ,'发送信件'=>'/messages/new','查看信件'=>'/messages'] } %>
-          <%= render "tree_item", { :item => [1,'表单管理' ,'上传表单'=>'/uploads/new','管理表单'=>'/uploads'] } %>
+          <%= render "tree_item", { :item => [1,'供销部' ,'供应商'=>'/suppliers','合同管理'=>'/supl_contracts'] } %>
 
           <% attr = [0,'组织管理',{}] %>
           <% attr.last['机构管理'] ='/groups' if can? :read , Group %>

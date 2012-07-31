@@ -1,5 +1,5 @@
-class Upload < ActiveRecord::Base
-  belongs_to :user
+class Attach < ActiveRecord::Base
+  # belongs_to :supl_contract
   attr_accessible :picture
   
   has_attached_file :picture
