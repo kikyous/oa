@@ -51,10 +51,16 @@ class SuplContractsController < ApplicationController
   end
   
   def update
+    begin
+      params[:supl_contract][:attach_ids]=params[:supl_contract][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+
     @supl_contract = SuplContract.find(params[:id])
     if @supl_contract.update_attributes(params[:supl_contract])
       flash[:notice] = "Successfully updated picture."
-      redirect_to root_path
+      redirect_to supl_contracts_path
     end
   end
 

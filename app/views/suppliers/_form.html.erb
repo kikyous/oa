@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label "名称" %><br />
+    <%= f.text_field :name ,:size => "60x12" %>
   </div>
   <div class="field">
-    <%= f.label :goods %><br />
-    <%= f.text_area :goods %>
+    <%= f.label "商品" %><br />
+    <%= f.text_area :goods ,:size => "60x12"%>
   </div>
   <div class="field">
-    <%= f.label :contact %><br />
-    <%= f.text_area :contact %>
+    <%= f.label "联系方式" %><br />
+    <%= f.text_area :contact, :size => "60x12"%>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
+    <%= f.label "地址" %><br />
+    <%= f.text_area :address ,:size => "60x12"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "提交" %>
   </div>
 <% end %>
