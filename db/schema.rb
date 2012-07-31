@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724083711) do
+ActiveRecord::Schema.define(:version => 20120730100541) do
+
+  create_table "attaches", :force => true do |t|
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "supl_contract_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "groups", :force => true do |t|
     t.string   "name",                             :null => false
@@ -56,14 +66,22 @@ ActiveRecord::Schema.define(:version => 20120724083711) do
 
   add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
-  create_table "uploads", :force => true do |t|
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
-    t.integer  "user_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+  create_table "supl_contracts", :force => true do |t|
+    t.string   "caption"
+    t.integer  "supplier_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "supl_contracts", ["supplier_id"], :name => "index_supl_contracts_on_supplier_id"
+
+  create_table "suppliers", :force => true do |t|
+    t.string   "goods"
+    t.string   "name"
+    t.string   "contact"
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

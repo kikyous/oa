@@ -1,0 +1,30 @@
+<%= form_for(@supl_contract) do |c| %>
+  <% if @supl_contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supl_contract.errors.count, "error") %> prohibited this supl_contract from being saved:</h2>
+
+      <ul>
+        <% @supl_contract.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= collection_select(:supl_contract, :supplier_id, Supplier.all, :id, :name) %>
+
+  <div class="field">
+    <%= c.label :caption %><br />
+    <%= c.text_field :caption %>
+  </div>
+  <div class="actions">
+    <%= c.submit %>
+  </div>
+
+<% end %>
+
+<%= form_for @supl_contract.attaches.build, :html => { :id => "fileupload", :multipart => true } do |c| %>
+  <%= file_field_tag 'attach[picture]', :multiple => true %>
+  <div class="fileupload-loading"></div>
+  <div id="file_upload_progress"></div>
+  <br>
+<% end %>

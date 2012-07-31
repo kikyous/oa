@@ -7,10 +7,16 @@ Oa::Application.routes.draw do
   end
   get '/messages/archive/:id' , :to => 'messages#archive'
 
+  resources :attaches
+
   resources :notes
   get '/notes/archive/:id' , :to => 'notes#archive'
 
-  resources :uploads
+  resources :supl_contracts
+  get '/supl_contracts/archive/:id' , :to => 'supl_contracts#archive'
+
+  resources :suppliers
+  get '/suppliers/archive/:id' , :to => 'suppliers#archive'
 
   resources :groups
   get '/groups/archive/:id' , :to => 'groups#archive'
