@@ -4,7 +4,12 @@
 class SuplContractsController < ApplicationController
   before_filter :authenticate_user!
   layout "table", :only => [:index]
+
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: SuplContractsDatatable.new(view_context) }
+    end
   end
 
   def new
@@ -31,12 +36,6 @@ class SuplContractsController < ApplicationController
     @supl_contract = SuplContract.find(params[:id])
   end
   
-  def archive
-    id=params[:id].to_i * 10
-    @supl_contracts=SuplContract.limit(10).offset(id).order("created_at DESC")
-    # @supl_contracts_dict=supl_contracts.group_by(&:supl_contract_id)
-  end
-
   def create
     begin
       params[:supl_contract][:attach_ids]=params[:supl_contract][:attach_ids].join(",")

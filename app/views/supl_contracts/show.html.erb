@@ -1,12 +1,98 @@
-<p id="notice"><%= notice %></p>
+<style type="text/css">
 
-<p>
-  <b>Title:</b>
-  <%= @note.title %>
-</p>
-<p>
-  <b>Content:</b>
-  <%= @note.content %>
-</p>
+  #file_upload_progress  {
+    display: none;
+    width: 150px;
+    height: 15px;
+  }
+  #doneFile {
+    background-color: #E9E1D4;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+  #attach_picture {display:none;}
+  #a {
+    color: #4C5C7C;
+  }
+  #doneFile{
+    color: black;
+    font-size: 12px;
+    line-height: 166.6%;
+  }
+  table td {
+    border: 2px;
+    padding: 1px 7px 1px 7px;
+  }
+</style>
 
+
+  <% if @supl_contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supl_contract.errors.count, "error") %> prohibited this supl_contract from being saved:</h2>
+      <ul>
+        <% @supl_contract.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= label_tag "供应商" %><br />
+
+  <%= link_to(@supl_contract.supplier.name, supplier_path(@supl_contract.supplier)) %> 
+
+  <br />
+  <br />
+  <div class="field">
+    <%= label_tag "说明" %><br />
+    <%= @supl_contract.caption  %>
+  </div>
+
+
+
+<div>
+  <table id="doneFile">
+    <tbody>
+      <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
+         <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>
+          <tr class="template-upload fade in">
+            <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
+            <td class="size"><span size=<%= a.picture_file_size %> >
+                wait...</span></td>
+            <td class="progess"><span>100 %</span></td>
+            <td class="download">
+              <%= link_to '下载', a.picture.url%>
+            </td>
+            <td class="destroy">  
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= javascript_include_tag "application" %>
+
+<script>
+  $(document).ready(function(){
+    function d(b){
+      if ( isNaN(b))
+      return;
+      dws=['b','Kb','Mb'];
+      for(i=0;i<3;i++){
+        dw=dws[i];
+        if (b<1024) break;
+        b=b/1024;
+      }
+      return b.toFixed(2)+dw;
+    };
+    var size=$("#doneFile td.size span");
+    size.text(d(parseInt(size.attr("size"))));
+  });
+
+
+</script>
 

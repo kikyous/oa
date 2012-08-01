@@ -2,12 +2,11 @@ class NotesController < ApplicationController
   layout "table", :only => [:index]
   # GET /notes
   # GET /notes.json
-  def index
-    @notes = Note.all
 
+  def index
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @notes }
+      format.html
+      format.json { render json: NotesDatatable.new(view_context) }
     end
   end
 

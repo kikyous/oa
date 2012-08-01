@@ -11,13 +11,12 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @groups }
+      format.html
+      format.json { render json: GroupsDatatable.new(view_context) }
     end
   end
+
 
   # GET /groups/1
   # GET /groups/1.json

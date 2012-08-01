@@ -1,7 +1,12 @@
 class SuppliersController < ApplicationController
   before_filter :authenticate_user!
   layout "table", :only => [:index]
+
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: SuppliersDatatable.new(view_context) }
+    end
   end
 
   def new

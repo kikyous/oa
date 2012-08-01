@@ -13,8 +13,11 @@ class MessagesController < ApplicationController
   end
 
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: MessagesDatatable.new(view_context) }
+    end
   end
-
   def show
     message=current_user.messages.with_id(params[:id])
     @conversation=message.first.conversation.reverse

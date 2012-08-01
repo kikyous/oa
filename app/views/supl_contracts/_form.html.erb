@@ -8,10 +8,8 @@
     width: 150px;
     height: 15px;
   }
-  .bg-area1 {
+  #doneFile {
     background-color: #E9E1D4;
-  }
-  .ea {
     margin-top: 8px;
     margin-bottom: 4px;
     padding: 5px;
@@ -36,7 +34,6 @@
   <% if @supl_contract.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@supl_contract.errors.count, "error") %> prohibited this supl_contract from being saved:</h2>
-
       <ul>
         <% @supl_contract.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -66,17 +63,14 @@
 
 <%= form_tag "/attaches",  :id => "fileupload", :multipart => true  do |c| %>
   <div title="可以添加任意附件">
-    <a id="addAttach" href="#">添加附件</a>
+    <a id="addAttach" href="/#">添加附件</a>
     <%= file_field_tag 'attach[picture]', :multiple => true %>
   </div>
 
-  <div class="fileupload-loading"></div>
   <div id="file_upload_progress"></div>
-  <%#  <%= c.submit '上传'%>
-  <br>
 <% end %>
 
-<div class="ea bg-area1">
+<div>
   <table id="doneFile">
     <tbody>
       <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
@@ -84,8 +78,11 @@
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >
-                <%= a.picture_file_size %>  </span></td>
+                wait...</span></td>
             <td class="progess"><span>100 %</span></td>
+            <td class="download">
+              <%= link_to '下载', a.picture.url%>
+            </td>
             <td class="destroy">  
               <%= link_to '删除', a%>
             </td>
@@ -110,11 +107,12 @@
     var e=e||window.event;
     var obj=e.target||e.srcElement;
     var item=$(obj);
-    if  ( item.is('a') )
+    if (item.is('td.destroy>a'))
     {
-      var id=item.attr("href").match(/\d+/)[0];
+    var id=item.attr("href").match(/\d+/);
       item.parents('tr').remove();
-      var select="#hiddenfile input[value=" +id+ "]";
+      if (id==null) return false;
+      var select="#hiddenfile input[value=" +id[0]+ "]";
       $(select).attr("name","unneed_attach[attach_ids][]");
       return false;
     }
@@ -122,7 +120,7 @@
 
 
   $("#submit").click(function(){$("#mainform").submit()});
-  $("#addAttach").click(function(){$("#attach_picture").trigger("click")});
+  $("#addAttach").click(function(){$("#attach_picture").trigger("click");return false;});
     function d(b){
       if ( isNaN(b))
       return;
@@ -138,11 +136,14 @@
     size.text(d(parseInt(size.attr("size"))));
     $('#fileupload').fileupload({
       done: function (e, data) {
+      if (data.result.error==true){
+      $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.msg+'</span></td> <td class="size"><span></span></td> <td class="progess"><span></span></td> <td></td> <td class="destroy"><a href="/#">删除</a></td></tr>');
+        return;
+      }
         $("#hiddenfile").append('<input type="hidden" name="supl_contract[attach_ids][]" value='+data.result.id+'\>')
-        $("#doneFile>tbody").append('<tr class="template-upload fade in">  <td class="name"><span>'+data.result.picture_file_name+'</span></td> <td class="size"><span>'+d(data.result.picture_file_size)+'</span></td> <td class="progess"><span>100 %</span></td> <td class="destroy"><a href="/attaches/'+data.result.id+'">删除</a></td></tr>');
+        $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.name+'</span></td> <td class="size"><span>'+d(data.result.size)+'</span></td> <td class="progess"><span>100 %</span></td> <td class="download"><a href="'+ data.result.a_path +'">下载</a></td> <td class="destroy"><a href="/attaches/'+data.result.id+'">删除</a></td></tr>');
       },
       start: function (e) {
-        console.log("starting");
         $("#file_upload_progress").fadeIn();
       },
       stop:function (e) {

@@ -8,7 +8,12 @@ class UsersController < ApplicationController
   end
 
   layout "table", :only => [:index]
+
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: UsersDatatable.new(view_context) }
+    end
   end
 
   def archive

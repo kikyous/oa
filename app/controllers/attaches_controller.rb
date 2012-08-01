@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class AttachesController < ApplicationController
   before_filter :authenticate_user!
 
@@ -7,9 +10,9 @@ class AttachesController < ApplicationController
   def create
     attach = Attach.new(params[:attach])
     if attach.save
-      render :json => attach
+      render :json => { :a_path => attach.picture.url.to_s , :name => attach.picture.instance.attributes["picture_file_name"] , :size => attach.picture.instance.attributes["picture_file_size"],:id=>attach.id}
     else
-      render :json => { :result => 'error'}, :content_type => 'text/html'
+      render :json => { :error => true ,:msg => '发生错误'}
     end
   end
 
