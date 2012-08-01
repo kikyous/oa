@@ -8,10 +8,31 @@
     width: 150px;
     height: 15px;
   }
+  .bg-area1 {
+    background-color: #E9E1D4;
+  }
+  .ea {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+  #attach_picture {display:none;}
+  #a {
+    color: #4C5C7C;
+  }
+  body ,#doneFile{
+    color: black;
+    font-size: 12px;
+    line-height: 166.6%;
+  }
+  table td {
+    border: 2px;
+    padding: 1px 7px 1px 7px;
+  }
 </style>
 
 
-<%= form_for(@supl_contract) do |c| %>
+<%= form_for(@supl_contract, :html=>{:id => 'mainform' }) do |c| %>
   <% if @supl_contract.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@supl_contract.errors.count, "error") %> prohibited this supl_contract from being saved:</h2>
@@ -23,11 +44,13 @@
       </ul>
     </div>
   <% end %>
-  <% unless c.object.new_record? %>
-    <% c.object.attach_ids.split(',').each do |e| %>
-      <input name="supl_contract[attach_ids][]"" type="hidden" value= <%= e %> />
-    <% end %>
-  <% end %>
+  <div id="hiddenfile">
+      <% unless c.object.new_record? or c.object.attach_ids.nil? %>
+        <% c.object.attach_ids.split(',').each do |e| %>
+          <input name="supl_contract[attach_ids][]"" type="hidden" value= "<%= e %>" />
+        <% end %>
+      <% end %>
+  </div>
 
   <%= c.label "供应商" %><br />
   <%= collection_select(:supl_contract, :supplier_id, Supplier.all, :id, :name) %>
@@ -36,43 +59,70 @@
 
   <div class="field">
     <%= c.label "说明" %><br />
-    <%= c.text_area :caption %>
-  </div>
-  <div class="actions">
-    <%= c.submit "提交合同"%>
+    <%= c.text_area :caption  %>
   </div>
 
 <% end %>
 
 <%= form_tag "/attaches",  :id => "fileupload", :multipart => true  do |c| %>
-  <%= file_field_tag 'attach[picture]', :multiple => true %>
+  <div title="可以添加任意附件">
+    <a id="addAttach" href="#">添加附件</a>
+    <%= file_field_tag 'attach[picture]', :multiple => true %>
+  </div>
+
   <div class="fileupload-loading"></div>
   <div id="file_upload_progress"></div>
   <%#  <%= c.submit '上传'%>
   <br>
 <% end %>
 
-<table id="doneFile">
-  <tbody>
-    <% unless @supl_contract.new_record? %>
-      <% Attach.find(@supl_contract.attach_ids.split(',')).each do |a|  %>
-        <tr class="template-upload fade in">
-          <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
-          <td class="size"><span>  <%= a.picture_file_size %>  </span></td>
-          <td class="progess"><span>100 %</span></td>
-        </tr>
+<div class="ea bg-area1">
+  <table id="doneFile">
+    <tbody>
+      <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
+         <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>
+          <tr class="template-upload fade in">
+            <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
+            <td class="size"><span size=<%= a.picture_file_size %> >
+                <%= a.picture_file_size %>  </span></td>
+            <td class="progess"><span>100 %</span></td>
+            <td class="destroy">  
+              <%= link_to '删除', a%>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<input id="submit" name="commit" type="submit" value="提交合同"/>
+
+<%= javascript_include_tag "application" %>
 <%= javascript_include_tag "jquery.ui.widget.js" %>
 <%= javascript_include_tag "jquery.iframe-transport.js" %>
 <%= javascript_include_tag "jquery.fileupload.js" %>
+<%= csrf_meta_tags %>
 
 <script>
-  $(function () {
+  $(document).ready(function(){
+  $("#doneFile").click(function(){
+    var e=e||window.event;
+    var obj=e.target||e.srcElement;
+    var item=$(obj);
+    if  ( item.is('a') )
+    {
+      var id=item.attr("href").match(/\d+/)[0];
+      item.parents('tr').remove();
+      var select="#hiddenfile input[value=" +id+ "]";
+      $(select).attr("name","unneed_attach[attach_ids][]");
+      return false;
+    }
+  });
+
+
+  $("#submit").click(function(){$("#mainform").submit()});
+  $("#addAttach").click(function(){$("#attach_picture").trigger("click")});
     function d(b){
       if ( isNaN(b))
       return;
@@ -84,11 +134,12 @@
       }
       return b.toFixed(2)+dw;
     };
+    var size=$("#doneFile td.size span");
+    size.text(d(parseInt(size.attr("size"))));
     $('#fileupload').fileupload({
       done: function (e, data) {
-        console.log(data.result.id);
-        $("#new_supl_contract").append('<input type="hidden" name="supl_contract[attach_ids][]" value='+data.result.id+'\>')
-        $("#doneFile>tbody").append('<tr class="template-upload fade in">  <td class="name"><span>'+data.result.picture_file_name+'</span></td> <td class="size"><span>'+d(data.result.picture_file_size)+'</span></td> <td class="progess"><span>100 %</span></td> </tr>');
+        $("#hiddenfile").append('<input type="hidden" name="supl_contract[attach_ids][]" value='+data.result.id+'\>')
+        $("#doneFile>tbody").append('<tr class="template-upload fade in">  <td class="name"><span>'+data.result.picture_file_name+'</span></td> <td class="size"><span>'+d(data.result.picture_file_size)+'</span></td> <td class="progess"><span>100 %</span></td> <td class="destroy"><a href="/attaches/'+data.result.id+'">删除</a></td></tr>');
       },
       start: function (e) {
         console.log("starting");

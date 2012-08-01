@@ -1,5 +1,9 @@
 Oa::Application.routes.draw do
 
+  resources :attendances
+
+  resources :announcements
+
   resources :messages do
      collection do
         get "get_unread"
@@ -8,6 +12,7 @@ Oa::Application.routes.draw do
   get '/messages/archive/:id' , :to => 'messages#archive'
 
   resources :attaches
+  resources :announcements
 
   resources :notes
   get '/notes/archive/:id' , :to => 'notes#archive'

@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class SuplContractsController < ApplicationController
   before_filter :authenticate_user!
   layout "table", :only => [:index]
@@ -40,9 +43,10 @@ class SuplContractsController < ApplicationController
     rescue => err
       p err
     end
-      
+    rm_unneed_attach 
     supl_contract = SuplContract.new(params[:supl_contract])
     if supl_contract.save
+      flash[:notice] = "合同成功创建！"
       redirect_to supl_contracts_path
     else
       #todo handle error
@@ -57,9 +61,10 @@ class SuplContractsController < ApplicationController
       p err
     end
 
+    rm_unneed_attach 
     @supl_contract = SuplContract.find(params[:id])
     if @supl_contract.update_attributes(params[:supl_contract])
-      flash[:notice] = "Successfully updated picture."
+      flash[:notice] = "合同编辑成功！"
       redirect_to supl_contracts_path
     end
   end
@@ -69,6 +74,18 @@ class SuplContractsController < ApplicationController
     @supl_contract.destroy
     redirect_to supl_contracts_url
 
+  end
+
+  private
+
+  def rm_unneed_attach()
+    begin
+      Attach.find(params[:unneed_attach][:attach_ids]).each do |a|
+        a.destroy
+      end
+    rescue => err
+      p err
+    end
   end
 
 end
