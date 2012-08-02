@@ -1,14 +1,16 @@
 class MessagesDatatable
-  delegate :params, :h, :link_to, to: :@view
 
-  def initialize(view)
+  delegate :params, :h, :link_to ,:msg_status,:find_user,:message_path,:conversation, to: :@view
+
+  def initialize(view,current_user)
     @view = view
+    @current_user=current_user
   end
 
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Message.count,
+      iTotalRecords: messages.count,
       iTotalDisplayRecords: messages.total_entries,
       aaData: data
     }
@@ -19,10 +21,10 @@ private
   def data
     messages.map do |message|
       [
-        link_to(message.id, message),
-        h(message.messagename),
-        h(message.groups.map{|g| g.name }.join('/')),
-        message.last_sign_in_at,
+        link_to(msg_status(message.conversation.first), message_path(message)),
+        h(find_user(message.sent_messageable_id).username),
+        h(message.topic),
+        message.created_at,
         message.id
       ]
     end
@@ -32,8 +34,9 @@ private
     @messages ||= fetch_messages
   end
 
+
   def fetch_messages
-    messages = Message.order("#{sort_column} #{sort_direction}")
+    messages = @current_user.messages.where(:ancestry => nil).order("#{sort_column} #{sort_direction}")
     messages = messages.page(page).per_page(per_page)
     if params[:sSearch].present?
       messages = messages.where("messages.name like :search or messages.created_at like :search", search: "%#{params[:sSearch]}%")
@@ -50,7 +53,7 @@ private
   end
 
   def sort_column
-    columns = %w[messages.id messages.name messages.created_at]
+    columns = %w[messages.id messages.topic messages.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

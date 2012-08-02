@@ -20,7 +20,7 @@
         }
       },
       "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 3 ] }
+        { "bSortable": false, "aTargets": [ 4 ] }
       ],
 
     });

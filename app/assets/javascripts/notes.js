@@ -15,12 +15,12 @@
             var item=$(e);
             that.fnUpdate('<a href=/notes/'+item.text()+'/edit>[修改]</a> '+' <a href=/notes/'+item.text()+' data-confirm="确定删除 ?" data-method="delete" rel="nofollow">[删除]</a>' ,
             
-             this.parentNode, 3, false, false );
+             this.parentNode, 4, false, false );
           } );
         }
       },
       "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 3 ] }
+        { "bSortable": false, "aTargets": [ 4 ] }
       ],
 
     });
