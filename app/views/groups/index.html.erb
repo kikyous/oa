@@ -1,7 +1,4 @@
-<%= javascript_include_tag "application" %>
 <%= javascript_include_tag "groups" %>
-<%= csrf_meta_tags %>
-<%= stylesheet_link_tag "application"%>
 <table id ="groups"  class="display" data-source="<%= groups_url(format: "json") %>" >
   <thead>
     <tr>

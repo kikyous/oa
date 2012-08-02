@@ -1,7 +1,4 @@
-<%= javascript_include_tag "application" %>
 <%= javascript_include_tag "suppliers" %>
-<%= csrf_meta_tags %>
-<%= stylesheet_link_tag "application"%>
 <table id ="suppliers"  class="display" data-source="<%= suppliers_url(format: "json") %>" >
   <thead>
     <tr>

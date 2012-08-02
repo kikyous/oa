@@ -1,12 +1,12 @@
 class AttendancesController < ApplicationController
+  before_filter :authenticate_user!
+  layout "table", :only => [:index]
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @attendances }
+      format.html
+      format.json { render json: AttendancesDatatable.new(view_context) }
     end
   end
 
@@ -40,7 +40,13 @@ class AttendancesController < ApplicationController
   # POST /attendances
   # POST /attendances.json
   def create
-    @attendance = Attendance.new(params[:attendance])
+    begin
+      params[:attendance][:attach_ids]=params[:attendance][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+    rm_unneed_attach
+    @attendance = current_user.attendances.new(params[:attendance])
 
     respond_to do |format|
       if @attendance.save
@@ -56,7 +62,13 @@ class AttendancesController < ApplicationController
   # PUT /attendances/1
   # PUT /attendances/1.json
   def update
-    @attendance = Attendance.find(params[:id])
+    begin
+      params[:attendance][:attach_ids]=params[:attendance][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+    rm_unneed_attach
+    @attendance = current_user.attendances.find(params[:id])
 
     respond_to do |format|
       if @attendance.update_attributes(params[:attendance])
@@ -78,6 +90,18 @@ class AttendancesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to attendances_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def rm_unneed_attach()
+    begin
+      Attach.find(params[:unneed_attach][:attach_ids]).each do |a|
+        a.destroy
+      end
+    rescue => err
+      p err
     end
   end
 end

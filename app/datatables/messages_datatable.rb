@@ -39,7 +39,7 @@ private
     messages = @current_user.messages.where(:ancestry => nil).order("#{sort_column} #{sort_direction}")
     messages = messages.page(page).per_page(per_page)
     if params[:sSearch].present?
-      messages = messages.where("messages.name like :search or messages.created_at like :search", search: "%#{params[:sSearch]}%")
+      messages = messages.where("messages.topic like :search", search: "%#{params[:sSearch]}%")
     end
     messages
   end

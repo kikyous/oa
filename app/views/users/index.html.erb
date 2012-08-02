@@ -1,7 +1,4 @@
-<%= javascript_include_tag "application" %>
 <%= javascript_include_tag "users" %>
-<%= csrf_meta_tags %>
-<%= stylesheet_link_tag "application"%>
 <table id ="users"  class="display" data-source="<%= users_url(format: "json") %>" >
   <thead>
     <tr>

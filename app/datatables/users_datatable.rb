@@ -36,7 +36,7 @@ private
     users = User.order("#{sort_column} #{sort_direction}")
     users = users.page(page).per_page(per_page)
     if params[:sSearch].present?
-      users = users.where("users.name like :search or users.created_at like :search", search: "%#{params[:sSearch]}%")
+      users = users.where("users.username like :search or users.created_at like :search", search: "%#{params[:sSearch]}%")
     end
     users
   end

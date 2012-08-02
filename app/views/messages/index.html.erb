@@ -1,7 +1,4 @@
-<%= javascript_include_tag "application" %>
 <%= javascript_include_tag "messages" %>
-<%= csrf_meta_tags %>
-<%= stylesheet_link_tag "application"%>
 <table id ="messages"  class="display" data-source="<%= messages_url(format: "json") %>" >
   <thead>
     <tr>

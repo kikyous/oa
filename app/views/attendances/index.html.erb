@@ -1,23 +1,12 @@
-<h1>Listing attendances</h1>
-
-<table>
-  <tr>
-    <th>Caption</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @attendances.each do |attendance| %>
-  <tr>
-    <td><%= attendance.caption %></td>
-    <td><%= link_to 'Show', attendance %></td>
-    <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-    <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%= javascript_include_tag "attendances" %>
+<table id ="attendances"  class="display" data-source="<%= attendances_url(format: "json") %>" >
+  <thead>
+    <tr>
+      <th>状态</th>
+      <th>用户</th>
+      <th>创建时间</th>
+      <th>编辑</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Attendance', new_attendance_path %>

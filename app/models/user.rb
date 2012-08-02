@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_messageable
 
   has_many :announcements
+  has_many :attendances
   has_many :notes
   has_and_belongs_to_many :groups
   # Include default devise modules. Others available are:

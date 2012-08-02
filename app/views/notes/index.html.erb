@@ -1,7 +1,4 @@
-<%= javascript_include_tag "application" %>
 <%= javascript_include_tag "notes" %>
-<%= csrf_meta_tags %>
-<%= stylesheet_link_tag "application"%>
 <table id ="notes"  class="display" data-source="<%= notes_url(format: "json") %>" >
   <thead>
     <tr>
