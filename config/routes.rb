@@ -1,6 +1,10 @@
 Oa::Application.routes.draw do
 
-  resources :attendances
+  resources :attendances do
+    collection do
+      get 'personal'
+    end
+  end
 
   resources :messages do
      collection do

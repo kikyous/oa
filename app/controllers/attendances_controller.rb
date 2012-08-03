@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
-  layout "table", :only => [:index]
+  layout "table", :only => [:index,:personal]
   # GET /attendances
   # GET /attendances.json
   def index
@@ -11,6 +11,14 @@ class AttendancesController < ApplicationController
         render :js => "filter('#{user_session[:for_month]}',true); " 
       }
       format.json { render json: AttendancesDatatable.new(view_context) }
+    end
+  end
+
+  def personal
+    respond_to do |format|
+      format.html
+      format.js { }
+      format.json { render json: AttendancesDatatable.new(view_context,current_user) }
     end
   end
 

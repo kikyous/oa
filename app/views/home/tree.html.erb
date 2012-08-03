@@ -15,7 +15,7 @@
 
           <%= render "tree_item", { :item => [10,'办公桌' ,'发送信件'=>'/messages/new','查看信件'=>'/messages'] } %>
           <%= render "tree_item", { :item => [1,'供销部' ,'供应商'=>'/suppliers','合同管理'=>'/supl_contracts'] } %>
-          <%= render "tree_item", { :item => [11,'财务部' ,'考勤管理'=>'/attendances','银行帐号'=>'/supl_contracts'] } %>
+          <%= render "tree_item", { :item => [11,'财务部' ,'考勤管理'=>'/attendances','银行帐号'=>'/supl_contracts','个人考勤'=>'/attendances/personal'] } %>
 
           <% attr = [0,'组织管理',{}] %>
           <% attr.last['机构管理'] ='/groups' if can? :read , Group %>
