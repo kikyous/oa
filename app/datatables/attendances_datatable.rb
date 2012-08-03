@@ -4,8 +4,9 @@
 class AttendancesDatatable
   delegate :params, :h, :link_to,:user_session, to: :@view
 
-  def initialize(view)
+  def initialize(view,personal=nil)
     @view = view
+    @personal=personal
   end
 
   def as_json(options = {})
@@ -45,12 +46,18 @@ private
   end
 
   def fetch_attendances
-    attendances = Attendance.includes("user").order("#{sort_column} #{sort_direction}")
-    if params[:sSearch_1].present?
-      user_session[:for_month]=params[:sSearch_1]
-      attendances = attendances.where("attendances.for_month = ?",params[:sSearch_1])
+    if @personal
+      p @personal
+      p "############"
+      attendances = @personal.attendances.includes("user").order("#{sort_column} #{sort_direction}")
     else
-      return attendances = attendances.where("attendances.for_month = 0000-00")
+      attendances = Attendance.includes("user").order("#{sort_column} #{sort_direction}")
+      if params[:sSearch_1].present?
+        user_session[:for_month]=params[:sSearch_1]
+        attendances = attendances.where("attendances.for_month = ?",params[:sSearch_1])
+      else
+        return attendances = attendances.where("attendances.for_month = 0000-00")
+      end
     end
     attendances = attendances.page(page).per_page(per_page)
     if params[:sSearch].present?

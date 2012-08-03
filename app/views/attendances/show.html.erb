@@ -1,10 +1,95 @@
-<p id="notice"><%= notice %></p>
+<style type="text/css">
 
-<p>
-  <b>Caption:</b>
-  <%= @attendance.caption %>
-</p>
+  #file_upload_progress  {
+    display: none;
+    width: 150px;
+    height: 15px;
+  }
+  #doneFile {
+    background-color: #E9E1D4;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+  #attach_picture {display:none;}
+  #a {
+    color: #4C5C7C;
+  }
+  #doneFile{
+    color: black;
+    font-size: 12px;
+    line-height: 166.6%;
+  }
+  table td {
+    border: 2px;
+    padding: 1px 7px 1px 7px;
+  }
+</style>
 
 
-<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
-<%= link_to 'Back', attendances_path %>
+  <% if @attendance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+      <ul>
+        <% @attendance.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= label_tag "人员" %><br />
+  <%= @attendance.user.username %>
+
+
+  <br />
+  <br />
+  <div class="field">
+    <%= label_tag "说明" %><br />
+    <%= @attendance.caption  %>
+  </div>
+
+
+
+<div>
+  <table id="doneFile">
+    <tbody>
+      <% unless @attendance.new_record? or @attendance.attach_ids.nil? %>
+         <% Attach.where(:id => @attendance.attach_ids.split(',')).each do |a|  %>
+          <tr class="template-upload fade in">
+            <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
+            <td class="size"><span size=<%= a.picture_file_size %> >
+                wait...</span></td>
+            <td class="progess"><span>100 %</span></td>
+            <td class="download">
+              <%= link_to '下载', a.picture.url%>
+            </td>
+            <td class="destroy">  
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= javascript_include_tag "application" %>
+
+<script>
+  $(document).ready(function(){
+    function d(b){
+      if ( isNaN(b))
+      return;
+      dws=['b','Kb','Mb'];
+      for(i=0;i<3;i++){
+        dw=dws[i];
+        if (b<1024) break;
+        b=b/1024;
+      }
+      return b.toFixed(2)+dw;
+    };
+    var size=$("#doneFile td.size span");
+    size.text(d(parseInt(size.attr("size"))));
+  });
+</script>
