@@ -6,8 +6,9 @@ class AttendancesController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.js { month=Attendance.order("for_month DESC").first.for_month
-        render :js => "filter('#{month}',true); " 
+      format.js { 
+        user_session[:for_month]||=Attendance.order("for_month DESC").first.for_month
+        render :js => "filter('#{user_session[:for_month]}',true); " 
       }
       format.json { render json: AttendancesDatatable.new(view_context) }
     end

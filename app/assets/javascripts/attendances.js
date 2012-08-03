@@ -20,7 +20,8 @@ $(function(){
                 };
                 showConfirm=false;
             }
-            {
+            else{
+                showConfirm=false;
                 item.each( function (i,e) {
                     var item=$(e);
                     that.fnUpdate('<a href=/attendances/'+item.text()+'/edit>[编辑]</a> '+' <a href=/attendances/'+item.text()+' data-confirm="确定删除 ?" data-method="delete" rel="nofollow">[删除]</a>' ,
