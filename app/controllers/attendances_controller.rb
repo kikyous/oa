@@ -6,6 +6,9 @@ class AttendancesController < ApplicationController
   def index
     respond_to do |format|
       format.html
+      format.js { month=Attendance.order("for_month DESC").first.for_month
+        render :js => "filter('#{month}',true); " 
+      }
       format.json { render json: AttendancesDatatable.new(view_context) }
     end
   end
@@ -40,23 +43,16 @@ class AttendancesController < ApplicationController
   # POST /attendances
   # POST /attendances.json
   def create
-    begin
-      params[:attendance][:attach_ids]=params[:attendance][:attach_ids].join(",")
-    rescue => err
-      p err
+    
+    User.all.each do |u|
+      u.attendances.create(:for_month=>params[:for_month])
     end
-    rm_unneed_attach
-    @attendance = current_user.attendances.new(params[:attendance])
-
     respond_to do |format|
-      if @attendance.save
-        format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
-        format.json { render json: @attendance, status: :created, location: @attendance }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @attendance.errors, status: :unprocessable_entity }
-      end
+      format.js { 
+        render :js => "filter('#{params[:for_month]}',true); " 
+      }
     end
+
   end
 
   # PUT /attendances/1
@@ -68,7 +64,7 @@ class AttendancesController < ApplicationController
       p err
     end
     rm_unneed_attach
-    @attendance = current_user.attendances.find(params[:id])
+    @attendance = Attendance.find(params[:id])
 
     respond_to do |format|
       if @attendance.update_attributes(params[:attendance])

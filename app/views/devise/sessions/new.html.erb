@@ -91,7 +91,7 @@
         <td bgcolor="#a2d962">&nbsp;</td>
       </tr>
     </table>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <%= javascript_include_tag "application" %>
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -100,6 +100,7 @@
           var loginForm = document.getElementById("login");
           loginForm.submit();
         }
+        $("#user_submit").click(send);
         $('#user_password').bind('keyup', function(event){
           if (event.keyCode=="13"){
             send();
@@ -108,5 +109,5 @@
 
       });
     </script>
-    <map name="Map"><area shape="rect" coords="3,3,36,19" href="#" onclick="send()"><area shape="rect" coords="40,3,78,18" href="#"></map></body>
+    <map name="Map"><area shape="rect" coords="3,3,36,19" href="#" id="user_submit"><area shape="rect" coords="40,3,78,18" href="#"></map></body>
 </html>

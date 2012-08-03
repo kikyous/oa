@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120731090147) do
     t.text     "caption"
     t.integer  "user_id"
     t.string   "attach_ids"
-    t.date     "for_month"
+    t.string   "for_month"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -20,6 +20,7 @@ private
     attendances.map do |attendance|
       [
         link_to(attendance.id, attendance),
+        attendance.for_month,
         h(attendance.user.username),
         attendance.created_at,
         attendance.id
@@ -34,8 +35,11 @@ private
   def fetch_attendances
     attendances = Attendance.order("#{sort_column} #{sort_direction}")
     attendances = attendances.page(page).per_page(per_page)
+    if params[:sSearch_1].present?
+      attendances = attendances.where("attendances.for_month like :search ", search: "%#{params[:sSearch_1]}%")
+    end
     if params[:sSearch].present?
-      attendances = attendances.where("attendances.name like :search or attendances.created_at like :search", search: "%#{params[:sSearch]}%")
+      attendances = attendances.where("attendances.for_month like :search or attendances.created_at like :search", search: "%#{params[:sSearch]}%")
     end
     attendances
   end
@@ -49,7 +53,7 @@ private
   end
 
   def sort_column
-    columns = %w[attendances.id attendances.name attendances.created_at]
+    columns = %w[attendances.id attendances.for_month attendances.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 
