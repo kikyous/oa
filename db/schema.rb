@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731090147) do
+ActiveRecord::Schema.define(:version => 20120810090221) do
 
   create_table "announcements", :force => true do |t|
     t.text     "content"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20120731090147) do
     t.integer "group_id", :null => false
   end
 
+  create_table "in_stores", :force => true do |t|
+    t.string   "caption"
+    t.string   "attach_ids"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "messages", :force => true do |t|
     t.string   "topic"
     t.text     "body"
@@ -84,6 +91,13 @@ ActiveRecord::Schema.define(:version => 20120731090147) do
   end
 
   add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
+
+  create_table "out_stores", :force => true do |t|
+    t.string   "caption"
+    t.string   "attach_ids"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "supl_contracts", :force => true do |t|
     t.string   "caption"

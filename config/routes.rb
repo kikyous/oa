@@ -1,5 +1,9 @@
 Oa::Application.routes.draw do
 
+  resources :out_stores
+
+  resources :in_stores
+
   resources :attendances do
     collection do
       get 'personal'

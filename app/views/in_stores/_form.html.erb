@@ -30,12 +30,12 @@
 </style>
 
 
-<%= form_for(@attendance, :html=>{:id => 'mainform' }) do |c| %>
-  <% if @attendance.errors.any? %>
+<%= form_for(@in_store, :html=>{:id => 'mainform' }) do |c| %>
+  <% if @in_store.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+      <h2><%= pluralize(@in_store.errors.count, "error") %> prohibited this in_store from being saved:</h2>
       <ul>
-        <% @attendance.errors.full_messages.each do |msg| %>
+        <% @in_store.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -44,13 +44,10 @@
   <div id="hiddenfile">
       <% unless c.object.new_record? or c.object.attach_ids.nil? %>
         <% c.object.attach_ids.split(',').each do |e| %>
-          <input name="attendance[attach_ids][]"" type="hidden" value= "<%= e %>" />
+          <input name="in_store[attach_ids][]"" type="hidden" value= "<%= e %>" />
         <% end %>
       <% end %>
   </div>
-
-  <%= c.label "人员" %><br />
-  <%= collection_select(:attendance, :user_id, User.all, :id, :username) %>
 
 
   <div class="field">
@@ -72,8 +69,8 @@
 <div>
   <table id="doneFile">
     <tbody>
-      <% unless @attendance.new_record? or @attendance.attach_ids.nil? %>
-         <% Attach.where(:id => @attendance.attach_ids.split(',')).each do |a|  %>
+      <% unless @in_store.new_record? or @in_store.attach_ids.nil? %>
+         <% Attach.where(:id => @in_store.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >
@@ -92,7 +89,7 @@
   </table>
 </div>
 
-<input id="submit" name="commit" type="submit" value="提交考勤信息"/>
+<input id="submit" name="commit" type="submit" value="提交入库单"/>
 
 <%= javascript_include_tag "application" %>
 <%= javascript_include_tag "jquery.ui.widget.js" %>
@@ -139,7 +136,7 @@
       $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.msg+'</span></td> <td class="size"><span></span></td> <td class="progess"><span></span></td> <td></td> <td class="destroy"><a href="/#">删除</a></td></tr>');
         return;
       }
-        $("#hiddenfile").append('<input type="hidden" name="attendance[attach_ids][]" value='+data.result.id+'\>')
+        $("#hiddenfile").append('<input type="hidden" name="in_store[attach_ids][]" value='+data.result.id+'\>')
         $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.name+'</span></td> <td class="size"><span>'+d(data.result.size)+'</span></td> <td class="progess"><span>100 %</span></td> <td class="download"><a href="'+ data.result.a_path +'">下载</a></td> <td class="destroy"><a href="/attaches/'+data.result.id+'">删除</a></td></tr>');
       },
       start: function (e) {
