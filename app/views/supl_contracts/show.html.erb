@@ -45,7 +45,7 @@
   <br />
   <br />
   <div class="field">
-    <%= label_tag "说明" %><br />
+    <%= label_tag "说明:" %><br />
     <%= @supl_contract.caption  %>
   </div>
 
@@ -53,6 +53,7 @@
 
 <div>
   <table id="doneFile">
+    附件:
     <tbody>
       <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
          <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>

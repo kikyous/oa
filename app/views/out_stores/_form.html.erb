@@ -59,6 +59,7 @@
 
 <%= form_tag "/attaches",  :id => "fileupload", :multipart => true  do |c| %>
   <div title="可以添加任意附件">
+    附件:
     <a id="addAttach" href="/#">添加附件</a>
     <%= file_field_tag 'attach[picture]', :multiple => true %>
   </div>

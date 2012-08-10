@@ -43,7 +43,7 @@
   <br />
   <br />
   <div class="field">
-    <%= label_tag "说明" %><br />
+    <%= label_tag "说明:" %><br />
     <%= @in_store.caption  %>
   </div>
 
@@ -51,6 +51,7 @@
 
 <div>
   <table id="doneFile">
+    附件:
     <tbody>
       <% unless @in_store.new_record? or @in_store.attach_ids.nil? %>
          <% Attach.where(:id => @in_store.attach_ids.split(',')).each do |a|  %>

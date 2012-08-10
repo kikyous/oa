@@ -42,6 +42,12 @@ class InStoresController < ApplicationController
   # POST /in_stores
   # POST /in_stores.json
   def create
+    begin
+      params[:in_store][:attach_ids]=params[:in_store][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+    rm_unneed_attach
     
     @in_store=InStore.new(params[:in_store])
     respond_to do |format|
@@ -65,8 +71,8 @@ class InStoresController < ApplicationController
       p err
     end
     rm_unneed_attach
-    @in_store = InStore.find(params[:id])
 
+    @in_store = InStore.find(params[:id])
     respond_to do |format|
       if @in_store.update_attributes(params[:in_store])
         format.html { redirect_to @in_store, notice: '入库单 was successfully updated.' }

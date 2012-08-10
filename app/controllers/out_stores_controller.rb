@@ -42,6 +42,12 @@ class OutStoresController < ApplicationController
   # POST /out_stores
   # POST /out_stores.json
   def create
+    begin
+      params[:out_store][:attach_ids]=params[:out_store][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+    rm_unneed_attach
     
     @out_store=OutStore.new(params[:out_store])
     respond_to do |format|
@@ -65,8 +71,8 @@ class OutStoresController < ApplicationController
       p err
     end
     rm_unneed_attach
-    @out_store = OutStore.find(params[:id])
 
+    @out_store = OutStore.find(params[:id])
     respond_to do |format|
       if @out_store.update_attributes(params[:out_store])
         format.html { redirect_to @out_store, notice: '出库单 was successfully updated.' }
