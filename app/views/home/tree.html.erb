@@ -1,6 +1,6 @@
 <html>
   <head>
-    <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <link href="<%= asset_path("main/style.css") %>" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -12,13 +12,15 @@
               <td height="8"></td>
             </tr>
           </table>
+              
+          <% def index() $i||=0;$i+=1 end %>
 
-          <%= render "tree_item", { :item => [10,'办公桌' ,'发送信件'=>'/messages/new','查看信件'=>'/messages'] } %>
-          <%= render "tree_item", { :item => [1,'供销部' ,'供应商'=>'/suppliers','合同管理'=>'/supl_contracts'] } %>
-          <%= render "tree_item", { :item => [11,'财务部' ,'考勤管理'=>'/attendances','银行帐号'=>'/supl_contracts','个人考勤'=>'/attendances/personal'] } %>
-          <%= render "tree_item", { :item => [1,'库房' ,'入库'=>'/in_stores','出库'=>'/out_stores'] } %>
+          <%= render "tree_item", { :item => [index,'办公桌' ,'发送信件'=>'/messages/new','查看信件'=>'/messages'] } %>
+          <%= render "tree_item", { :item => [index,'供销部' ,'供应商'=>'/suppliers','合同管理'=>'/supl_contracts'] } %>
+          <%= render "tree_item", { :item => [index,'财务部' ,'考勤管理'=>'/attendances','银行帐号'=>'/supl_contracts','个人考勤'=>'/attendances/personal'] } %>
+          <%= render "tree_item", { :item => [index,'库房' ,'入库'=>'/in_stores','出库'=>'/out_stores'] } %>
 
-          <% attr = [0,'组织管理',{}] %>
+          <% attr = [index,'组织管理',{}] %>
           <% attr.last['机构管理'] ='/groups' if can? :read , Group %>
           <% attr.last['人员管理'] ='/users' if can? :read , User %>
           <% unless attr.last.empty? %>
@@ -28,10 +30,11 @@
           
 
           <% if can? :update ,Group %>
-            <% attr = [2,'权限管理',{}] %>
+            <% attr = [index,'权限管理',{}] %>
             <% Group.all.map{|g| attr.last[g.name]="/groups/#{g.id}/edit"} %>
             <%= render :partial => "tree_item", :locals => { :item => attr } %>
           <% end %>
+
 
 
           <table width="150"  border="0" cellpadding="0" cellspacing="0">
@@ -43,24 +46,23 @@
       </tr>
     </table>
     <script language="javascript"> 
-      <!-- 
-      function table_display(tab_id,img_id){//显示隐藏程序 
-        // var tab_id;//表格ID 
-        // var img_id;//图片ID 
+      function table_display(tab_id,img_id){
+        var tab=document.getElementById(tab_id);
+        var img=document.getElementById(img_id);
 
-        var default_img="<%= asset_path("main/left_dot.gif") %>";//默认图片 
-        var on_img="<%= asset_path("main/left_open.gif") %>";//打开时图片 
-        var off_img="<%= asset_path("main/left_dot.gif") %>";//隐藏时图片 
-        if (tab_id.style.display == "none") {//如果为隐藏状态 
-          tab_id.style.display="";//切换为显示状态 
-          console.log(img_id);
-          img_id.src=on_img;
-        }//换图 
-        else{//否则 
-          tab_id.style.display="none";//切换为隐藏状态 
-          img_id.src=off_img;}//换图 
+        var on_img="<%= asset_path("main/left_open.gif") %>";
+        var off_img="<%= asset_path("main/left_dot.gif") %>";
+        if (tab.style.display == "none") {
+          tab.style.display="";
+          img.src=on_img;
+        }
+        else{
+          tab.style.display="none";
+          img.src=off_img;}
       }; 
-      //--> 
+      window.onload=function(){
+          document.getElementById('tab<%= $i %>').style.display="none";
+      };
     </script>
   </body>
 </html>
