@@ -1,5 +1,7 @@
 Oa::Application.routes.draw do
 
+  resources :tasks
+  resources :deliveries
   resources :out_stores
 
   resources :in_stores

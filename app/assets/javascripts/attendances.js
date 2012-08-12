@@ -40,7 +40,7 @@ $(function(){
     var year = cur.getFullYear();
 
     var element="<select id='year'>";
-    for (var init=2012;init<=year;init++)
+    for (var init=year;init>=2010;init--)
     {
         element+="<option value=" +init+ ">" +init+ "</option>"
     };
@@ -52,6 +52,7 @@ $(function(){
     element+="</select>月 ";
 
     $("#attendances_length").prepend(element);
+    $("#year").val(year);
 
     filter=function (value,setValue) {
         oTable.fnFilter(value,1);

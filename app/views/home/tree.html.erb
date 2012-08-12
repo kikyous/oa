@@ -19,6 +19,7 @@
           <%= render "tree_item", { :item => [index,'供销部' ,'供应商'=>'/suppliers','合同管理'=>'/supl_contracts'] } %>
           <%= render "tree_item", { :item => [index,'财务部' ,'考勤管理'=>'/attendances','银行帐号'=>'/supl_contracts','个人考勤'=>'/attendances/personal'] } %>
           <%= render "tree_item", { :item => [index,'库房' ,'入库'=>'/in_stores','出库'=>'/out_stores'] } %>
+          <%= render "tree_item", { :item => [index,'车间' ,'任务'=>'/tasks','送货'=>'/deliveries'] } %>
 
           <% attr = [index,'组织管理',{}] %>
           <% attr.last['机构管理'] ='/groups' if can? :read , Group %>

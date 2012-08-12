@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810090221) do
+ActiveRecord::Schema.define(:version => 20120811090221) do
 
   create_table "announcements", :force => true do |t|
     t.text     "content"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20120810090221) do
   end
 
   add_index "attendances", ["user_id"], :name => "index_attendances_on_user_id"
+
+  create_table "deliveries", :force => true do |t|
+    t.string   "caption"
+    t.string   "to"
+    t.string   "attach_ids"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "groups", :force => true do |t|
     t.string   "name",                             :null => false
@@ -114,6 +122,13 @@ ActiveRecord::Schema.define(:version => 20120810090221) do
     t.string   "name"
     t.string   "contact"
     t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "caption"
+    t.string   "attach_ids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
