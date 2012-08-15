@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+
+  <div class="field">
+    <%= f.label '状态' %><br />
+    <%= f.label status(@acceptance.status) %>
+  </div>
   <div class="field">
     <%= f.label '金额' %><br />
     <%= f.text_field :money %>

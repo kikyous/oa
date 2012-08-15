@@ -5,8 +5,9 @@ class CreateAcceptances < ActiveRecord::Migration
       t.string :bank
       t.datetime :expire
       t.string :unit
-      t.string :status
+      t.integer :status
       t.references :in_come
+      t.references :expenditure
 
       t.timestamps
     end

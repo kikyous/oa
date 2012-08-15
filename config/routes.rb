@@ -1,6 +1,7 @@
 Oa::Application.routes.draw do
 
   resources :in_comes
+  resources :expenditures
 
   resources :acceptances
 

@@ -1,10 +1,10 @@
-<%= form_for(@in_come) do |f| %>
-  <% if @in_come.errors.any? %>
+<%= form_for(@expenditure) do |f| %>
+  <% if @expenditure.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@in_come.errors.count, "error") %> prohibited this in_come from being saved:</h2>
+      <h2><%= pluralize(@expenditure.errors.count, "error") %> prohibited this expenditure from being saved:</h2>
 
       <ul>
-      <% @in_come.errors.full_messages.each do |msg| %>
+      <% @expenditure.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -37,11 +37,15 @@
           </div>
       </div>
       <div id="acceptance">
+          <div class="field">
+            <%= f.label "承兑" %><br />
+            <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name) %>
+          </div>
       </div>
   </div>
   <br />
   <div class="actions">
-    <%= f.submit '提交收入单' %>
+    <%= f.submit '提交支出单' %>
   </div>
 <% end %>
 <%= javascript_include_tag "application" %>
@@ -58,10 +62,9 @@
                 $('#other').show().siblings().hide();
                 }
                 };
-            toogle($("#in_come_mode").val());
-            $("#in_come_mode").change(function(e){
+            toogle($("#expenditure_mode").val());
+            $("#expenditure_mode").change(function(e){
                 toogle(e.srcElement.value);
                 });
-            $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new":"/acceptances/#{@in_come.acceptance.id}/edit" %>');
             })
 </script>

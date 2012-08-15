@@ -46,7 +46,7 @@ class InComesController < ApplicationController
     @in_come = InCome.create(params[:in_come])
     if params[:in_come][:mode].to_i==2
         @in_come.update_attribute(:money,params[:acceptance][:money])
-        @acceptance=@in_come.acceptances.create(params[:acceptance])
+        @acceptance=@in_come.create_acceptance(params[:acceptance])
     end
         
 
@@ -68,11 +68,11 @@ class InComesController < ApplicationController
     in_come=@in_come.update_attributes(params[:in_come])
     if params[:in_come][:mode].to_i==2
         @in_come.update_attribute(:money,params[:acceptance][:money])
-        acceptance=@in_come.acceptances.first
+        acceptance=@in_come.acceptance
         if acceptance
            acceptance.update_attributes(params[:acceptance])
         else
-           acceptance=@in_come.acceptances.create(params[:acceptance])
+           acceptance=@in_come.create_acceptance(params[:acceptance])
         end
     end
 

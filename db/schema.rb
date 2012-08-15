@@ -11,16 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814115040) do
+ActiveRecord::Schema.define(:version => 20120814125040) do
 
   create_table "acceptances", :force => true do |t|
     t.decimal  "money"
     t.string   "bank"
     t.datetime "expire"
     t.string   "unit"
+    t.string   "status"
     t.integer  "in_come_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "expenditure_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "announcements", :force => true do |t|
@@ -66,6 +68,15 @@ ActiveRecord::Schema.define(:version => 20120814115040) do
     t.string   "attach_ids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "expenditures", :force => true do |t|
+    t.decimal  "money"
+    t.string   "payer"
+    t.integer  "mode"
+    t.integer  "bank_account_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "groups", :force => true do |t|
