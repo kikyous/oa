@@ -42,7 +42,11 @@ class InComesController < ApplicationController
   # POST /in_comes.json
   def create
     @in_come = InCome.create(params[:in_come])
-    if params[:in_come][:mode].to_i==2
+    if params[:in_come][:mode].to_i==1
+        account=@in_come.bank_account
+        account.over+=(params[:in_come][:money]).to_i
+        account.save
+    elsif params[:in_come][:mode].to_i==2
         @in_come.update_attribute(:money,params[:acceptance][:money])
         @acceptance=@in_come.create_acceptance(params[:acceptance])
     end
@@ -50,7 +54,7 @@ class InComesController < ApplicationController
 
     respond_to do |format|
       if @in_come
-        format.html { redirect_to @in_come, notice: 'In come was successfully created.' }
+        format.html { redirect_to in_comes_url, notice: 'In come was successfully created.' }
         format.json { render json: @in_come, status: :created, location: @in_come }
       else
         format.html { render action: "new" }

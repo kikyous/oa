@@ -42,7 +42,11 @@ class ExpendituresController < ApplicationController
   # POST /expenditures.json
   def create
     @expenditure = Expenditure.create(params[:expenditure])
-    if params[:expenditure][:mode].to_i==2
+    if params[:expenditure][:mode].to_i==1
+        account=@expenditure.bank_account
+        account.over-=(params[:expenditure][:money]).to_i
+        account.save
+    elsif params[:expenditure][:mode].to_i==2
         acceptance=Acceptance.find(params[:acceptance][:id])
         acceptance.update_attribute(:status,1)
         @expenditure.update_attribute(:money,acceptance.money)
@@ -50,7 +54,7 @@ class ExpendituresController < ApplicationController
 
     respond_to do |format|
       if @expenditure
-        format.html { redirect_to @expenditure, notice: 'In come was successfully created.' }
+        format.html { redirect_to expenditures_url, notice: 'In come was successfully created.' }
         format.json { render json: @expenditure, status: :created, location: @expenditure }
       else
         format.html { render action: "new" }

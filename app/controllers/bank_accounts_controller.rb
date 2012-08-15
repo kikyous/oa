@@ -43,7 +43,7 @@ class BankAccountsController < ApplicationController
 
     respond_to do |format|
       if @bank_account.save
-        format.html { redirect_to @bank_account, notice: 'Bank account was successfully created.' }
+        format.html { redirect_to bank_accounts_url, notice: 'Bank account was successfully created.' }
         format.json { render json: @bank_account, status: :created, location: @bank_account }
       else
         format.html { render action: "new" }

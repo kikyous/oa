@@ -43,7 +43,7 @@ class UnpaidDebtsController < ApplicationController
 
     respond_to do |format|
       if @unpaid_debt.save
-        format.html { redirect_to @unpaid_debt, notice: 'Unpaid debt was successfully created.' }
+        format.html { redirect_to unpaid_debts_url, notice: 'Unpaid debt was successfully created.' }
         format.json { render json: @unpaid_debt, status: :created, location: @unpaid_debt }
       else
         format.html { render action: "new" }
