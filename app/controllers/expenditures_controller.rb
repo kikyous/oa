@@ -48,7 +48,7 @@ class ExpendituresController < ApplicationController
         account.save
     elsif params[:expenditure][:mode].to_i==2
         acceptance=Acceptance.find(params[:acceptance][:id])
-        acceptance.update_attribute(:status,1)
+        acceptance.update_attributes(:status=>1,:expenditure_id=>@expenditure.id)
         @expenditure.update_attribute(:money,acceptance.money)
     end
 

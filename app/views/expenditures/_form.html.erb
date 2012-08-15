@@ -39,7 +39,11 @@
       <div id="acceptance">
           <div class="field">
             <%= f.label "承兑" %><br />
-            <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name) %>
+            <% if @expenditure.new_record? %>
+              <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name) %>
+            <% else %>
+              <%= collection_select(:acceptance, :id, [@expenditure.acceptance], :id, :name) %>
+            <% end %>
           </div>
       </div>
   </div>

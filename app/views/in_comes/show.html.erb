@@ -1,20 +1,32 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Money:</b>
+<% if @in_come.mode==1 %><p>
+  <p>
+  <b>金额:</b>
   <%= @in_come.money %>
-</p>
+  </p>
+  <p>
+  <b>帐号:</b>
+  <%= @in_come.bank_account.name %>
+  </p>
 
-<p>
-  <b>Payer:</b>
+<% elsif @in_come.mode==0 %>
+  <p>
+  <b>金额:</b>
+  <%= @in_come.money %>
+  </p>
+  <p>
+  <b>付款人:</b>
   <%= @in_come.payer %>
-</p>
-
-<p>
-  <b>Mode:</b>
-  <%= @in_come.mode %>
-</p>
-
+  </p>
+<% elsif @in_come.mode==2 %>
+  <div id='acceptance'></div>
+<%= javascript_include_tag "application" %>
+<script type="text/javascript">
+    $(function(){
+            $("#acceptance").load('<%= "/acceptances/#{@in_come.acceptance.id}" %>');
+            })
+</script>
+<% end %>
 
 <%= link_to 'Edit', edit_in_come_path(@in_come) %> |
 <%= link_to 'Back', in_comes_path %>
