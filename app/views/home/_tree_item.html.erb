@@ -13,11 +13,14 @@
   <tr>
     <td height="5"></td>
   </tr>
-  <% item.shift.each do |el| %>
+  <% item.each do |e| %>
 
   <tr>
-    <td>&nbsp;<img src="<%= asset_path("main/arrow_1.gif") %>" width="15" height="15" align="absmiddle"><a href= "<%= el[1] %>"  class="blueu" target="I1"> <%= el[0] %> </a>
-    </td>
+      <td><img src="<%= asset_path("main/arrow_1.gif") %>" width="15" height="15" align="absmiddle">
+          <% value=e.values.last;e.each do |k,v| %>
+              <%= link_to(k ,v,{:class=>"blueu" ,:target=>"I1"}) %> <%= '|' unless v==value %>
+          <% end %>
+      </td>
   </tr>
 
   <% end %>

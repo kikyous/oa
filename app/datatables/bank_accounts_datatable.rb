@@ -20,10 +20,9 @@ private
   def data
     bank_accounts.map do |bank_account|
       [
-        link_to(status(bank_account.status), bank_account),
-        h(bank_account.money),
-        h(bank_account.bank),
-        h(bank_account.expire),
+        link_to(bank_account.accountname, bank_account),
+        h(bank_account.bankname),
+        h(bank_account.over),
         h(bank_account.created_at),
         bank_account.id
       ]
