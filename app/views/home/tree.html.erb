@@ -19,7 +19,7 @@
           <%= render "tree_item", { :item => [index,'供销部' ,{'供应商'=>'/suppliers'},'合同管理'=>'/supl_contracts'] } %>
           <%= render "tree_item", { :item => [index,'财务部' ,{'帐号'=>'/bank_accounts','承兑'=>'/acceptances'},
               {'挂帐'=>'/unpaid_debts','报销'=>'/reimbursements'}, 
-              {'收入'=>'/bank_accounts','支出'=>'/acceptances'}, 
+              {'收入'=>'/bank_accounts','支出'=>'/acceptances','转帐'=>'/transfers'}, 
               {'考勤管理'=>'/attendances'},'个人考勤'=>'/attendances/personal'] } %>
           <%= render "tree_item", { :item => [index,'库房' ,{'入库'=>'/in_stores'},'出库'=>'/out_stores'] } %>
           <%= render "tree_item", { :item => [index,'车间' ,{'任务'=>'/tasks'},'送货'=>'/deliveries'] } %>

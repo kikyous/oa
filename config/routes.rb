@@ -4,6 +4,7 @@ Oa::Application.routes.draw do
   resources :reimbursements
 
   resources :in_comes
+  resources :transfers
   resources :expenditures
 
   resources :acceptances
