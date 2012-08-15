@@ -35,7 +35,7 @@ private
   end
 
   def fetch_reimbursements
-    reimbursements=Reimbursement.order("#{sort_column} #{sort_direction}")
+    reimbursements=Reimbursement.includes(:user).order("#{sort_column} #{sort_direction}")
     reimbursements = reimbursements.page(page).per_page(per_page)
     if params[:sSearch].present?
       reimbursements = reimbursements.where("reimbursements.id like :search or reimbursements.created_at like :search", search: "%#{params[:sSearch]}%")
@@ -52,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[reimbursements.id reimbursements.created_at]
+    columns = %w[reimbursements.id users.username reimbursements.category reimbursements.money reimbursements.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

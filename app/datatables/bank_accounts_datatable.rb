@@ -37,7 +37,7 @@ private
     bank_accounts=BankAccount.order("#{sort_column} #{sort_direction}")
     bank_accounts = bank_accounts.page(page).per_page(per_page)
     if params[:sSearch].present?
-      bank_accounts = bank_accounts.where("bank_accounts.id like :search or bank_accounts.created_at like :search", search: "%#{params[:sSearch]}%")
+      bank_accounts = bank_accounts.where("bank_accounts.accountname like :search or bank_accounts.bankname like :search", search: "%#{params[:sSearch]}%")
     end
     bank_accounts
   end
@@ -51,7 +51,7 @@ private
   end
 
   def sort_column
-    columns = %w[bank_accounts.id bank_accounts.created_at]
+    columns = %w[bank_accounts.accountname bank_accounts.bankname bank_accounts.over bank_accounts.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

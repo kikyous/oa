@@ -36,7 +36,7 @@ private
     expenditures=Expenditure.order("#{sort_column} #{sort_direction}")
     expenditures = expenditures.page(page).per_page(per_page)
     if params[:sSearch].present?
-      expenditures = expenditures.where("expenditures.id like :search or expenditures.created_at like :search", search: "%#{params[:sSearch]}%")
+      expenditures = expenditures.where("expenditures.mode like :search or expenditures.created_at like :search", search: "%#{params[:sSearch]}%")
     end
     expenditures
   end
@@ -50,7 +50,7 @@ private
   end
 
   def sort_column
-    columns = %w[expenditures.id expenditures.created_at]
+    columns = %w[expenditures.id expenditures.money expenditures.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

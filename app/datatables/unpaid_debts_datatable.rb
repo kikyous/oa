@@ -34,10 +34,10 @@ private
   end
 
   def fetch_unpaid_debts
-    unpaid_debts=UnpaidDebt.order("#{sort_column} #{sort_direction}")
+    unpaid_debts=UnpaidDebt.includes(:group).order("#{sort_column} #{sort_direction}")
     unpaid_debts = unpaid_debts.page(page).per_page(per_page)
     if params[:sSearch].present?
-      unpaid_debts = unpaid_debts.where("unpaid_debts.id like :search or unpaid_debts.created_at like :search", search: "%#{params[:sSearch]}%")
+      unpaid_debts = unpaid_debts.where("unpaid_debts.group.name like :search or unpaid_debts.created_at like :search", search: "%#{params[:sSearch]}%")
     end
     unpaid_debts
   end
@@ -51,7 +51,7 @@ private
   end
 
   def sort_column
-    columns = %w[unpaid_debts.id unpaid_debts.created_at]
+    columns = %w[unpaid_debts.id groups.name unpaid_debts.money unpaid_debts.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

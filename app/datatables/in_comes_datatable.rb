@@ -50,7 +50,7 @@ private
   end
 
   def sort_column
-    columns = %w[in_comes.id in_comes.created_at]
+    columns = %w[in_comes.id in_comes.money in_comes.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

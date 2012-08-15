@@ -73,7 +73,7 @@ private
   end
 
   def sort_column
-    columns = %w[attendances.id attendances.for_month attendances.created_at]
+    columns = %w[attendances.id attendances.for_month users.username attendances.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

@@ -38,7 +38,7 @@ private
     acceptances=Acceptance.order("#{sort_column} #{sort_direction}")
     acceptances = acceptances.page(page).per_page(per_page)
     if params[:sSearch].present?
-      acceptances = acceptances.where("acceptances.id like :search or acceptances.created_at like :search", search: "%#{params[:sSearch]}%")
+      acceptances = acceptances.where("acceptances.bank like :search or acceptances.created_at like :search", search: "%#{params[:sSearch]}%")
     end
     acceptances
   end
@@ -52,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[acceptances.id acceptances.created_at]
+    columns = %w[acceptances.id acceptances.money acceptances.bank acceptances.expire acceptances.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 
