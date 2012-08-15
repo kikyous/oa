@@ -1,0 +1,35 @@
+<%= form_for(@unpaid_debt) do |f| %>
+  <% if @unpaid_debt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@unpaid_debt.errors.count, "error") %> prohibited this unpaid_debt from being saved:</h2>
+
+      <ul>
+      <% @unpaid_debt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '单位' %><br />
+    <%= f.collection_select(:group_id, current_user.groups, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :money %><br />
+    <%= f.text_field :money %>
+  </div>
+  <div class="field">
+    <%= f.label :caption %><br />
+    <%= f.text_area :caption %>
+  </div>
+  <% unless @unpaid_debt.new_record? %>
+      <div class="field">
+          <%= f.label "状态" %><br />
+          <%= f.select(:status, debts_status_select ) %>
+      </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

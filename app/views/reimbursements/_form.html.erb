@@ -1,0 +1,35 @@
+<%= form_for(@reimbursement) do |f| %>
+  <% if @reimbursement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reimbursement.errors.count, "error") %> prohibited this reimbursement from being saved:</h2>
+
+      <ul>
+      <% @reimbursement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :money %><br />
+    <%= f.text_field :money %>
+  </div>
+  <div class="field">
+    <%= f.label :caption %><br />
+    <%= f.text_area :caption %>
+  </div>
+  <div class="field">
+    <%= f.label '类别' %><br />
+    <%= f.text_field :category %>
+  </div>
+  <% unless @reimbursement.new_record? %>
+      <div class="field">
+          <%= f.label "状态" %><br />
+          <%= f.select(:status, debts_status_select ) %>
+      </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

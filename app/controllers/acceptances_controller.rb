@@ -5,8 +5,6 @@ class AcceptancesController < ApplicationController
   # GET /acceptances
   # GET /acceptances.json
   def index
-    @acceptances = Acceptance.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: AcceptancesDatatable.new(view_context) }

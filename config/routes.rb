@@ -1,16 +1,18 @@
 Oa::Application.routes.draw do
 
+  resources :unpaid_debts
+  resources :reimbursements
+
   resources :in_comes
   resources :expenditures
 
   resources :acceptances
-
   resources :bank_accounts
 
   resources :tasks
   resources :deliveries
-  resources :out_stores
 
+  resources :out_stores
   resources :in_stores
 
   resources :attendances do

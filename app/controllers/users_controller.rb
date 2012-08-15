@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     respond_to do |format|
-      if @group.update_attributes(params[:user])
+      if @user.update_attributes(params[:user])
         format.html { redirect_to users_url, notice: '用户 被成功修改.' }
         format.json { head :no_content }
       else

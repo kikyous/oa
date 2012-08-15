@@ -5,8 +5,6 @@ class ExpendituresController < ApplicationController
   # GET /expenditures
   # GET /expenditures.json
   def index
-    @expenditures = Expenditure.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: ExpendituresDatatable.new(view_context) }

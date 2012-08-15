@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Money:</b>
+  <%= @unpaid_debt.money %>
+</p>
+
+<p>
+  <b>Caption:</b>
+  <%= @unpaid_debt.caption %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @unpaid_debt.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_unpaid_debt_path(@unpaid_debt) %> |
+<%= link_to 'Back', unpaid_debts_path %>

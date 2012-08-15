@@ -5,8 +5,6 @@ class InComesController < ApplicationController
   # GET /in_comes
   # GET /in_comes.json
   def index
-    @in_comes = InCome.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: InComesDatatable.new(view_context) }
