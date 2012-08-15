@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  money: 9.99
+  bank: MyString
+  expire: 2012-08-14 19:28:50
+  unit: MyString
+
+two:
+  money: 9.99
+  bank: MyString
+  expire: 2012-08-14 19:28:50
+  unit: MyString

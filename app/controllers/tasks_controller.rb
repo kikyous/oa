@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     @task=Task.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html { redirect_to tasks_url, notice: '出库单 was successfully created.' }
+        format.html { redirect_to tasks_url, notice: '库房任务 was successfully created.' }
         format.json { render json: @task, status: :created, location: @note }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: '出库单 was successfully updated.' }
+        format.html { redirect_to @task, notice: '库房任务 was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

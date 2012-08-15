@@ -1,0 +1,66 @@
+<%= form_for(@in_come) do |f| %>
+  <% if @in_come.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@in_come.errors.count, "error") %> prohibited this in_come from being saved:</h2>
+
+      <ul>
+      <% @in_come.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '方式' %><br />
+    <%= f.select(:mode, modeList) %>
+  </div>
+  <div>
+      <div id="other">
+          <div class="field">
+            <%= f.label '金额' %><br />
+            <%= f.text_field :money %>
+          </div>
+          <div class="field">
+            <%= f.label '付款人' %><br />
+            <%= f.text_field :payer %>
+          </div>
+      </div>
+      <div id="cash">
+          <div class="field">
+            <%= f.label "帐号" %><br />
+            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name) %>
+          </div>
+          <div class="field">
+            <%= f.label '金额' %><br />
+            <%= f.text_field :money %>
+          </div>
+      </div>
+      <div id="acceptance">
+      </div>
+  </div>
+  <div class="actions">
+    <%= f.submit '提交收入单' %>
+  </div>
+<% end %>
+<%= javascript_include_tag "application" %>
+<script type="text/javascript">
+    $(function(){
+            function toogle(value){
+                if (value=="1"){
+                $('#cash').show().siblings().hide();
+                }
+                else if (value=="2"){
+                $('#acceptance').show().siblings().hide();
+                }
+                else if (value=="0"){
+                $('#other').show().siblings().hide();
+                }
+                };
+            toogle($("#in_come_mode").val());
+            $("#in_come_mode").change(function(e){
+                toogle(e.srcElement.value);
+                });
+            $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new":"/acceptances/#{@in_come.acceptances.first.id}/edit" %>');
+            })
+</script>

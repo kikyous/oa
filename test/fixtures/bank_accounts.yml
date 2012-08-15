@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bankname: MyString
+  accountname: MyString
+  over: 9.99
+
+two:
+  bankname: MyString
+  accountname: MyString
+  over: 9.99

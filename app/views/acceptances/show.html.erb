@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Money:</b>
+  <%= @acceptance.money %>
+</p>
+
+<p>
+  <b>Bank:</b>
+  <%= @acceptance.bank %>
+</p>
+
+<p>
+  <b>Expire:</b>
+  <%= @acceptance.expire %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%= @acceptance.unit %>
+</p>
+
+
+<%= link_to 'Edit', edit_acceptance_path(@acceptance) %> |
+<%= link_to 'Back', acceptances_path %>

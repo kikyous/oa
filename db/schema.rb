@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811090221) do
+ActiveRecord::Schema.define(:version => 20120814115040) do
+
+  create_table "acceptances", :force => true do |t|
+    t.decimal  "money"
+    t.string   "bank"
+    t.datetime "expire"
+    t.string   "unit"
+    t.integer  "in_come_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "announcements", :force => true do |t|
     t.text     "content"
@@ -42,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20120811090221) do
 
   add_index "attendances", ["user_id"], :name => "index_attendances_on_user_id"
 
+  create_table "bank_accounts", :force => true do |t|
+    t.string   "bankname"
+    t.string   "accountname"
+    t.decimal  "over"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "deliveries", :force => true do |t|
     t.string   "caption"
     t.string   "to"
@@ -61,6 +79,15 @@ ActiveRecord::Schema.define(:version => 20120811090221) do
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "user_id",  :null => false
     t.integer "group_id", :null => false
+  end
+
+  create_table "in_comes", :force => true do |t|
+    t.decimal  "money"
+    t.string   "payer"
+    t.integer  "mode"
+    t.integer  "bank_account_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "in_stores", :force => true do |t|

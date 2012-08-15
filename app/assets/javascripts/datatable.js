@@ -1,3 +1,4 @@
+//= require dataTables/jquery.dataTables
 var lang=$.fn.dataTable.defaults.oLanguage;
 lang.sInfo="显示 从 _START_ 到 _END_ ,共 _TOTAL_ 条记录";
 lang.sInfoEmpty="无记录";
@@ -13,4 +14,3 @@ lang.oPaginate={
     "sNext": "下一页",
     "sPrevious": "上一页"
 }
-

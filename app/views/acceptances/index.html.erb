@@ -1,0 +1,29 @@
+<h1>Listing acceptances</h1>
+
+<table>
+  <tr>
+    <th>Money</th>
+    <th>Bank</th>
+    <th>Expire</th>
+    <th>Unit</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @acceptances.each do |acceptance| %>
+  <tr>
+    <td><%= acceptance.money %></td>
+    <td><%= acceptance.bank %></td>
+    <td><%= acceptance.expire %></td>
+    <td><%= acceptance.unit %></td>
+    <td><%= link_to 'Show', acceptance %></td>
+    <td><%= link_to 'Edit', edit_acceptance_path(acceptance) %></td>
+    <td><%= link_to 'Destroy', acceptance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Acceptance', new_acceptance_path %>

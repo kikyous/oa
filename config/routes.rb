@@ -1,5 +1,11 @@
 Oa::Application.routes.draw do
 
+  resources :in_comes
+
+  resources :acceptances
+
+  resources :bank_accounts
+
   resources :tasks
   resources :deliveries
   resources :out_stores

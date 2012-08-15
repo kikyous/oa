@@ -52,7 +52,7 @@ class DeliveriesController < ApplicationController
     @delivery=Delivery.new(params[:delivery])
     respond_to do |format|
       if @delivery.save
-        format.html { redirect_to deliveries_url, notice: '出库单 was successfully created.' }
+        format.html { redirect_to deliveries_url, notice: '送货单 was successfully created.' }
         format.json { render json: @delivery, status: :created, location: @note }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
     respond_to do |format|
       if @delivery.update_attributes(params[:delivery])
-        format.html { redirect_to @delivery, notice: '出库单 was successfully updated.' }
+        format.html { redirect_to @delivery, notice: '送货单 was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
