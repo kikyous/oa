@@ -1,4 +1,5 @@
 class BankAccountsController < ApplicationController
+  layout "table", :only => [:index]
   # GET /bank_accounts
   # GET /bank_accounts.json
   def index
@@ -6,7 +7,7 @@ class BankAccountsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @bank_accounts }
+      format.json { render json: BankAccountsDatatable.new(view_context) }
     end
   end
 

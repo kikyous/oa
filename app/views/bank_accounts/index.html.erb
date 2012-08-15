@@ -1,27 +1,13 @@
-<h1>Listing bank_accounts</h1>
-
-<table>
-  <tr>
-    <th>Bankname</th>
-    <th>Accountname</th>
-    <th>Over</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @bank_accounts.each do |bank_account| %>
-  <tr>
-    <td><%= bank_account.bankname %></td>
-    <td><%= bank_account.accountname %></td>
-    <td><%= bank_account.over %></td>
-    <td><%= link_to 'Show', bank_account %></td>
-    <td><%= link_to 'Edit', edit_bank_account_path(bank_account) %></td>
-    <td><%= link_to 'Destroy', bank_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%= javascript_include_tag "bank_accounts" %>
+<table id ="bank_accounts"  class="display" data-source="<%= bank_accounts_url(format: "json") %>" >
+  <thead>
+    <tr>
+      <th>帐号名</th>
+      <th>银行</th>
+      <th>余额</th>
+      <th>时间</th>
+      <th>编辑</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Bank account', new_bank_account_path %>
