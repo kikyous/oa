@@ -12,24 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :money %><br />
+    <%= f.label '金额' %><br />
     <%= f.text_field :money %>
   </div>
   <div class="field">
-    <%= f.label :caption %><br />
+    <%= f.label '说明' %><br />
     <%= f.text_area :caption %>
   </div>
   <div class="field">
     <%= f.label '类别' %><br />
     <%= f.text_field :category %>
   </div>
-  <% unless @reimbursement.new_record? %>
+  <% unless @reimbursement.new_record? or !isManager? %>
       <div class="field">
           <%= f.label "状态" %><br />
           <%= f.select(:status, debts_status_select ) %>
       </div>
   <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '提交报销单'%>
   </div>
 <% end %>

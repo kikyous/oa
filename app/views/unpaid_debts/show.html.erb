@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Money:</b>
+  <b>金额:</b>
   <%= @unpaid_debt.money %>
 </p>
 
 <p>
-  <b>Caption:</b>
+  <b>说明:</b>
   <%= @unpaid_debt.caption %>
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @unpaid_debt.status %>
+  <b>状态:</b>
+  <%= debts_status @unpaid_debt.status %>
 </p>
 
 

@@ -27,11 +27,11 @@
 </style>
 
 
-  <% if @in_store.errors.any? %>
+  <% if @transfer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@in_store.errors.count, "error") %> prohibited this in_store from being saved:</h2>
+      <h2><%= pluralize(@transfer.errors.count, "error") %> prohibited this transfer from being saved:</h2>
       <ul>
-        <% @in_store.errors.full_messages.each do |msg| %>
+        <% @transfer.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -44,7 +44,7 @@
   <br />
   <div class="field">
     <%= label_tag "说明:" %><br />
-    <%= @in_store.caption  %>
+    <%= @transfer.caption  %>
   </div>
 
 
@@ -53,8 +53,8 @@
   <table id="doneFile">
     附件:
     <tbody>
-      <% unless @in_store.new_record? or @in_store.attach_ids.nil? %>
-         <% Attach.where(:id => @in_store.attach_ids.split(',')).each do |a|  %>
+      <% unless @transfer.new_record? or @transfer.attach_ids.nil? %>
+         <% Attach.where(:id => @transfer.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >

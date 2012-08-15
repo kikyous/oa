@@ -1,7 +1,15 @@
 Oa::Application.routes.draw do
 
-  resources :unpaid_debts
-  resources :reimbursements
+  resources :unpaid_debts do
+    member do
+        get 'verify'
+    end
+  end
+  resources :reimbursements do
+    member do
+        get 'verify'
+    end
+  end
 
   resources :in_comes
   resources :transfers

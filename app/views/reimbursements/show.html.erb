@@ -1,20 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Money:</b>
-  <%= @unpaid_debt.money %>
+  <b>金额:</b>
+  <%= @reimbursement.money %>
 </p>
 
 <p>
-  <b>Caption:</b>
-  <%= @unpaid_debt.caption %>
+  <b>说明:</b>
+  <%= @reimbursement.caption %>
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @unpaid_debt.status %>
+  <b>状态:</b>
+  <%=debts_status @reimbursement.status %>
 </p>
 
 
-<%= link_to 'Edit', edit_unpaid_debt_path(@unpaid_debt) %> |
-<%= link_to 'Back', unpaid_debts_path %>
+<%= link_to 'Edit', edit_reimbursement_path(@reimbursement) %> |
+<%= link_to 'Back', reimbursements_path %>

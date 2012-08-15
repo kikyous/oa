@@ -16,20 +16,20 @@
     <%= f.collection_select(:group_id, current_user.groups, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :money %><br />
+    <%= f.label '金额' %><br />
     <%= f.text_field :money %>
   </div>
   <div class="field">
-    <%= f.label :caption %><br />
+    <%= f.label '说明' %><br />
     <%= f.text_area :caption %>
   </div>
-  <% unless @unpaid_debt.new_record? %>
+  <% unless @unpaid_debt.new_record? or !isManager?%>
       <div class="field">
           <%= f.label "状态" %><br />
           <%= f.select(:status, debts_status_select ) %>
       </div>
   <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '提交挂帐单' %>
   </div>
 <% end %>
