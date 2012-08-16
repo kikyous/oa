@@ -26,7 +26,6 @@
   }
 </style>
 
-
   <% if @out_store.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@out_store.errors.count, "error") %> prohibited this out_store from being saved:</h2>
@@ -38,20 +37,14 @@
     </div>
   <% end %>
 
-
-
-  <br />
-  <br />
-  <div class="field">
-    <%= label_tag "说明:" %><br />
+  <p>
+    <b>说明:</b><br />
     <%= @out_store.caption %>
-  </div>
-
-
+  </p>
 
 <div>
   <table id="doneFile">
-    附件:
+    <b>附件:</b>
     <tbody>
       <% unless @out_store.new_record? or @out_store.attach_ids.nil? %>
          <% Attach.where(:id => @out_store.attach_ids.split(',')).each do |a|  %>
@@ -71,7 +64,6 @@
     </tbody>
   </table>
 </div>
-
 
 <%= javascript_include_tag "application" %>
 

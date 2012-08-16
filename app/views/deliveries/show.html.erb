@@ -38,21 +38,19 @@
     </div>
   <% end %>
 
-  <br />
-  <br />
-  <div class="field">
-    <%= label_tag "送货单位" %><br />
-    <%= @delivery.to %>
-  </div>
-  <div class="field">
-    <%= label_tag "说明:" %><br />
-    <%= @delivery.caption %>
-  </div>
+  <p>
+      <b>送货单位:</b>
+      <%= @delivery.to %>
+  </p>
 
+  <div class="field">
+     <b>说明:</b><br />
+     <%= @delivery.caption %>
+  </div>
 
 <div>
   <table id="doneFile">
-    附件:
+    <b>附件:</b>
     <tbody>
       <% unless @delivery.new_record? or @delivery.attach_ids.nil? %>
          <% Attach.where(:id => @delivery.attach_ids.split(',')).each do |a|  %>

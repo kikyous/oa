@@ -47,7 +47,7 @@ class ReimbursementsController < ApplicationController
       redirect_to reimbursements_url, :alert => '您没有权限进行此操作'
       return
     end
-    @reimbursement = current_user.reimbursements.new(params[:reimbursement])
+    @reimbursement = Reimbursement.new(params[:reimbursement])
 
     respond_to do |format|
       if @reimbursement.save

@@ -38,22 +38,18 @@
     </div>
   <% end %>
 
-  <%= label_tag "供应商" %><br />
-
+  <b>供应商:</b>
   <%= link_to(@supl_contract.supplier.name, supplier_path(@supl_contract.supplier)) %> 
 
   <br />
-  <br />
-  <div class="field">
-    <%= label_tag "说明:" %><br />
+  <p>
+    <b>说明:</b><br />
     <%= @supl_contract.caption  %>
-  </div>
-
-
+  </p>
 
 <div>
   <table id="doneFile">
-    附件:
+    <b>附件:</b>
     <tbody>
       <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
          <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>

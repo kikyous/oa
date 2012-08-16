@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label '单位' %><br />
-    <%= f.collection_select(:group_id, current_user.groups, :id, :name) %>
+    <%= f.collection_select(:group_id, Group.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label '金额' %><br />

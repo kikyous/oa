@@ -38,20 +38,15 @@
     </div>
   <% end %>
 
-
-
   <br />
-  <br />
-  <div class="field">
-    <%= label_tag "说明:" %><br />
+  <p>
+    <b>说明:</b><br />
     <%= @transfer.caption  %>
-  </div>
-
-
+  </p>
 
 <div>
   <table id="doneFile">
-    附件:
+    <b>附件:</b>
     <tbody>
       <% unless @transfer.new_record? or @transfer.attach_ids.nil? %>
          <% Attach.where(:id => @transfer.attach_ids.split(',')).each do |a|  %>

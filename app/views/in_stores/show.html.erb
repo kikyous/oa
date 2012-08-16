@@ -38,20 +38,14 @@
     </div>
   <% end %>
 
-
-
-  <br />
-  <br />
-  <div class="field">
-    <%= label_tag "说明:" %><br />
+  <p>
+    <b>说明:</b><br />
     <%= @in_store.caption  %>
-  </div>
-
-
+  </p>
 
 <div>
   <table id="doneFile">
-    附件:
+    <b>附件:</b>
     <tbody>
       <% unless @in_store.new_record? or @in_store.attach_ids.nil? %>
          <% Attach.where(:id => @in_store.attach_ids.split(',')).each do |a|  %>

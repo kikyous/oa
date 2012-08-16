@@ -26,7 +26,6 @@
   }
 </style>
 
-
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -38,20 +37,14 @@
     </div>
   <% end %>
 
-
-
-  <br />
-  <br />
-  <div class="field">
-    <%= label_tag "说明:" %><br />
+  <p>
+    <b>说明:</b><br />
     <%= @task.caption %>
-  </div>
-
-
+  </p>
 
 <div>
   <table id="doneFile">
-    附件:
+    <b>附件:</b>
     <tbody>
       <% unless @task.new_record? or @task.attach_ids.nil? %>
          <% Attach.where(:id => @task.attach_ids.split(',')).each do |a|  %>

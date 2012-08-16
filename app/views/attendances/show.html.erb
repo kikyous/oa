@@ -38,27 +38,24 @@
     </div>
   <% end %>
 
-  <%= label_tag "人员" %><br />
+  <p>
+  <b>人员:</b>
   <%= @attendance.user.username %>
+  </p>
 
-  <div class="field">
-      <%= label_tag "工资" %><br />
-      <%= @attendance.money %>
-  </div>
+  <p>
+  <b>工资:</b>
+  <%= @attendance.money %>
+  </p>
 
 
   <br />
-  <br />
-  <div class="field">
-    <%= label_tag "说明:" %><br />
-    <%= @attendance.caption  %>
-  </div>
-
-
+  <b>说明:</b><br />
+  <%= @attendance.caption  %>
 
 <div>
   <table id="doneFile">
-    附件:
+      <b>附件:</b>
     <tbody>
       <% unless @attendance.new_record? or @attendance.attach_ids.nil? %>
          <% Attach.where(:id => @attendance.attach_ids.split(',')).each do |a|  %>
