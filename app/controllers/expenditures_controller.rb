@@ -54,7 +54,7 @@ class ExpendituresController < ApplicationController
 
     respond_to do |format|
       if @expenditure
-        format.html { redirect_to expenditures_url, notice: 'In come was successfully created.' }
+        format.html { redirect_to expenditures_url, notice: '支出单 成功创建.' }
         format.json { render json: @expenditure, status: :created, location: @expenditure }
       else
         format.html { render action: "new" }
@@ -76,7 +76,7 @@ class ExpendituresController < ApplicationController
 
     respond_to do |format|
       if expenditure
-        format.html { redirect_to @expenditure, notice: 'In come was successfully updated.' }
+        format.html { redirect_to @expenditure, notice: '支出单 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

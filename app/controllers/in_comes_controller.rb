@@ -54,7 +54,7 @@ class InComesController < ApplicationController
 
     respond_to do |format|
       if @in_come
-        format.html { redirect_to in_comes_url, notice: 'In come was successfully created.' }
+        format.html { redirect_to in_comes_url, notice: 'In come 成功创建.' }
         format.json { render json: @in_come, status: :created, location: @in_come }
       else
         format.html { render action: "new" }
@@ -80,7 +80,7 @@ class InComesController < ApplicationController
 
     respond_to do |format|
       if in_come
-        format.html { redirect_to @in_come, notice: 'In come was successfully updated.' }
+        format.html { redirect_to @in_come, notice: 'In come 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

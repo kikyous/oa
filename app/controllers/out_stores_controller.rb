@@ -52,7 +52,7 @@ class OutStoresController < ApplicationController
     @out_store=OutStore.new(params[:out_store])
     respond_to do |format|
       if @out_store.save
-        format.html { redirect_to out_stores_url, notice: '出库单 was successfully created.' }
+        format.html { redirect_to out_stores_url, notice: '出库单 成功创建.' }
         format.json { render json: @out_store, status: :created, location: @note }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class OutStoresController < ApplicationController
     @out_store = OutStore.find(params[:id])
     respond_to do |format|
       if @out_store.update_attributes(params[:out_store])
-        format.html { redirect_to @out_store, notice: '出库单 was successfully updated.' }
+        format.html { redirect_to @out_store, notice: '出库单 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

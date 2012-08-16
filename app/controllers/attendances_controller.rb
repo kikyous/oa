@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
   layout "table", :only => [:index,:personal]
@@ -77,7 +79,7 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.update_attributes(params[:attendance])
-        format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
+        format.html { redirect_to @attendance, notice: '考勤 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

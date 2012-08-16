@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class BankAccountsController < ApplicationController
   layout "table", :only => [:index]
   # GET /bank_accounts
@@ -43,7 +45,7 @@ class BankAccountsController < ApplicationController
 
     respond_to do |format|
       if @bank_account.save
-        format.html { redirect_to bank_accounts_url, notice: 'Bank account was successfully created.' }
+        format.html { redirect_to bank_accounts_url, notice: '银行帐号 成功创建.' }
         format.json { render json: @bank_account, status: :created, location: @bank_account }
       else
         format.html { render action: "new" }
@@ -59,7 +61,7 @@ class BankAccountsController < ApplicationController
 
     respond_to do |format|
       if @bank_account.update_attributes(params[:bank_account])
-        format.html { redirect_to @bank_account, notice: 'Bank account was successfully updated.' }
+        format.html { redirect_to @bank_account, notice: '银行帐号 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

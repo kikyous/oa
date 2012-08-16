@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class ReimbursementsController < ApplicationController
   layout "table", :only => [:index]
   # GET /reimbursements
@@ -43,7 +45,7 @@ class ReimbursementsController < ApplicationController
 
     respond_to do |format|
       if @reimbursement.save
-        format.html { redirect_to @reimbursement, notice: 'Unpaid debt was successfully created.' }
+        format.html { redirect_to @reimbursement, notice: '报销单 成功创建.' }
         format.json { render json: @reimbursement, status: :created, location: @reimbursement }
       else
         format.html { render action: "new" }
@@ -59,7 +61,7 @@ class ReimbursementsController < ApplicationController
 
     respond_to do |format|
       if @reimbursement.update_attributes(params[:reimbursement])
-        format.html { redirect_to @reimbursement, notice: 'Unpaid debt was successfully updated.' }
+        format.html { redirect_to @reimbursement, notice: '报销单 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

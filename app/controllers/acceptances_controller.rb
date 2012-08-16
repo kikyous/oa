@@ -45,7 +45,7 @@ class AcceptancesController < ApplicationController
 
     respond_to do |format|
       if @acceptance.save
-        format.html { redirect_to @acceptance, notice: 'Acceptance was successfully created.' }
+        format.html { redirect_to @acceptance, notice: '承兑 成功创建.' }
         format.json { render json: @acceptance, status: :created, location: @acceptance }
       else
         format.html { render action: "new" }
@@ -61,7 +61,7 @@ class AcceptancesController < ApplicationController
 
     respond_to do |format|
       if @acceptance.update_attributes(params[:acceptance])
-        format.html { redirect_to @acceptance, notice: 'Acceptance was successfully updated.' }
+        format.html { redirect_to @acceptance, notice: '承兑 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

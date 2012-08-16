@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class UnpaidDebtsController < ApplicationController
   layout "table", :only => [:index]
   # GET /unpaid_debts
@@ -43,7 +45,7 @@ class UnpaidDebtsController < ApplicationController
 
     respond_to do |format|
       if @unpaid_debt.save
-        format.html { redirect_to unpaid_debts_url, notice: 'Unpaid debt was successfully created.' }
+        format.html { redirect_to unpaid_debts_url, notice: '挂帐单 成功创建.' }
         format.json { render json: @unpaid_debt, status: :created, location: @unpaid_debt }
       else
         format.html { render action: "new" }
@@ -59,7 +61,7 @@ class UnpaidDebtsController < ApplicationController
 
     respond_to do |format|
       if @unpaid_debt.update_attributes(params[:unpaid_debt])
-        format.html { redirect_to @unpaid_debt, notice: 'Unpaid debt was successfully updated.' }
+        format.html { redirect_to @unpaid_debt, notice: '挂帐单 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

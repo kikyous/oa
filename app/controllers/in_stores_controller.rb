@@ -52,7 +52,7 @@ class InStoresController < ApplicationController
     @in_store=InStore.new(params[:in_store])
     respond_to do |format|
       if @in_store.save
-        format.html { redirect_to in_stores_url, notice: '入库单 was successfully created.' }
+        format.html { redirect_to in_stores_url, notice: '入库单 成功创建.' }
         format.json { render json: @in_store, status: :created, location: @note }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class InStoresController < ApplicationController
     @in_store = InStore.find(params[:id])
     respond_to do |format|
       if @in_store.update_attributes(params[:in_store])
-        format.html { redirect_to @in_store, notice: '入库单 was successfully updated.' }
+        format.html { redirect_to @in_store, notice: '入库单 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

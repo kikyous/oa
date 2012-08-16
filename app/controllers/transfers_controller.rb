@@ -52,7 +52,7 @@ class TransfersController < ApplicationController
     @transfer=Transfer.new(params[:transfer])
     respond_to do |format|
       if @transfer.save
-        format.html { redirect_to transfers_url, notice: '入库单 was successfully created.' }
+        format.html { redirect_to transfers_url, notice: '转帐单 成功创建.' }
         format.json { render json: @transfer, status: :created, location: @note }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class TransfersController < ApplicationController
     @transfer = Transfer.find(params[:id])
     respond_to do |format|
       if @transfer.update_attributes(params[:transfer])
-        format.html { redirect_to @transfer, notice: '入库单 was successfully updated.' }
+        format.html { redirect_to @transfer, notice: '转帐单 成功更新.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
