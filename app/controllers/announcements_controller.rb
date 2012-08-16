@@ -1,6 +1,8 @@
 #!/bin/env ruby
 # encoding: utf-8
 class AnnouncementsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :require_manage
   # GET /announcements
   # GET /announcements.json
   def index
@@ -82,4 +84,12 @@ class AnnouncementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def require_manage
+    unless isManager?
+      redirect_to announcements_url, :alert => '您没有权限进行此操作'
+    end
+  end
+          
 end

@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class ReimbursementsController < ApplicationController
+  before_filter :authenticate_user!
   layout "table", :only => [:index]
   # GET /reimbursements
   # GET /reimbursements.json
@@ -41,6 +42,10 @@ class ReimbursementsController < ApplicationController
   # POST /reimbursements
   # POST /reimbursements.json
   def create
+    unless params[:reimbursement][:status].nil? or isManager?
+      redirect_to reimbursements_url, :alert => '您没有权限进行此操作'
+      return
+    end
     @reimbursement = current_user.reimbursements.new(params[:reimbursement])
 
     respond_to do |format|
@@ -57,6 +62,10 @@ class ReimbursementsController < ApplicationController
   # PUT /reimbursements/1
   # PUT /reimbursements/1.json
   def update
+    unless params[:reimbursement][:status].nil? or isManager?
+      redirect_to reimbursements_url, :alert => '您没有权限进行此操作'
+      return
+    end
     @reimbursement = Reimbursement.find(params[:id])
 
     respond_to do |format|
@@ -81,4 +90,8 @@ class ReimbursementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+
 end

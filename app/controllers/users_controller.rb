@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to users_url, :alert => '您没有权限进行此操作'

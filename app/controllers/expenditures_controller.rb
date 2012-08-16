@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class ExpendituresController < ApplicationController
+  before_filter :authenticate_user!
   layout "table", :only => [:index]
   # GET /expenditures
   # GET /expenditures.json

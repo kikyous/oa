@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :authenticate_user!
   layout "table", :only => [:index]
   def get_unread
     count=current_user.received_messages.unread.length

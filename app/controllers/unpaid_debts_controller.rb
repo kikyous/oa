@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class UnpaidDebtsController < ApplicationController
+  before_filter :authenticate_user!
   layout "table", :only => [:index]
   # GET /unpaid_debts
   # GET /unpaid_debts.json
@@ -41,6 +42,10 @@ class UnpaidDebtsController < ApplicationController
   # POST /unpaid_debts
   # POST /unpaid_debts.json
   def create
+    unless params[:unpaid_debt][:status].nil? or isManager?
+      redirect_to unpaid_debts_url, :alert => '您没有权限进行此操作'
+      return
+    end
     @unpaid_debt = UnpaidDebt.new(params[:unpaid_debt])
 
     respond_to do |format|
@@ -57,6 +62,10 @@ class UnpaidDebtsController < ApplicationController
   # PUT /unpaid_debts/1
   # PUT /unpaid_debts/1.json
   def update
+    unless params[:unpaid_debt][:status].nil? or isManager?
+      redirect_to unpaid_debts_url, :alert => '您没有权限进行此操作'
+      return
+    end
     @unpaid_debt = UnpaidDebt.find(params[:id])
 
     respond_to do |format|

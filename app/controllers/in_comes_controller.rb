@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class InComesController < ApplicationController
+  before_filter :authenticate_user!
   layout "table", :only => [:index]
   # GET /in_comes
   # GET /in_comes.json

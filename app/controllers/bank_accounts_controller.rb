@@ -1,6 +1,7 @@
 #!/bin/env ruby
 # encoding: utf-8
 class BankAccountsController < ApplicationController
+  before_filter :authenticate_user!
   layout "table", :only => [:index]
   # GET /bank_accounts
   # GET /bank_accounts.json
