@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>用户名:</b>
+  <%= @user.username %>
+</p>
+<p>
+  <b>所属机构:</b>
+  <%= @user.groups.map(&:name).join(" ") %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
