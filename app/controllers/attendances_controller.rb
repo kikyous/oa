@@ -8,7 +8,7 @@ class AttendancesController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.js { 
+      format.js {
         user_session[:for_month]||=Attendance.order("for_month DESC").first.for_month
         render :js => "filter('#{user_session[:for_month]}',true); " 
       }
@@ -39,6 +39,7 @@ class AttendancesController < ApplicationController
   # GET /attendances/new.json
   def new
     @attendance = Attendance.new
+    @attendance.for_month=user_session[:for_month]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -53,15 +54,30 @@ class AttendancesController < ApplicationController
 
   # POST /attendances
   # POST /attendances.json
-  def create
+  def create_all
     
     User.all.each do |u|
       u.attendances.create(:for_month=>params[:for_month])
     end
     respond_to do |format|
-      format.js { 
+      format.js {
         render :js => "filter('#{params[:for_month]}',true); " 
       }
+    end
+
+  end
+
+  def create
+    begin
+      params[:attendance][:attach_ids]=params[:attendance][:attach_ids].join(",")
+    rescue => err
+      p err
+    end
+    rm_unneed_attach
+    Attendance.create(params[:attendance])
+
+    respond_to do |format|
+      format.html { redirect_to attendances_url, notice: '考勤 新建成功.' }
     end
 
   end

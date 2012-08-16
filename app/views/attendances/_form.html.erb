@@ -49,9 +49,21 @@
       <% end %>
   </div>
 
-  <%= c.label "人员" %><br />
-  <%= collection_select(:attendance, :user_id, User.all, :id, :username) %>
 
+  <label>月份</label>
+  <%= @attendance.for_month %><br />
+  <%= c.hidden_field(:for_month) %>
+
+
+  <%= c.label "人员" %><br />
+  <%= c.collection_select(:user_id, User.all, :id, :username) %>
+  
+  <% unless @attendance.new_record? %>
+      <div class="field">
+          <%= c.label "工资" %><br />
+          <%= c.text_field :money %>
+      </div>
+  <% end %>
 
   <div class="field">
     <%= c.label "说明" %><br />

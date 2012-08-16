@@ -26,6 +26,7 @@ private
         link_to(getStatus(attendance), attendance),
         attendance.for_month,
         h(attendance.user.username),
+        attendance.money,
         attendance.created_at,
         attendance.id
       ]
@@ -73,7 +74,7 @@ private
   end
 
   def sort_column
-    columns = %w[attendances.id attendances.for_month users.username attendances.created_at]
+    columns = %w[attendances.id attendances.for_month users.username attendances.money attendances.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

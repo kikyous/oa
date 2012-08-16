@@ -14,7 +14,7 @@ $(function(){
                 if (confirm("本月暂无考勤信息，是否新建？")){
                 $("#attendances td").text("请稍候...");
                 $.ajax({type: 'POST',
-                    "url":"/attendances",
+                    "url":"/attendances/create_all",
                     data:{'for_month':getValue()},
                 dataType:'script'});
                 };
@@ -25,12 +25,12 @@ $(function(){
                 item.each( function (i,e) {
                     var item=$(e);
                     that.fnUpdate('<a href=/attendances/'+item.text()+'/edit>[编辑]</a> '+' <a href=/attendances/'+item.text()+' data-confirm="确定删除 ?" data-method="delete" rel="nofollow">[删除]</a>' ,
-                    this.parentNode, 4, false, false );
+                    this.parentNode, 5, false, false );
                 } );
             }
         },
         "aoColumnDefs": [
-            { "bSortable": false, "aTargets": [ 4 ] }
+            { "bSortable": false, "aTargets": [ 5 ] }
         ],
 
     });

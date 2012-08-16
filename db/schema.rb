@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20120815095238) do
     t.string   "bank"
     t.datetime "expire"
     t.string   "unit"
-    t.string   "status"
+    t.integer  "status"
     t.integer  "in_come_id"
     t.integer  "expenditure_id"
     t.datetime "created_at",     :null => false
@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(:version => 20120815095238) do
     t.integer  "user_id"
     t.string   "attach_ids"
     t.string   "for_month"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.decimal  "money",      :default => 0.0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "attendances", ["user_id"], :name => "index_attendances_on_user_id"

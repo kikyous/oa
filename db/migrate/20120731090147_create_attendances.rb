@@ -5,6 +5,7 @@ class CreateAttendances < ActiveRecord::Migration
       t.references :user
       t.string   :attach_ids
       t.string  :for_month
+      t.decimal  :money, :default => 0
 
       t.timestamps
     end

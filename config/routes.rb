@@ -26,6 +26,7 @@ Oa::Application.routes.draw do
 
   resources :attendances do
     collection do
+      post 'create_all'
       get 'personal'
     end
   end
