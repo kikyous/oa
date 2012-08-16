@@ -2,6 +2,7 @@
 # encoding: utf-8
 class TransfersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout "table", :only => [:index]
   # GET /transfers
   # GET /transfers.json

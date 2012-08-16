@@ -17,12 +17,12 @@ $(function(){
                 item.each( function (i,e) {
                     var item=$(e);
                     that.fnUpdate('<a href=/attendances/'+item.text()+'>[查看]</a> '+' <a href=/attendances/'+item.text()+'>[下载]</a>' ,
-                    this.parentNode, 4, false, false );
+                    this.parentNode, 5, false, false );
                 } );
             }
         },
         "aoColumnDefs": [
-            { "bSortable": false, "aTargets": [ 4 ] }
+            { "bSortable": false, "aTargets": [ 5 ] }
         ],
 
     });

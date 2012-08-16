@@ -2,7 +2,7 @@
 # encoding: utf-8
 class AnnouncementsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_manage
+  before_filter :require_manage ,:except=>:index
   # GET /announcements
   # GET /announcements.json
   def index

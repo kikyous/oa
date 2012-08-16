@@ -2,6 +2,7 @@
 # encoding: utf-8
 class ExpendituresController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout "table", :only => [:index]
   # GET /expenditures
   # GET /expenditures.json

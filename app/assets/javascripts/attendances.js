@@ -57,8 +57,10 @@ $(function(){
     filter=function (value,setValue) {
         oTable.fnFilter(value,1);
         if (setValue){
-            $("#month").val(value.split("-")[1].split('0').reverse()[0]);
-            $("#year").val(value.split("-")[0]);
+            var y=value.split("-")[0];
+            var m=value.split("-")[1];
+            $("#month").val(m.replace(/^0/,''));
+            $("#year").val(y);
         }
     };
     getValue=function(){

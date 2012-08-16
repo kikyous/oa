@@ -3,6 +3,7 @@
 
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to users_url, :alert => '您没有权限进行此操作'
@@ -17,17 +18,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def archive
-    id=params[:id].to_i * 10
-    @users=User.limit(10).offset(id)
-    @count=User.count
-    # authorize! :read, User
-  end
 
   def new
     @groups=Group.all
     @user=User.new
-    authorize! :create, @user
   end
 
   # POST /resource
@@ -47,7 +41,6 @@ class UsersController < ApplicationController
     # GET /resource/edit
   def edit
     @user = User.find(params[:id])
-    authorize! :update, @user
     @groups=Group.all
   end
 
@@ -56,7 +49,6 @@ class UsersController < ApplicationController
   # the current user in place.
   def update
     @user = User.find(params[:id])
-    authorize! :update, @user
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
@@ -75,7 +67,6 @@ class UsersController < ApplicationController
   # DELETE /resource
   def destroy
     @user = User.find(params[:id])
-    authorize! :destroy, @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url , notice: '用户 被成功删除 .'}

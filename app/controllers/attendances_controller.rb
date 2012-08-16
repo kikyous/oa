@@ -2,6 +2,7 @@
 # encoding: utf-8
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource :except => [:personal,:show]
   layout "table", :only => [:index,:personal]
   # GET /attendances
   # GET /attendances.json
@@ -19,7 +20,6 @@ class AttendancesController < ApplicationController
   def personal
     respond_to do |format|
       format.html
-      format.js { }
       format.json { render json: AttendancesDatatable.new(view_context,current_user) }
     end
   end

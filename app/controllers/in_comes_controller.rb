@@ -2,6 +2,7 @@
 # encoding: utf-8
 class InComesController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   layout "table", :only => [:index]
   # GET /in_comes
   # GET /in_comes.json
