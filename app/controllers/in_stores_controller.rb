@@ -61,7 +61,6 @@ class InStoresController < ApplicationController
         format.json { render json: @in_store.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PUT /in_stores/1

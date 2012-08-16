@@ -23,11 +23,6 @@ class SuppliersController < ApplicationController
   def show
     @supplier = Supplier.find(params[:id])
   end
-  def archive
-    id=params[:id].to_i * 10
-    @suppliers=Supplier.limit(10).offset(id).order("created_at DESC")
-    @count=Supplier.count
-  end
 
   def create
     supplier = Supplier.new(params[:supplier])

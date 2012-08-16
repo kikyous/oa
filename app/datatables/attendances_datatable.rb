@@ -55,7 +55,9 @@ private
         user_session[:for_month]=params[:sSearch_1]
         attendances = attendances.where("attendances.for_month = ?",params[:sSearch_1])
       else
-        attendances = attendances.where("attendances.for_month = 0000-00")
+        att = []
+        def att.total_entries;0;end
+        return att
       end
     end
     attendances = attendances.page(page).per_page(per_page)

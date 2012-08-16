@@ -15,8 +15,5 @@ class HomeController < ApplicationController
 
   def tree
   end
-
-  def floatBox
-  end
   
 end

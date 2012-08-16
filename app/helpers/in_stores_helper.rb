@@ -1,2 +1,0 @@
-module InStoresHelper
-end
