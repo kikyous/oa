@@ -3,4 +3,4 @@
 
 <br />
 <br />
-<%= link_to "发布公告" ,'/announcements/new' if isManager? %>
+<%= link_to "发布公告" ,'/announcements/new' if can? :manage, @announcement %>

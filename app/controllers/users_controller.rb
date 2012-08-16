@@ -38,15 +38,12 @@ class UsersController < ApplicationController
     end
   end
 
-    # GET /resource/edit
+  # GET /resource/edit
   def edit
     @user = User.find(params[:id])
     @groups=Group.all
   end
 
-  # PUT /resource
-  # We need to use a copy of the resource because we don't want to change
-  # the current user in place.
   def update
     @user = User.find(params[:id])
     if params[:user][:password].blank?

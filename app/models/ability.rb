@@ -36,6 +36,11 @@ class Ability
         can :destroy, User
       end
 
+      #总经理
+      if gids.include?2
+        can :manage, [Announcement]
+      end
+
       #供销部
       if gids.include?3
         can :manage, [Supplier,SuplContract]
