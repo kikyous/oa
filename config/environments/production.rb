@@ -11,11 +11,12 @@ Oa::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
   config.assets.precompile << 'tree.css'
-  config.assets.precompile += %w(acceptances.js           groups.js                   reimbursements.js
+  config.assets.precompile += 
+%w(acceptances.js           groups.js                   reimbursements.js
 announcements.js         in_comes.js                 supl_contracts.js
 application.js           in_stores.js                suppliers.js
-attendances.js           jquery.fileupload.js        tasks.js
-attendances_personal.js  jquery.iframe-transport.js  transfers.js
+attendances.js           tasks.js                    fileupload.js
+attendances_personal.js  transfers.js
 bank_accounts.js         messages.js                 unpaid_debts.js
 datatable.js             notes.js                    users.js
 deliveries.js            out_stores.js
