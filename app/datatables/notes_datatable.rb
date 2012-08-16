@@ -35,7 +35,7 @@ private
   end
 
   def fetch_notes
-    notes = @current_user.notes.order("#{sort_column} #{sort_direction}")
+    notes = @current_user.notes.includes(:user).order("#{sort_column} #{sort_direction}")
     notes = notes.page(page).per_page(per_page)
     if params[:sSearch].present?
       notes = notes.where("notes.name like :search or notes.created_at like :search", search: "%#{params[:sSearch]}%")

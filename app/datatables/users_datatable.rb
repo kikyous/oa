@@ -33,7 +33,7 @@ private
   end
 
   def fetch_users
-    users = User.order("#{sort_column} #{sort_direction}")
+    users = User.includes(:groups).order("#{sort_column} #{sort_direction}")
     users = users.page(page).per_page(per_page)
     if params[:sSearch].present?
       users = users.where("users.username like :search or users.created_at like :search", search: "%#{params[:sSearch]}%")

@@ -56,7 +56,7 @@
 
 
   <%= c.label "人员" %><br />
-  <%= c.collection_select(:user_id, User.all, :id, :username) %>
+  <%= c.collection_select(:user_id, Attendance.unattendance_user(@attendance.for_month), :id, :username) %>
   
   <% unless @attendance.new_record? %>
       <div class="field">

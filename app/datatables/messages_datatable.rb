@@ -36,7 +36,7 @@ private
 
 
   def fetch_messages
-    messages = @current_user.messages.where(:ancestry => nil).order("#{sort_column} #{sort_direction}")
+    messages = @current_user.messages.includes(:user).where(:ancestry => nil).order("#{sort_column} #{sort_direction}")
     messages = messages.page(page).per_page(per_page)
     if params[:sSearch].present?
       messages = messages.where("messages.topic like :search", search: "%#{params[:sSearch]}%")
