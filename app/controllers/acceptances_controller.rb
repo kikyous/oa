@@ -30,7 +30,7 @@ class AcceptancesController < ApplicationController
     @acceptance = Acceptance.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout=>false}
       format.json { render json: @acceptance }
     end
   end

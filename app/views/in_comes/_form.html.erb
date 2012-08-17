@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label '方式' %><br />
-    <%= f.select(:mode, modeList) %>
+    <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
   </div>
   <div>
       <div id="other">
@@ -29,7 +29,7 @@
       <div id="cash">
           <div class="field">
             <%= f.label "帐号" %><br />
-            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name) %>
+            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
           </div>
           <div class="field">
             <%= f.label '金额' %><br />
@@ -60,7 +60,7 @@
                 };
             toogle($("#in_come_mode").val());
             $("#in_come_mode").change(function(e){
-                toogle(e.srcElement.value);
+                toogle(e.target.value);
                 });
             $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new":"/acceptances/#{@in_come.acceptance.id}/edit" %>');
             })

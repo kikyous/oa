@@ -50,7 +50,7 @@
   </div>
 
   <%= c.label "供应商" %><br />
-  <%= collection_select(:supl_contract, :supplier_id, Supplier.all, :id, :name) %>
+  <%= c.collection_select(:supplier_id, Supplier.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
 
   <%= link_to('添加新供应商', "/suppliers/new") if c.object.new_record? %> 
 

@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @to = User.find_by_username(params[:to])
+    @to = User.find(params[:main][:to])
     respond_to do |format|
       if message=current_user.send_message(@to, params[:message])
         format.html { redirect_to "/messages/#{message.id}" }

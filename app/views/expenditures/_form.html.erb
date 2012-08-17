@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label '方式' %><br />
-    <%= f.select(:mode, modeList) %>
+    <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
   </div>
   <div>
       <div id="other">
@@ -29,7 +29,7 @@
       <div id="cash">
           <div class="field">
             <%= f.label "帐号" %><br />
-            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name) %>
+            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name,{} ,{:class=>"chzn-select"}) %>
           </div>
           <div class="field">
             <%= f.label '金额' %><br />
@@ -40,9 +40,11 @@
           <div class="field">
             <%= f.label "承兑" %><br />
             <% if @expenditure.new_record? %>
-              <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name) %>
+              <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+            <% elsif @expenditure.acceptance %>
+              <%= collection_select(:acceptance, :id, [@expenditure.acceptance], :id, :name,{} ,{:class=>"chzn-select"}) %>
             <% else %>
-              <%= collection_select(:acceptance, :id, [@expenditure.acceptance], :id, :name) %>
+              不可用
             <% end %>
           </div>
       </div>
@@ -68,7 +70,7 @@
                 };
             toogle($("#expenditure_mode").val());
             $("#expenditure_mode").change(function(e){
-                toogle(e.srcElement.value);
+                toogle(e.target.value);
                 });
             })
 </script>
