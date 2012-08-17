@@ -48,14 +48,14 @@
   <%= @attendance.money %>
   </p>
 
-
-  <br />
+  <p>
   <b>说明:</b><br />
   <%= @attendance.caption  %>
+  </p>
 
 <div>
   <table id="doneFile">
-      <b>附件:</b>
+    <b>附件:</b>
     <tbody>
       <% unless @attendance.new_record? or @attendance.attach_ids.nil? %>
          <% Attach.where(:id => @attendance.attach_ids.split(',')).each do |a|  %>

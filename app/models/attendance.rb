@@ -3,7 +3,7 @@ class Attendance < ActiveRecord::Base
   belongs_to :user
 
   def self.unattendance_user(for_month)
-      User.all-Attendance.includes(:user).where("attendances.for_month==?",for_month).map{|a| a.user}
+      User.all-Attendance.includes(:user).where("attendances.for_month==?",for_month).map(&:user)
   end
 
 end

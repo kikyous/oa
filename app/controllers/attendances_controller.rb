@@ -41,10 +41,11 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new
     @attendance.for_month=user_session[:for_month]
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @attendance }
+    @unattendance_user=Attendance.unattendance_user(@attendance.for_month)
+    if @unattendance_user.length==0
+      redirect_to attendances_url, notice: '本月所有人员都已有考勤记录.'
     end
+
   end
 
   # GET /attendances/1/edit

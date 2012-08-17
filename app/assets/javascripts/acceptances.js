@@ -24,7 +24,3 @@
     });
   });
 }).call(this);
-
-$(function(){
-$("#acceptances_filter").append(" <a href=/acceptances/new >新增</a>")
-})

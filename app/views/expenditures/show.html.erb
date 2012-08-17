@@ -6,7 +6,7 @@
   </p>
   <p>
   <b>帐号:</b>
-  <%= @expenditure.bank_account.name %>
+  <%=link_to @expenditure.bank_account.name,bank_account_path(@expenditure.bank_account)  %>
   </p>
 
 <% elsif @expenditure.mode==0 %>
