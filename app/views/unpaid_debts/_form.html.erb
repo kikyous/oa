@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label '说明' %>
-    <%= f.text_area :caption %>
+    <%= f.text_area :caption ,:size => "20x5" %>
   </div>
   <% unless @unpaid_debt.new_record? or !isManager?%>
       <div class="field">

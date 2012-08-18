@@ -12,7 +12,7 @@
   <%= hidden_field_tag "conversation" , f.id %> 
   <%= hidden_field_tag "message[topic]", "Re: #{f.topic}" %> 
   <div>
-    <%= text_area_tag "message[body]" %> 
+    <%= text_area_tag "message[body]" ,:size => "20x5" %> 
   </div>
 
   <%= submit_tag("发送") %>
