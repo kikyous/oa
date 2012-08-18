@@ -2,66 +2,66 @@
   <% if @in_come.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@in_come.errors.count, "error") %> prohibited this in_come from being saved:</h2>
-
       <ul>
-      <% @in_come.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @in_come.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= f.label '方式' %><br />
-    <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+    <% if @in_come.new_record? %>
+      <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
+    <% else %>
+      <%= f.select(:mode, [[mode(@in_come.mode),@in_come.mode]],{} ,{:class=>"chzn-select"}) %>
+    <% end %>
   </div>
   <div>
-      <div id="other">
-          <div class="field">
-            <%= f.label '金额' %><br />
-            <%= f.text_field :money %>
-          </div>
-          <div class="field">
-            <%= f.label '付款人' %><br />
-            <%= f.text_field :payer %>
-          </div>
+    <div id="other">
+      <div class="field" id="money">
+        <%= f.label '金额' %><br />
+        <%= f.text_field :money %>
       </div>
-      <div id="cash">
-          <div class="field">
-            <%= f.label "帐号" %><br />
-            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
-          </div>
-          <div class="field">
-            <%= f.label '金额' %><br />
-            <%= f.text_field :money %>
-          </div>
+      <div class="field">
+        <%= f.label '付款人' %><br />
+        <%= f.text_field :payer %>
       </div>
-      <div id="acceptance">
+    </div>
+    <div id="cash">
+      <div class="field">
+        <%= f.label "帐号" %><br />
+        <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
       </div>
+    </div>
+    <div id="acceptance">
+    </div>
   </div>
   <br />
   <div class="actions">
     <%= f.submit '提交收入单' %>
   </div>
 <% end %>
-<%= javascript_include_tag "application" %>
 <script type="text/javascript">
-    $(function(){
-            function toogle(value){
-                if (value=="1"){
-                $('#cash').show().siblings().hide();
-                }
-                else if (value=="2"){
-                $('#acceptance').show().siblings().hide();
-                }
-                else if (value=="0"){
-                $('#other').show().siblings().hide();
-                }
-                };
-            toogle($("#in_come_mode").val());
-            $("#in_come_mode").change(function(e){
-                toogle(e.target.value);
-                });
-            $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new":"/acceptances/#{@in_come.acceptance.id}/edit" %>');
-            })
+  $(function(){
+    function toogle(value){
+      if (value=="1"){
+        $('#cash').append($("#money"));
+        $('#cash').show().siblings().hide();
+      }
+      else if (value=="2"){
+        $('#acceptance').show().siblings().hide();
+      }
+      else if (value=="0"){
+        $('#other').prepend($("#money"));
+        $('#other').show().siblings().hide();
+      }
+    };
+    toogle($("#in_come_mode").val());
+    $("#in_come_mode").change(function(e){
+      toogle(e.target.value);
+    });
+    $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new":"/acceptances/#{@in_come.acceptance.id}/edit" %>');
+  })
 </script>

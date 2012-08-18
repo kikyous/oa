@@ -43,15 +43,18 @@ class ExpendituresController < ApplicationController
   # POST /expenditures
   # POST /expenditures.json
   def create
-    @expenditure = Expenditure.create(params[:expenditure])
     if params[:expenditure][:mode].to_i==1
-        account=@expenditure.bank_account
-        account.over-=(params[:expenditure][:money]).to_i
-        account.save
+      @expenditure = Expenditure.create(params[:expenditure])
+      account=@expenditure.bank_account
+      account.over-=(params[:expenditure][:money]).to_i
+      account.save
     elsif params[:expenditure][:mode].to_i==2
-        acceptance=Acceptance.find(params[:acceptance][:id])
-        acceptance.update_attributes(:status=>1,:expenditure_id=>@expenditure.id)
-        @expenditure.update_attribute(:money,acceptance.money)
+      acceptance=Acceptance.find(params[:acceptance][:id])
+      params[:expenditure][:money]=acceptance.money
+      @expenditure = Expenditure.create(params[:expenditure])
+      acceptance.update_attributes(:status=>1,:expenditure_id=>@expenditure.id)
+    else
+      @expenditure = Expenditure.create(params[:expenditure])
     end
 
     respond_to do |format|
@@ -69,11 +72,16 @@ class ExpendituresController < ApplicationController
   # PUT /expenditures/1.json
   def update
     @expenditure = Expenditure.find(params[:id])
+    if params[:expenditure][:mode].to_i==1
+      account=@expenditure.bank_account
+      account.over-=(params[:expenditure][:money]).to_i-@expenditure.money
+      account.save
+    end
     expenditure=@expenditure.update_attributes(params[:expenditure])
     if params[:expenditure][:mode].to_i==2
-        acceptance=Acceptance.find(params[:acceptance][:id])
-        acceptance.update_attribute(:status,1)
-        @expenditure.update_attribute(:money,acceptance.money)
+      acceptance=Acceptance.find(params[:acceptance][:id])
+      acceptance.update_attribute(:status,1)
+      @expenditure.update_attribute(:money,acceptance.money)
     end
 
     respond_to do |format|

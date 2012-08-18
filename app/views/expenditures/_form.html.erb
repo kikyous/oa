@@ -4,73 +4,72 @@
       <h2><%= pluralize(@expenditure.errors.count, "error") %> prohibited this expenditure from being saved:</h2>
 
       <ul>
-      <% @expenditure.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @expenditure.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= f.label '方式' %><br />
-    <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
+    <% if @expenditure.new_record? %>
+      <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
+    <% else %>
+      <%= f.select(:mode, [[mode(@expenditure.mode),@expenditure.mode]],{} ,{:class=>"chzn-select"}) %>
+    <% end %>
   </div>
   <div>
-      <div id="other">
-          <div class="field">
-            <%= f.label '金额' %><br />
-            <%= f.text_field :money %>
-          </div>
-          <div class="field">
-            <%= f.label '付款人' %><br />
-            <%= f.text_field :payer %>
-          </div>
+    <div id="other">
+      <div class="field" id='money'>
+        <%= f.label '金额' %><br />
+        <%= f.text_field :money %>
       </div>
-      <div id="cash">
-          <div class="field">
-            <%= f.label "帐号" %><br />
-            <%= f.collection_select( :bank_account_id, BankAccount.all, :id, :name,{} ,{:class=>"chzn-select"}) %>
-          </div>
-          <div class="field">
-            <%= f.label '金额' %><br />
-            <%= f.text_field :money %>
-          </div>
+      <div class="field">
+        <%= f.label '付款人' %><br />
+        <%= f.text_field :payer %>
       </div>
-      <div id="acceptance">
-          <div class="field">
-            <%= f.label "承兑" %><br />
-            <% if @expenditure.new_record? %>
-              <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
-            <% elsif @expenditure.acceptance %>
-              <%= collection_select(:acceptance, :id, [@expenditure.acceptance], :id, :name,{} ,{:class=>"chzn-select"}) %>
-            <% else %>
-              不可用
-            <% end %>
-          </div>
+    </div>
+    <div id="cash">
+      <div class="field">
+        <%= f.label "帐号" %><br />
+        <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
       </div>
+    </div>
+    <div id="acceptance">
+      <div class="field">
+        <%= f.label "承兑" %><br />
+        <% if @expenditure.new_record? %>
+          <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+        <% elsif @expenditure.acceptance %>
+          <%= collection_select(:acceptance, :id, [@expenditure.acceptance], :id, :name,{} ,{:class=>"chzn-select"}) %>
+        <% end %>
+      </div>
+    </div>
   </div>
   <br />
   <div class="actions">
     <%= f.submit '提交支出单' %>
   </div>
 <% end %>
-<%= javascript_include_tag "application" %>
 <script type="text/javascript">
-    $(function(){
-            function toogle(value){
-                if (value=="1"){
-                $('#cash').show().siblings().hide();
-                }
-                else if (value=="2"){
-                $('#acceptance').show().siblings().hide();
-                }
-                else if (value=="0"){
-                $('#other').show().siblings().hide();
-                }
-                };
-            toogle($("#expenditure_mode").val());
-            $("#expenditure_mode").change(function(e){
-                toogle(e.target.value);
-                });
-            })
+  $(function(){
+    function toogle(value){
+      if (value=="1"){
+        $('#cash').append($("#money"));
+        $('#cash').show().siblings().hide();
+      }
+      else if (value=="2"){
+        $('#acceptance').show().siblings().hide();
+      }
+      else if (value=="0"){
+        $('#other').prepend($("#money"));
+        $('#other').show().siblings().hide();
+      }
+    };
+    toogle($("#expenditure_mode").val());
+    $("#expenditure_mode").change(function(e){
+      toogle(e.target.value);
+    });
+  })
 </script>

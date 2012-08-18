@@ -43,16 +43,19 @@ class InComesController < ApplicationController
   # POST /in_comes
   # POST /in_comes.json
   def create
-    @in_come = InCome.create(params[:in_come])
+
     if params[:in_come][:mode].to_i==1
-        account=@in_come.bank_account
-        account.over+=(params[:in_come][:money]).to_i
-        account.save
+      @in_come = InCome.create(params[:in_come])
+      account=@in_come.bank_account
+      account.over+=(params[:in_come][:money]).to_i
+      account.save
     elsif params[:in_come][:mode].to_i==2
-        @in_come.update_attribute(:money,params[:acceptance][:money])
-        @acceptance=@in_come.create_acceptance(params[:acceptance])
+      params[:in_come][:money]=params[:acceptance][:money]
+      @in_come = InCome.create(params[:in_come])
+      @acceptance=@in_come.create_acceptance(params[:acceptance])
+    else
+      @in_come = InCome.create(params[:in_come])
     end
-        
 
     respond_to do |format|
       if @in_come
@@ -69,6 +72,11 @@ class InComesController < ApplicationController
   # PUT /in_comes/1.json
   def update
     @in_come = InCome.find(params[:id])
+    if params[:in_come][:mode].to_i==1
+      account=@in_come.bank_account
+      account.over+=(params[:in_come][:money]).to_i-@in_come.money
+      account.save
+    end
     in_come=@in_come.update_attributes(params[:in_come])
     if params[:in_come][:mode].to_i==2
         @in_come.update_attribute(:money,params[:acceptance][:money])
