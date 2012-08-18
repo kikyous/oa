@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20120815095238) do
   create_table "acceptances", :force => true do |t|
     t.decimal  "money"
     t.string   "bank"
-    t.datetime "expire"
+    t.date     "expire"
     t.string   "unit"
     t.integer  "status"
     t.integer  "in_come_id"
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20120815095238) do
   create_table "bank_accounts", :force => true do |t|
     t.string   "bankname"
     t.string   "accountname"
-    t.decimal  "over"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.decimal  "over",        :default => 0.0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "deliveries", :force => true do |t|
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20120815095238) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "username",               :default => "", :null => false
+    t.string   "name"
     t.string   "email",                  :default => ""
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"

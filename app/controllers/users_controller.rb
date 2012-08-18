@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 
 
   def new
-    @groups=Group.all
     @user=User.new
   end
 

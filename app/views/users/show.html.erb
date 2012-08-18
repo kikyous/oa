@@ -5,6 +5,10 @@
   <%= @user.username %>
 </p>
 <p>
+  <b>姓名:</b>
+  <%= @user.name %>
+</p>
+<p>
   <b>所属机构:</b>
   <%= @user.groups.map(&:name).join(" ") %>
 </p>
