@@ -1,5 +1,5 @@
 class GroupsDatatable
-  delegate :params, :h, :link_to, to: :@view
+  delegate :params, :h, :link_to ,:edit_group_path, to: :@view
 
   def initialize(view)
     @view = view
@@ -19,7 +19,7 @@ private
   def data
     groups.map do |group|
       [
-        link_to(group.id, group),
+        link_to(group.id, edit_group_path(group)),
         h(group.name),
         group.created_at,
         group.id

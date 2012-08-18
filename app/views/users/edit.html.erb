@@ -1,9 +1,8 @@
-<h2>编辑 <%= @user.username.to_s.humanize %></h2>
+<h2>编辑 <%= @user.username %></h2>
 
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>发生<%= @user.errors.count %>条错误</h2>
-
     <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -14,7 +13,7 @@
 
 <%= form_for(@user,:html => { :method => :put }) do |f| %>
 
-  <div><%= f.label "姓名" %><br />
+  <div><%= f.label "姓名" %>
   <%= f.text_field :name %></div>
 
   <div>
@@ -30,7 +29,7 @@
   <div><%= f.label "密码" %> <i>(留空，如果你不想改变它)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.label "确认密码" %><br />
+  <div><%= f.label "确认密码" %>
   <%= f.password_field :password_confirmation %></div>
 
   <div><%= f.submit "修改" %></div>

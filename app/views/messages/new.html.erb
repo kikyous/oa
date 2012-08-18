@@ -1,14 +1,14 @@
 <%= form_for :message, :url => messages_path do |f| %>
   <div>
-    <%= f.label '收件人' %>  <br />
+    <%= f.label '收件人' %>
     <%= select(:main, :to, User.all.map{|u| [u.username ,u.id] } ,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
   </div>
   <div>
-    <%= f.label '主题' %>  <br />
-    <%= f.text_field :topic, :class => "text_field" %> 
+    <%= f.label '主题' %>
+    <%= f.text_field :topic %> 
   </div>
   <div>
-    <%= f.label '内容' %>  <br />
+    <%= f.label '内容' %>
     <%= f.text_area :body ,:size => "20x5" %>
   </div>
   <%= f.submit "发送" %> 
