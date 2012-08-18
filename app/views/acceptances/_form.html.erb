@@ -14,24 +14,24 @@
 
   <% unless @acceptance.new_record? %>
     <div class="field">
-      <%= f.label '状态' %><br />
+      <%= f.label '状态' %>
       <%= f.label status(@acceptance.status) %>
     </div>
   <% end %>
   <div class="field">
-    <%= f.label '金额' %><br />
+    <%= f.label '金额' %>
     <%= f.text_field :money %>
   </div>
   <div class="field">
-    <%= f.label '银行' %><br />
+    <%= f.label '银行' %>
     <%= f.text_field :bank %>
   </div>
   <div class="field">
-    <%= f.label '到期时间' %><br />
+    <%= f.label '到期时间' %>
     <%= f.date_select :expire %>
   </div>
   <div class="field">
-    <%= f.label '单位' %><br />
+    <%= f.label '单位' %>
     <%= f.text_field :unit %>
   </div>
 <% end %>

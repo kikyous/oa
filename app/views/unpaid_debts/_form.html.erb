@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label '单位' %><br />
+    <%= f.label '单位' %>
     <%= f.collection_select(:group_id, Group.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
   </div>
   <div class="field">
-    <%= f.label '金额' %><br />
+    <%= f.label '金额' %>
     <%= f.text_field :money %>
   </div>
   <div class="field">
-    <%= f.label '说明' %><br />
+    <%= f.label '说明' %>
     <%= f.text_area :caption %>
   </div>
   <% unless @unpaid_debt.new_record? or !isManager?%>
       <div class="field">
-          <%= f.label "状态" %><br />
+          <%= f.label "状态" %>
           <%= f.select(:status, debts_status_select ) %>
       </div>
   <% end %>

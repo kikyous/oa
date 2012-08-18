@@ -43,13 +43,15 @@ class SuplContractsController < ApplicationController
       p err
     end
     rm_unneed_attach 
-    supl_contract = SuplContract.new(params[:supl_contract])
-    if supl_contract.save
-      flash[:notice] = "合同成功创建！"
-      redirect_to supl_contracts_path
-    else
-      #todo handle error
-      render :json => { :result => 'error'}, :content_type => 'text/html'
+    @supl_contract = SuplContract.new(params[:supl_contract])
+    respond_to do |format|
+      if @supl_contract.save
+        format.html { redirect_to supl_contracts_url, notice: '供应合同 成功创建.' }
+        format.json { render json: @supl_contract, status: :created, location: @supl_contract }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @supl_contract.errors, status: :unprocessable_entity }
+      end
     end
   end
   
@@ -62,9 +64,14 @@ class SuplContractsController < ApplicationController
 
     rm_unneed_attach 
     @supl_contract = SuplContract.find(params[:id])
-    if @supl_contract.update_attributes(params[:supl_contract])
-      flash[:notice] = "合同编辑成功！"
-      redirect_to supl_contracts_path
+    respond_to do |format|
+      if @supl_contract.update_attributes(params[:supl_contract])
+        format.html { redirect_to supl_contracts_url, notice: '供应合同 成功更改.' }
+        format.json { render json: @supl_contract, status: :created, location: @supl_contract }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @supl_contract.errors, status: :unprocessable_entity }
+      end
     end
   end
 

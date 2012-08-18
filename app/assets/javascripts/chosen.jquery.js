@@ -347,8 +347,7 @@ Copyright (c) 2011 by Harvest
       } else {
         this.search_container = this.container.find('div.chzn-search').first();
         this.selected_item = this.container.find('.chzn-single').first();
-        // sf_width = dd_width - get_side_border_padding(this.search_container) - get_side_border_padding(this.search_field);
-        sf_width = dd_width - 8;
+        sf_width = dd_width - get_side_border_padding(this.search_container) - get_side_border_padding(this.search_field);
         this.search_field.css({
           "width": sf_width + "px"
         });

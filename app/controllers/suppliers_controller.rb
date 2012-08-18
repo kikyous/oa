@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class SuppliersController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
@@ -24,12 +26,15 @@ class SuppliersController < ApplicationController
   end
 
   def create
-    supplier = Supplier.new(params[:supplier])
-    if supplier.save
-
-    else
-      #todo handle error
-      render :json => { :result => 'error'}, :content_type => 'text/html'
+    @supplier = Supplier.new(params[:supplier])
+    respond_to do |format|
+      if @supplier.save
+        format.html { redirect_to suppliers_url, notice: '供应商 成功创建.' }
+        format.json { render json: @supplier, status: :created, location: @supplier }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @supplier.errors, status: :unprocessable_entity }
+      end
     end
   end
   

@@ -11,7 +11,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label '方式' %><br />
+    <%= f.label '方式' %>
     <% if @in_come.new_record? %>
       <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
     <% else %>
@@ -21,17 +21,17 @@
   <div>
     <div id="other">
       <div class="field" id="money">
-        <%= f.label '金额' %><br />
+        <%= f.label '金额' %>
         <%= f.text_field :money %>
       </div>
       <div class="field">
-        <%= f.label '付款人' %><br />
+        <%= f.label '付款人' %>
         <%= f.text_field :payer %>
       </div>
     </div>
     <div id="cash">
       <div class="field">
-        <%= f.label "帐号" %><br />
+        <%= f.label "帐号" %>
         <% if @in_come.new_record? %>
           <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
         <% else %>

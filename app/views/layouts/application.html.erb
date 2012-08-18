@@ -1,8 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>管理系统</title>
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag "application"%>
+    <%= stylesheet_link_tag "bootstrap" unless ["index","personal"].include? params[:action] %>
     <%= csrf_meta_tags %>
   </head>
   <body>

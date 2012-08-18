@@ -12,24 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label '报销人' %><br />
+    <%= f.label '报销人' %>
     <%= f.collection_select(:user_id, User.all, :id, :username, {:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
   </div>
   <div class="field">
-    <%= f.label '金额' %><br />
+    <%= f.label '金额' %>
     <%= f.text_field :money %>
   </div>
   <div class="field">
-    <%= f.label '说明' %><br />
+    <%= f.label '说明' %>
     <%= f.text_area :caption %>
   </div>
   <div class="field">
-    <%= f.label '类别' %><br />
+    <%= f.label '类别' %>
     <%= f.text_field :category %>
   </div>
   <% unless @reimbursement.new_record? or !isManager? %>
       <div class="field">
-          <%= f.label "状态" %><br />
+          <%= f.label "状态" %>
           <%= f.select(:status, debts_status_select ) %>
       </div>
   <% end %>
