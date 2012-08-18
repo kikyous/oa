@@ -3,7 +3,7 @@ class CreateAcceptances < ActiveRecord::Migration
     create_table :acceptances do |t|
       t.decimal :money
       t.string :bank
-      t.datetime :expire
+      t.date :expire
       t.string :unit
       t.integer :status
       t.references :in_come

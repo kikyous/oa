@@ -3,7 +3,6 @@
 class ReimbursementsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /reimbursements
   # GET /reimbursements.json
   def index

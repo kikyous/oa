@@ -3,7 +3,6 @@
 class UnpaidDebtsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /unpaid_debts
   # GET /unpaid_debts.json
   def index

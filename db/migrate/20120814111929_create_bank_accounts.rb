@@ -3,7 +3,7 @@ class CreateBankAccounts < ActiveRecord::Migration
     create_table :bank_accounts do |t|
       t.string :bankname
       t.string :accountname
-      t.decimal :over
+      t.decimal :over ,:default => 0
 
       t.timestamps
     end

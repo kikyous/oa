@@ -32,7 +32,11 @@
     <div id="cash">
       <div class="field">
         <%= f.label "帐号" %><br />
-        <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+        <% if @in_come.new_record? %>
+          <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+        <% else %>
+          <%= f.collection_select(:bank_account_id, [@in_come.bank_account], :id, :name,{},{:class=>"chzn-select"}) %>
+        <% end %>
       </div>
     </div>
     <div id="acceptance">

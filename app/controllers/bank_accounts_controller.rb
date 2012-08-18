@@ -3,7 +3,6 @@
 class BankAccountsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /bank_accounts
   # GET /bank_accounts.json
   def index

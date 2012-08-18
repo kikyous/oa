@@ -9,8 +9,6 @@ class UsersController < ApplicationController
     redirect_to users_url, :alert => '您没有权限进行此操作'
   end
 
-  layout "table", :only => [:index]
-
   def index
     respond_to do |format|
       format.html

@@ -3,7 +3,6 @@
 class AcceptancesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /acceptances
   # GET /acceptances.json
   def index

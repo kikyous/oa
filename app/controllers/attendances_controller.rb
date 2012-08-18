@@ -3,7 +3,6 @@
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource :except => [:personal,:show]
-  layout "table", :only => [:index,:personal]
   # GET /attendances
   # GET /attendances.json
   def index

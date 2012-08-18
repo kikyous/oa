@@ -3,7 +3,6 @@
 class ExpendituresController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /expenditures
   # GET /expenditures.json
   def index
@@ -44,6 +43,10 @@ class ExpendituresController < ApplicationController
   # POST /expenditures.json
   def create
     if params[:expenditure][:mode].to_i==1
+      if params[:expenditure][:bank_account_id].blank?
+        render action: "new"
+        return
+      end
       @expenditure = Expenditure.create(params[:expenditure])
       account=@expenditure.bank_account
       account.over-=(params[:expenditure][:money]).to_i

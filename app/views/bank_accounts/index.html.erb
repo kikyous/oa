@@ -1,3 +1,5 @@
+<%= javascript_include_tag "datatable" %>
+<%= stylesheet_link_tag "table"%>
 <%= javascript_include_tag "bank_accounts" %>
 <table id ="bank_accounts"  class="display" data-source="<%= bank_accounts_url(format: "json") %>" >
   <thead>

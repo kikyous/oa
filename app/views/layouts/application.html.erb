@@ -1,11 +1,39 @@
 <html>
   <head>
-    <title><%= @page_title or 'Page Title' %></title>
+    <title>管理系统</title>
     <%= javascript_include_tag "application" %>
-    <%= stylesheet_link_tag "chosen"%>
+    <%= stylesheet_link_tag "application"%>
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("a.close").click(function(){
+          $(this).parent().fadeOut();
+          return false;
+        })
+      })
+    </script>
+    <% unless params[:controller]=='devise/sessions' %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success">
+          <%= flash[:notice] %>
+          <a class="close" data-dismiss="alert" href="#">X</a>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-success">
+          <%= flash[:alert] %>
+          <a class="close" data-dismiss="alert" href="#">X</a>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-success">
+          <%= flash[:error] %>
+          <a class="close" data-dismiss="alert" href="#">X</a>
+        </div>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

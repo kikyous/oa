@@ -3,7 +3,6 @@
 class DeliveriesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /deliverys
   # GET /deliverys.json
   def index

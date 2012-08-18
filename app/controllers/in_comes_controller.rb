@@ -3,7 +3,6 @@
 class InComesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /in_comes
   # GET /in_comes.json
   def index
@@ -45,6 +44,10 @@ class InComesController < ApplicationController
   def create
 
     if params[:in_come][:mode].to_i==1
+      if params[:in_come][:bank_account_id].blank?
+        render action: "new"
+        return
+      end
       @in_come = InCome.create(params[:in_come])
       account=@in_come.bank_account
       account.over+=(params[:in_come][:money]).to_i

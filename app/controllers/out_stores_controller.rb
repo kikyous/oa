@@ -3,7 +3,6 @@
 class OutStoresController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  layout "table", :only => [:index]
   # GET /out_stores
   # GET /out_stores.json
   def index

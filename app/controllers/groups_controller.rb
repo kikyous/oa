@@ -9,7 +9,6 @@ class GroupsController < ApplicationController
     redirect_to groups_url, :alert => '您没有权限进行此操作'
   end
 
-  layout "table", :only => [:index]
   # GET /groups
   # GET /groups.json
   def index
