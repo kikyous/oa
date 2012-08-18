@@ -103,7 +103,7 @@ $(document).ready(function(){
                         <td class="m_c">
                             <form action="/a/message/new" method="post" id="messageform">
                                     <textarea name="body" id="message" rows="15" cols="76" tabindex="3" style="width: 381px; height: 238px;"></textarea><br>
-                                    <input type="submit" value="发送(Ctrl+Enter)"/>
+                                    <input type="submit" value="发送(Ctrl+Enter)" class='btn btn-success'/>
                                     <input type="hidden" name="next" value="{{ request.path }}"/>
                                     <!-- {{ xsrf_form_html() }} -->
                             </form>
