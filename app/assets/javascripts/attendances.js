@@ -30,7 +30,7 @@ $(function(){
         ],
 
     });
-    $("#attendances_filter>label").append(" <a href=/attendances/new >新增</a>");
+    $("#attendances_filter>label").append(" <a href=/attendances/new ><i class='icon-plus'></i>新增</a>");
 
     var cur = new Date();
     var year = cur.getFullYear();

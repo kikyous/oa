@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#suppliers_filter>label").append(" <a href=/suppliers/new >新增</a>")
+$("#suppliers_filter>label").append(" <a href=/suppliers/new ><i class='icon-plus'></i>新增</a>")
 
 })

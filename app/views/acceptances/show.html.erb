@@ -1,26 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>金额:</b>
-  <%= @acceptance.money %>
-</p>
-
-<p>
-  <b>银行:</b>
-  <%= @acceptance.bank %>
-</p>
-
-<p>
-  <b>到期时间:</b>
-  <%= @acceptance.expire %>
-</p>
-
-<p>
-  <b>状态:</b>
-  <%= status @acceptance.status %>
-</p>
-<p>
-  <b>单位:</b>
-  <%= @acceptance.unit %>
-</p>
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>金额</td>
+    <td><%= @acceptance.money %></td>
+  </tr>
+  <tr>
+    <td>银行</td>
+    <td><%=@acceptance.bank %></td>
+  </tr>
+  <tr>
+    <td>到期时间</td>
+    <td><%= @acceptance.expire %></td>
+  </tr>
+  <tr>
+    <td>单位</td>
+    <td><%= @acceptance.unit %></td>
+  </tr>
+  <tr>
+    <td>状态</td>
+    <td><%= status @acceptance.status %></td>
+  </tr>
+</table>

@@ -20,38 +20,25 @@
     font-size: 12px;
     line-height: 166.6%;
   }
-  table td {
+  #doneFile td {
     border: 2px;
     padding: 1px 7px 1px 7px;
   }
 </style>
-
-
-  <% if @attendance.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
-      <ul>
-        <% @attendance.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-  <b>人员:</b>
-  <%= @attendance.user.username %>
-  </p>
-
-  <p>
-  <b>工资:</b>
-  <%= @attendance.money %>
-  </p>
-
-  <p>
-  <b>说明:</b><br />
-  <%= @attendance.caption  %>
-  </p>
+  <table class="show_table table table-bordered">
+    <tr>
+      <td>人员</td>
+      <td><%= @attendance.user.username %></td>
+    </tr>
+    <tr>
+      <td>工资</td>
+      <td><%= @attendance.money %></td>
+    </tr>
+    <tr>
+      <td>说明</td>
+      <td><%= @attendance.caption %></td>
+    </tr>
+  </table>
 
 <div>
   <table id="doneFile">
@@ -75,9 +62,6 @@
     </tbody>
   </table>
 </div>
-
-
-<%= javascript_include_tag "application" %>
 
 <script>
   $(document).ready(function(){

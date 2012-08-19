@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#reimbursements_filter>label").append(" <a href=/reimbursements/new >新增</a>")
+$("#reimbursements_filter>label").append(" <a href=/reimbursements/new ><i class='icon-plus'></i>新增</a>")
 
 })

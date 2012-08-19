@@ -20,7 +20,7 @@ private
   def data
     transfers.map do |transfer|
       [
-        link_to(transfer.id, transfer),
+        link_to(transfer.money,transfer),
         h(transfer.created_at),
         transfer.id
       ]

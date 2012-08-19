@@ -20,35 +20,24 @@
     font-size: 12px;
     line-height: 166.6%;
   }
-  table td {
+  #doneFile td {
     border: 2px;
     padding: 1px 7px 1px 7px;
   }
 </style>
 
-
-  <% if @in_store.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@in_store.errors.count, "error") %> prohibited this in_store from being saved:</h2>
-      <ul>
-        <% @in_store.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <b>说明:</b><br />
-    <%= @in_store.caption  %>
-  </p>
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>说明</td>
+    <td><%= @in_store.caption %></td>
+  </tr>
+</table>
 <div>
   <table id="doneFile">
     <b>附件:</b>
     <tbody>
       <% unless @in_store.new_record? or @in_store.attach_ids.nil? %>
-         <% Attach.where(:id => @in_store.attach_ids.split(',')).each do |a|  %>
+        <% Attach.where(:id => @in_store.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >
@@ -65,9 +54,6 @@
     </tbody>
   </table>
 </div>
-
-
-<%= javascript_include_tag "application" %>
 
 <script>
   $(document).ready(function(){

@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#transfers_filter>label").append(" <a href=/transfers/new >新增</a>")
+$("#transfers_filter>label").append(" <a href=/transfers/new ><i class='icon-plus'></i>新增</a>")
 
 })

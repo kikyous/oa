@@ -25,7 +25,7 @@
 
 $(function(){
 
-$("#messages_filter>label").append("<a href=/messages/new > 新增 </a>")
+$("#messages_filter>label").append("<a href=/messages/new ><i class='icon-plus'></i>新增</a>")
 
 })
 

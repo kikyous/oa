@@ -20,34 +20,22 @@
     font-size: 12px;
     line-height: 166.6%;
   }
-  table td {
+  #doneFile td {
     border: 2px;
     padding: 1px 7px 1px 7px;
   }
 </style>
 
-
-  <% if @delivery.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@delivery.errors.count, "error") %> prohibited this delivery from being saved:</h2>
-      <ul>
-        <% @delivery.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-      <b>送货单位:</b>
-      <%= @delivery.to %>
-  </p>
-
-  <div class="field">
-     <b>说明:</b><br />
-     <%= @delivery.caption %>
-  </div>
-
+<table class="show_table table table-bordered">
+  <tr>
+    <td>送货单位</td>
+    <td><%= @delivery.to %></td>
+  </tr>
+  <tr>
+    <td>说明</td>
+    <td><%= @delivery.caption %></td>
+  </tr>
+</table>
 <div>
   <table id="doneFile">
     <b>附件:</b>
@@ -70,9 +58,6 @@
     </tbody>
   </table>
 </div>
-
-
-<%= javascript_include_tag "application" %>
 
 <script>
   $(document).ready(function(){

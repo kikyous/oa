@@ -1,15 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>内容:</b>
-  <%= @announcement.content %>
-</p>
-
-<p>
-  <b>用户:</b>
-  <%= @announcement.user.username %>
-</p>
-
-
+<table class="table table-bordered show_table">
+  <tr>
+    <td>内容</td>
+    <td><%= @announcement.content %></td>
+  </tr>
+  <tr>
+    <td>用户</td>
+    <td><%= @announcement.user.username %></td>
+  </tr>
+</table>
 <%= link_to '编辑', edit_announcement_path(@announcement) %> |
 <%= link_to '返回', announcements_path %>

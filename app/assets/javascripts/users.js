@@ -21,5 +21,5 @@
 }).call(this);
 
 $(function(){
-  $("#users_filter>label").append("<a href=/users/new >新增</a>")
+  $("#users_filter>label").append("<a href=/users/new ><i class='icon-plus'></i>新增</a>")
 })

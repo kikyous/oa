@@ -1,20 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>银行:</b>
-  <%= @bank_account.bankname %>
-</p>
-
-<p>
-  <b>帐户名:</b>
-  <%= @bank_account.accountname %>
-</p>
-
-<p>
-  <b>余额:</b>
-  <%= @bank_account.over %>
-</p>
-
+<table class='show_table table table-bordered'>
+  <tr>
+    <td>银行</td>
+    <td><%= @bank_account.bankname %></td>
+  </tr>
+  <tr>
+    <td>帐户名</td>
+    <td><%= @bank_account.accountname %></td>
+  </tr>
+  <tr>
+    <td>余额</td>
+    <td><%= @bank_account.over %></td>
+  </tr>
+</table>
 
 <%= link_to '编辑', edit_bank_account_path(@bank_account) %> |
 <%= link_to '返回', bank_accounts_path %>

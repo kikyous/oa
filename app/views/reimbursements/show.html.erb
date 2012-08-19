@@ -1,20 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>金额:</b>
-  <%= @reimbursement.money %>
-</p>
-
-<p>
-  <b>说明:</b>
-  <%= @reimbursement.caption %>
-</p>
-
-<p>
-  <b>状态:</b>
-  <%=debts_status @reimbursement.status %>
-</p>
-
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>金额</td>
+    <td><%= @reimbursement.money %></td>
+  </tr>
+  <tr>
+    <td>说明</td>
+    <td><%= @reimbursement.caption %></td>
+  </tr>
+  <tr>
+    <td>状态</td>
+    <td><%=debts_status @reimbursement.status %></td>
+  </tr>
+</table>
 <%= link_to '编辑', edit_reimbursement_path(@reimbursement) %> |
 <%= link_to '返回', reimbursements_path %>

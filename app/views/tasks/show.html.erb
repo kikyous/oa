@@ -20,34 +20,24 @@
     font-size: 12px;
     line-height: 166.6%;
   }
-  table td {
+  #doneFile td {
     border: 2px;
     padding: 1px 7px 1px 7px;
   }
 </style>
 
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-      <ul>
-        <% @task.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <b>说明:</b><br />
-    <%= @task.caption %>
-  </p>
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>说明</td>
+    <td><%= @task.caption %></td>
+  </tr>
+</table>
 <div>
   <table id="doneFile">
     <b>附件:</b>
     <tbody>
       <% unless @task.new_record? or @task.attach_ids.nil? %>
-         <% Attach.where(:id => @task.attach_ids.split(',')).each do |a|  %>
+        <% Attach.where(:id => @task.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >
@@ -64,9 +54,6 @@
     </tbody>
   </table>
 </div>
-
-
-<%= javascript_include_tag "application" %>
 
 <script>
   $(document).ready(function(){

@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#notes_filter>label").append(" <a href=/notes/new >新增</a>")
+$("#notes_filter>label").append("<a href=/notes/new ><i class='icon-plus'></i>新增</a>")
 
 })

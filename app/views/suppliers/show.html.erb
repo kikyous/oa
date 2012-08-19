@@ -1,19 +1,20 @@
-<p>
-  <b>供应商名称:</b>
-  <%= @supplier.name %>
-</p>
-<p>
-  <b>货物:</b>
-  <%= @supplier.goods %>
-</p>
-<p>
-  <b>联系方式:</b>
-  <%= @supplier.contact %>
-</p>
-<p>
-  <b>地址:</b>
-  <%= @supplier.address %>
-</p>
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>供应商名称</td>
+    <td><%= @supplier.name %></td>
+  </tr>
+  <tr>
+    <td>货物</td>
+    <td><%= @supplier.goods %></td>
+  </tr>
+  <tr>
+    <td>联系方式</td>
+    <td><%= @supplier.contact %></td>
+  </tr>
+  <tr>
+    <td>地址</td>
+    <td><%= @supplier.address %></td>
+  </tr>
+</table>
 <%= link_to '编辑', edit_supplier_path(@supplier) %> |
 <%= link_to '返回', suppliers_path %>

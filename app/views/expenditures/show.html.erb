@@ -1,31 +1,33 @@
-<p id="notice"><%= notice %></p>
 <% if @expenditure.mode==1 %><p>
-  <p>
-  <b>金额:</b>
-  <%= @expenditure.money %>
-  </p>
-  <p>
-  <b>帐号:</b>
-  <%=link_to @expenditure.bank_account.name,bank_account_path(@expenditure.bank_account)  %>
-  </p>
-
+  <table class="table table-bordered show_table">
+    <tr>
+      <td>金额</td>
+      <td><%= @expenditure.money %></td>
+    </tr>
+    <tr>
+      <td>帐号</td>
+      <td><%= link_to @expenditure.bank_account.name,bank_account_path(@expenditure.bank_account) %></td>
+    </tr>
+  </table>
 <% elsif @expenditure.mode==0 %>
-  <p>
-  <b>金额:</b>
-  <%= @expenditure.money %>
-  </p>
-  <p>
-  <b>支付人:</b>
-  <%= @expenditure.payer %>
-  </p>
+  <table class="table table-bordered show_table">
+    <tr>
+      <td>金额</td>
+      <td><%= @expenditure.money %></td>
+    </tr>
+    <tr>
+      <td>支付人</td>
+      <td><%= @expenditure.payer %></td>
+    </tr>
+  </table>
 <% elsif @expenditure.mode==2 %>
   <div id='acceptance'></div>
-<%= javascript_include_tag "application" %>
-<script type="text/javascript">
+  <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
     $(function(){
-            $("#acceptance").load('<%= "/acceptances/#{@expenditure.acceptance.id}" %>');
-            })
-</script>
+      $("#acceptance").load('<%= "/acceptances/#{@expenditure.acceptance.id}" %>');
+    })
+  </script>
 <% end %>
 
 <%= link_to '编辑', edit_expenditure_path(@expenditure) %> |

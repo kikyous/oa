@@ -22,5 +22,5 @@
 }).call(this);
 
 $(function(){
-$("#bank_accounts_filter>label").append("<a href=/bank_accounts/new > 新增 </a>")
+$("#bank_accounts_filter>label").append("<a href=/bank_accounts/new ><i class='icon-plus'></i>新增</a>")
 })

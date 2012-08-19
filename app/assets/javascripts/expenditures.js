@@ -22,5 +22,5 @@
 }).call(this);
 
 $(function(){
-$("#expenditures_filter>label").append(" <a href=/expenditures/new >新增</a>")
+$("#expenditures_filter>label").append(" <a href=/expenditures/new ><i class='icon-plus'></i>新增</a>")
 })

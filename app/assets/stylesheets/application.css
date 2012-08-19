@@ -4,3 +4,5 @@
   color: #42870a;
   font-size: 12px;
 }
+
+.show_table tr td:first-child {width:100px;}

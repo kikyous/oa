@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#groups_filter>label").append(" <a href=/groups/new >新增</a>")
+$("#groups_filter>label").append(" <a href=/groups/new ><i class='icon-plus'></i>新增</a>")
 
 })

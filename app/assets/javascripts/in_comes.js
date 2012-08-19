@@ -22,5 +22,5 @@
 }).call(this);
 
 $(function(){
-$("#in_comes_filter>label").append(" <a href=/in_comes/new >新增</a>")
+$("#in_comes_filter>label").append(" <a href=/in_comes/new ><i class='icon-plus'></i>新增</a>")
 })

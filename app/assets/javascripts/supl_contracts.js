@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#supl_contracts_filter>label").append(" <a href=/supl_contracts/new >新增</a>")
+$("#supl_contracts_filter>label").append(" <a href=/supl_contracts/new ><i class='icon-plus'></i>新增</a>")
 
 })

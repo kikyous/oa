@@ -1,6 +1,12 @@
-<h2>公告</h2>
-<%= @announcement.content unless @announcement.nil? %>
-
-<br />
-<br />
-<%= link_to "发布公告" ,'/announcements/new' if can? :manage, Announcement %>
+<div class="span3 thumbnail">
+  <div class='caption'>
+    <h4>公告:</h4>
+    <h3>
+      <%= @announcement.content unless @announcement.nil? %>
+    </h3>
+    <br />
+    <% if can? :manage, Announcement %>
+      <a href='/announcements/new'><i class='icon-plus'></i>发布公告</a>
+    <%end%>
+  </div>
+</div>

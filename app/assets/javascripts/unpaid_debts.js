@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#unpaid_debts_filter>label").append(" <a href=/unpaid_debts/new >新增</a>")
+$("#unpaid_debts_filter>label").append(" <a href=/unpaid_debts/new ><i class='icon-plus'></i>新增</a>")
 
 })

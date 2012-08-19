@@ -20,39 +20,28 @@
     font-size: 12px;
     line-height: 166.6%;
   }
-  table td {
+  #doneFile td {
     border: 2px;
     padding: 1px 7px 1px 7px;
   }
 </style>
 
-
-  <% if @supl_contract.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@supl_contract.errors.count, "error") %> prohibited this supl_contract from being saved:</h2>
-      <ul>
-        <% @supl_contract.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <b>供应商:</b>
-  <%= link_to(@supl_contract.supplier.name, supplier_path(@supl_contract.supplier)) %> 
-
-  <br />
-  <p>
-    <b>说明:</b><br />
-    <%= @supl_contract.caption  %>
-  </p>
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>供应商</td>
+    <td><%= link_to(@supl_contract.supplier.name, supplier_path(@supl_contract.supplier)) %></td>
+  </tr>
+  <tr>
+    <td>说明</td>
+    <td><%= @supl_contract.caption %></td>
+  </tr>
+</table>
 <div>
   <table id="doneFile">
     <b>附件:</b>
     <tbody>
       <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
-         <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>
+        <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >
@@ -69,10 +58,6 @@
     </tbody>
   </table>
 </div>
-
-
-<%= javascript_include_tag "application" %>
-
 <script>
   $(document).ready(function(){
     function d(b){
@@ -89,7 +74,5 @@
     var size=$("#doneFile td.size span");
     size.text(d(parseInt(size.attr("size"))));
   });
-
-
 </script>
 

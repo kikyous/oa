@@ -23,6 +23,6 @@
 
 $(function(){
 
-$("#tasks_filter>label").append(" <a href=/tasks/new >新增</a>")
+$("#tasks_filter>label").append(" <a href=/tasks/new ><i class='icon-plus'></i>新增</a>")
 
 })

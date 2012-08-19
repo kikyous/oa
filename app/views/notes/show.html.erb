@@ -1,12 +1,12 @@
-<p>
-  <b>主题:</b>
-  <%= @note.title %>
-</p>
-<p>
-  <b>内容:</b>
-  <%= @note.content %>
-</p>
-
-
+<table class="table show_table table-bordered">
+  <tr>
+    <td>主题</td>
+    <td><%= @note.title %></td>
+  </tr>
+  <tr>
+    <td>内容</td>
+    <td><%= @note.content %></td>
+  </tr>
+</table>
 <%= link_to '编辑', edit_note_path(@note) %> |
 <%= link_to '返回', notes_path %>
