@@ -25,7 +25,7 @@ group :assets do
 
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
-  gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails'
+  # gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails'
 end
 
 

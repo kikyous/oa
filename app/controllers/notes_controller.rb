@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class NotesController < ApplicationController
   before_filter :authenticate_user!
   # GET /notes

@@ -28,10 +28,11 @@
   </div>
   <div class="field">
     <%= f.label '到期时间' %>
-    <%= f.date_select :expire %>
+    <%= f.date_select :expire ,{},:style=>'width:70px'%>
   </div>
   <div class="field">
     <%= f.label '单位' %>
     <%= f.text_field :unit %>
   </div>
 <% end %>
+
