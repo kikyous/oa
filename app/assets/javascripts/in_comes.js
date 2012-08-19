@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#in_comes').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#in_comes').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -26,5 +22,5 @@
 }).call(this);
 
 $(function(){
-$("#in_comes_filter").append(" <a href=/in_comes/new >新增</a>")
+$("#in_comes_filter>label").append(" <a href=/in_comes/new >新增</a>")
 })

@@ -1,15 +1,9 @@
 (function() {
   jQuery(function() {
     return $('#groups').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#groups').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
-        /* Need to redo the counters if filtered or sorted */
-        // if ( oSettings.bSorted || oSettings.bFiltered )
         {
           this.$('td:last-child').each( function (i,e) {
             var item=$(e);
@@ -29,6 +23,6 @@
 
 $(function(){
 
-$("#groups_filter").append(" <a href=/groups/new >新增</a>")
+$("#groups_filter>label").append(" <a href=/groups/new >新增</a>")
 
 })

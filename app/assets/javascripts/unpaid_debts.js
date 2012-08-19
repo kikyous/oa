@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#unpaid_debts').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#unpaid_debts').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -27,6 +23,6 @@
 
 $(function(){
 
-$("#unpaid_debts_filter").append(" <a href=/unpaid_debts/new >新增</a>")
+$("#unpaid_debts_filter>label").append(" <a href=/unpaid_debts/new >新增</a>")
 
 })

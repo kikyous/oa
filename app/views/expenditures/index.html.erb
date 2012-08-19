@@ -1,7 +1,7 @@
 <%= javascript_include_tag "datatable" %>
 <%= stylesheet_link_tag "table"%>
 <%= javascript_include_tag "expenditures" %>
-<table id ="expenditures"  class="display" data-source="<%= expenditures_url(format: "json") %>" >
+<table id ="expenditures" class="table table-striped table-bordered" data-source="<%= expenditures_url(format: "json") %>" >
   <thead>
     <tr>
       <th>方式</th>

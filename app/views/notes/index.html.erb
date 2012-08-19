@@ -1,7 +1,7 @@
 <%= javascript_include_tag "datatable" %>
 <%= stylesheet_link_tag "table"%>
 <%= javascript_include_tag "notes" %>
-<table id ="notes"  class="display" data-source="<%= notes_url(format: "json") %>" >
+<table id ="notes" class="table table-striped table-bordered" data-source="<%= notes_url(format: "json") %>" >
   <thead>
     <tr>
       <th>id</th>
