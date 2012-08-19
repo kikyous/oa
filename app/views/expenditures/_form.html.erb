@@ -35,7 +35,7 @@
         <%= f.label "帐号" %>
         <% if @expenditure.new_record? %>
           <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
-        <% else %>
+        <% elsif @expenditure.bank_account %>
           <%= f.collection_select(:bank_account_id, [@expenditure.bank_account], :id, :name,{},{:class=>"chzn-select"}) %>
         <% end %>
       </div>
