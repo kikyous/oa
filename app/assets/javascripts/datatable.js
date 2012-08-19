@@ -6,7 +6,7 @@ lang.sInfoEmpty="无记录";
 lang.sZeroRecords="无记录";
 lang.sEmptyTable="无记录";
 lang.sInfoFiltered="(从 _MAX_ 条记录中查询)";
-lang.sLengthMenu="显示 _MENU_ 条记录";
+lang.sLengthMenu="_MENU_ 条记录每页";
 lang.sSearch="搜索";
 
 lang.oPaginate={
