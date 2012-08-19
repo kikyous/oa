@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#messages').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#messages').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -29,7 +25,7 @@
 
 $(function(){
 
-$("#messages_filter").append(" <a href=/messages/new >新增</a>")
+$("#messages_filter>label").append("<a href=/messages/new > 新增 </a>")
 
 })
 

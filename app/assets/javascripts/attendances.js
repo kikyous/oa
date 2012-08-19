@@ -1,10 +1,6 @@
 $(function(){
     showConfirm=false;
     var oTable = $('#attendances').dataTable({
-        sPaginationType: "full_numbers",
-        bJQueryUI: true,
-        bProcessing: true,
-        bServerSide: true,
         sAjaxSource: $('#attendances').data('source'),
         "fnDrawCallback": function ( oSettings ) {
             var that = this;
@@ -34,7 +30,7 @@ $(function(){
         ],
 
     });
-    $("#attendances_filter").append(" <a href=/attendances/new >新增</a>");
+    $("#attendances_filter>label").append(" <a href=/attendances/new >新增</a>");
 
     var cur = new Date();
     var year = cur.getFullYear();
@@ -51,7 +47,7 @@ $(function(){
     };
     element+="</select>月 ";
 
-    $("#attendances_length").prepend(element);
+    $("#attendances_length>label").prepend(element);
     $("#year").val(year);
 
     filter=function (value,setValue) {
