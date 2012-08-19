@@ -1,15 +1,9 @@
 (function() {
   jQuery(function() {
     return $('#suppliers').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#suppliers').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
-        /* Need to redo the counters if filtered or sorted */
-        // if ( oSettings.bSorted || oSettings.bFiltered )
         {
           this.$('td:last-child').each( function (i,e) {
             var item=$(e);
@@ -29,6 +23,6 @@
 
 $(function(){
 
-$("#suppliers_filter").append(" <a href=/suppliers/new >新增</a>")
+$("#suppliers_filter>label").append(" <a href=/suppliers/new >新增</a>")
 
 })

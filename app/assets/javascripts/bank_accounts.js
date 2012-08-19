@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#bank_accounts').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#bank_accounts').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -26,5 +22,5 @@
 }).call(this);
 
 $(function(){
-$("#bank_accounts_filter").append(" <a href=/bank_accounts/new >新增</a>")
+$("#bank_accounts_filter>label").append("<a href=/bank_accounts/new > 新增 </a>")
 })

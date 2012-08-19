@@ -16,7 +16,7 @@ lang.oPaginate={
     "sPrevious": "上一页"
 }
 
-defaults.sDom="<''<''l><''f>r>t<'row'<'span6'i><''p>>";
+defaults.sDom="<''<'left'l><''f>r>t<'row'<'span6'i><''p>>";
 defaults.sPaginationType='bootstrap';
 defaults.bServerSide='true';
 defaults.bProcessing='true';

@@ -47,7 +47,7 @@ $(function(){
     };
     element+="</select>月 ";
 
-    $("#attendances_length>label").prepend(element);
+    $("#attendances_wrapper div.left").prepend("<div style='margin-right: 10px;'>"+ element +"</div>");
     $("#year").val(year);
 
     filter=function (value,setValue) {

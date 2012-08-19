@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#acceptances').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#acceptances').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
