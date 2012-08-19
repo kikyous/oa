@@ -44,7 +44,7 @@
   <div id="hiddenfile">
       <% unless d.object.new_record? or d.object.attach_ids.nil? %>
         <% d.object.attach_ids.split(',').each do |e| %>
-          <input name="delivery[attach_ids][]"" type="hidden" value= "<%= e %>" />
+          <input name="delivery[attach_ids][]" type="hidden" value="<%= e %>" />
         <% end %>
       <% end %>
   </div>

@@ -51,7 +51,7 @@ Oa::Application.routes.draw do
   devise_scope :user do
     get "/users/sign_out", :to => "devise/sessions#destroy"
   end
-  devise_for :users, :controllers => {:registrations => "registrations"} , :path_prefix => 'devise'
+  devise_for :users, :controllers => {:registrations=>"registrations",:sessions=>'sessions'} ,:path_prefix => 'devise'
   resources :users
 
   root :to => 'home#main'
