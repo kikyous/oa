@@ -1,7 +1,7 @@
 <%= javascript_include_tag "datatable" %>
 <%= stylesheet_link_tag "table"%>
 <%= javascript_include_tag "unpaid_debts" %>
-<table id ="unpaid_debts"  class="display" data-source="<%= unpaid_debts_url(format: "json") %>" >
+<table id ="unpaid_debts" class="table table-striped table-bordered" data-source="<%= unpaid_debts_url(format: "json") %>" >
   <thead>
     <tr>
       <th>状态</th>

@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#out_stores').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#out_stores').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -27,6 +23,6 @@
 
 $(function(){
 
-$("#out_stores_filter").append(" <a href=/out_stores/new >新增</a>")
+$("#out_stores_filter<label").append(" <a href=/out_stores/new >新增</a>")
 
 })

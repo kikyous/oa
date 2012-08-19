@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#reimbursements').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#reimbursements').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -27,6 +23,6 @@
 
 $(function(){
 
-$("#reimbursements_filter").append(" <a href=/reimbursements/new >新增</a>")
+$("#reimbursements_filter>label").append(" <a href=/reimbursements/new >新增</a>")
 
 })

@@ -1,10 +1,6 @@
 (function() {
   jQuery(function() {
     return $('#tasks').dataTable({
-      sPaginationType: "full_numbers",
-      bJQueryUI: true,
-      bProcessing: true,
-      bServerSide: true,
       sAjaxSource: $('#tasks').data('source'),
       "fnDrawCallback": function ( oSettings ) {
         var that = this;
@@ -27,6 +23,6 @@
 
 $(function(){
 
-$("#tasks_filter").append(" <a href=/tasks/new >新增</a>")
+$("#tasks_filter>label").append(" <a href=/tasks/new >新增</a>")
 
 })
