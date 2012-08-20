@@ -16,25 +16,23 @@
         })
       })
     </script>
-    <% unless params[:controller]=='devise/sessions' %>
-      <% if flash[:notice] %>
-        <div class="alert alert-success">
-          <%= flash[:notice] %>
-          <a class="close" data-dismiss="alert" href="#">X</a>
-        </div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="alert alert-success">
-          <%= flash[:alert] %>
-          <a class="close" data-dismiss="alert" href="#">X</a>
-        </div>
-      <% end %>
-      <% if flash[:error] %>
-        <div class="alert alert-success">
-          <%= flash[:error] %>
-          <a class="close" data-dismiss="alert" href="#">X</a>
-        </div>
-      <% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+        <a class="close" data-dismiss="alert" href="#">X</a>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-success">
+        <%= flash[:alert] %>
+        <a class="close" data-dismiss="alert" href="#">X</a>
+      </div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="alert alert-success">
+        <%= flash[:error] %>
+        <a class="close" data-dismiss="alert" href="#">X</a>
+      </div>
     <% end %>
     <%= yield %>
   </body>
