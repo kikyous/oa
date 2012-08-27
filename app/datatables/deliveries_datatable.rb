@@ -22,6 +22,7 @@ private
       [
         link_to(delivery.id, delivery),
         delivery.to,
+        delivery.goods,
         h(delivery.created_at),
         delivery.id
       ]
@@ -50,7 +51,7 @@ private
   end
 
   def sort_column
-    columns = %w[deliveries.id deliveries.to deliveries.created_at]
+    columns = %w[deliveries.id deliveries.to deliveries.goods deliveries.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

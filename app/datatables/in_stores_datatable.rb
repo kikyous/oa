@@ -21,6 +21,7 @@ private
     in_stores.map do |in_store|
       [
         link_to(in_store.id, in_store),
+        in_store.name,
         h(in_store.created_at),
         in_store.id
       ]
@@ -49,7 +50,7 @@ private
   end
 
   def sort_column
-    columns = %w[in_stores.id in_stores.created_at]
+    columns = %w[in_stores.id in_stores.name in_stores.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

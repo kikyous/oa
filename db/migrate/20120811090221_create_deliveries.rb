@@ -3,6 +3,7 @@ class CreateDeliveries < ActiveRecord::Migration
     create_table :deliveries do |t|
       t.string :caption
       t.string :to
+      t.string :goods
       t.string :attach_ids
 
       t.timestamps
