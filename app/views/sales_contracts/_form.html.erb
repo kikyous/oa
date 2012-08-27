@@ -30,12 +30,12 @@
 </style>
 
 
-<%= form_for(@supl_contract, :html=>{:id => 'mainform' }) do |c| %>
-  <% if @supl_contract.errors.any? %>
+<%= form_for(@sales_contract, :html=>{:id => 'mainform' }) do |c| %>
+  <% if @sales_contract.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@supl_contract.errors.count, "error") %> prohibited this supl_contract from being saved:</h2>
+      <h2><%= pluralize(@sales_contract.errors.count, "error") %> prohibited this sales_contract from being saved:</h2>
       <ul>
-        <% @supl_contract.errors.full_messages.each do |msg| %>
+        <% @sales_contract.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -44,16 +44,15 @@
   <div id="hiddenfile">
       <% unless c.object.new_record? or c.object.attach_ids.nil? %>
         <% c.object.attach_ids.split(',').each do |e| %>
-          <input name="supl_contract[attach_ids][]"" type="hidden" value= "<%= e %>" />
+          <input name="sales_contract[attach_ids][]"" type="hidden" value= "<%= e %>" />
         <% end %>
       <% end %>
   </div>
 
-  <%= c.label "供应商" %>
-  <%= c.collection_select(:supplier_id, Supplier.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
-
-  <%= link_to('添加新供应商', "/suppliers/new") if c.object.new_record? %> 
-
+  <div class="field">
+    <%= c.label "客户" %>
+    <%= c.text_field :to %>
+  </div>
   <div class="field">
     <%= c.label "合同名称" %>
     <%= c.text_field :name %>
@@ -82,8 +81,8 @@
 <div>
   <table id="doneFile">
     <tbody>
-      <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
-         <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>
+      <% unless @sales_contract.new_record? or @sales_contract.attach_ids.nil? %>
+         <% Attach.where(:id => @sales_contract.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >
@@ -145,7 +144,7 @@
       $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.msg+'</span></td> <td class="size"><span></span></td> <td class="progess"><span></span></td> <td></td> <td class="destroy"><a href="/#">删除</a></td></tr>');
         return;
       }
-        $("#hiddenfile").append('<input type="hidden" name="supl_contract[attach_ids][]" value='+data.result.id+'\>')
+        $("#hiddenfile").append('<input type="hidden" name="sales_contract[attach_ids][]" value='+data.result.id+'\>')
         $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.name+'</span></td> <td class="size"><span>'+d(data.result.size)+'</span></td> <td class="progess"><span>100 %</span></td> <td class="download"><a href="'+ data.result.a_path +'">下载</a></td> <td class="destroy"><a href="/attaches/'+data.result.id+'">删除</a></td></tr>');
       },
       start: function (e) {

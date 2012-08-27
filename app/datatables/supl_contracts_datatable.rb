@@ -20,6 +20,8 @@ private
     supl_contracts.map do |contract|
       [
         link_to(contract.id, contract),
+        contract.name,
+        contract.money,
         h(contract.supplier.name),
         h(contract.created_at),
         contract.id
@@ -49,7 +51,8 @@ private
   end
 
   def sort_column
-    columns = %w[suppliers.id suppliers.name suppliers.created_at]
+    columns = %w[supl_contracts.id supl_contracts.name supl_contracts.money
+      suppliers.name suppliers.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

@@ -43,6 +43,7 @@ Oa::Application.routes.draw do
   resources :notes
 
   resources :supl_contracts
+  resources :sales_contracts
 
   resources :suppliers
 

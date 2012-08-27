@@ -28,28 +28,28 @@
 
 <table class="table show_table table-bordered">
   <tr>
-    <td>供应商</td>
-    <td><%= link_to(@supl_contract.supplier.name, supplier_path(@supl_contract.supplier)) %></td>
+    <td>客户</td>
+    <td><%= @sales_contract.to %></td>
   </tr>
   <tr>
     <td>合同名称</td>
-    <td><%= @supl_contract.name %></td>
+    <td><%= @sales_contract.name %></td>
   </tr>
   <tr>
     <td>合同金额</td>
-    <td><%= @supl_contract.money %></td>
+    <td><%= @sales_contract.money %></td>
   </tr>
   <tr>
     <td>说明</td>
-    <td><%= @supl_contract.caption %></td>
+    <td><%= @sales_contract.caption %></td>
   </tr>
 </table>
 <div>
   <table id="doneFile">
     <b>附件:</b>
     <tbody>
-      <% unless @supl_contract.new_record? or @supl_contract.attach_ids.nil? %>
-        <% Attach.where(:id => @supl_contract.attach_ids.split(',')).each do |a|  %>
+      <% unless @sales_contract.new_record? or @sales_contract.attach_ids.nil? %>
+        <% Attach.where(:id => @sales_contract.attach_ids.split(',')).each do |a|  %>
           <tr class="template-upload fade in">
             <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
             <td class="size"><span size=<%= a.picture_file_size %> >

@@ -5,7 +5,7 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <table id='tree-table' width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td align="center" valign="top" bgcolor="#f1fde3">
           <table width="150" border="0" cellpadding="0" cellspacing="0">
@@ -19,7 +19,8 @@
           <%= render "tree_item", { :item => [index,'办公桌' ,{'发送信件'=>'/messages/new'},{'查看信件'=>'/messages'} ,'个人考勤'=>'/attendances/personal'] } %>
 
           <%= render "tree_item", { :item => [index,'供销部' ,{'供应商'=>'/suppliers'},
-              '合同管理'=>'/supl_contracts'] } if can? :manage ,Supplier %>
+            {'销售合同'=>'/sales_contracts'},
+            {'供应合同'=>'/supl_contracts' }] } if can? :manage ,Supplier %>
 
           <%= render "tree_item", { :item => [index,'财务部' ,{'帐号'=>'/bank_accounts','承兑'=>'/acceptances'},
               {'挂帐'=>'/unpaid_debts','报销'=>'/reimbursements'}, 

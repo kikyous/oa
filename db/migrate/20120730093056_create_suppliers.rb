@@ -4,6 +4,7 @@ class CreateSuppliers < ActiveRecord::Migration
       t.string :goods
       t.string :name
       t.string :contact
+      t.string :contact_person
       t.string :address
 
       t.timestamps
