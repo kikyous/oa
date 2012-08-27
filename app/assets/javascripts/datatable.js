@@ -18,7 +18,7 @@ lang.oPaginate={
 
 
 $(function(){
-  $("table tbody tr>td:first-child").live("click",function(e){
+  $(document).on("click","table tbody tr>td:first-child",function(e){
   window.location.href = $(this).children("a").attr("href");
   e.stopPropagation();
   });

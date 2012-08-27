@@ -38,3 +38,5 @@ a.white:hover    { color: #FFFF00; text-decoration:none; }
 .small   { font-size: 11px; }
 .bold    { font-weight: bold; }
 .button  { border:1px solid #59A0D2; background:#F5FBFF; color:#2C6AAF}
+
+a.current {background-color: #2540C5; color:#E7E4E4}

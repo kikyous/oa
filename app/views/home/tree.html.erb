@@ -2,9 +2,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <%= stylesheet_link_tag "tree.css" %>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    <table id='tree-table' width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td align="center" valign="top" bgcolor="#f1fde3">
           <table width="150" border="0" cellpadding="0" cellspacing="0">
@@ -15,7 +16,7 @@
               
           <% def index() $i||=0;$i+=1 end %>
 
-              <%= render "tree_item", { :item => [index,'办公桌' ,{'发送信件'=>'/messages/new'},{'查看信件'=>'/messages'} ,'个人考勤'=>'/attendances/personal'] } %>
+          <%= render "tree_item", { :item => [index,'办公桌' ,{'发送信件'=>'/messages/new'},{'查看信件'=>'/messages'} ,'个人考勤'=>'/attendances/personal'] } %>
 
           <%= render "tree_item", { :item => [index,'供销部' ,{'供应商'=>'/suppliers'},
               '合同管理'=>'/supl_contracts'] } if can? :manage ,Supplier %>
@@ -71,6 +72,14 @@
           document.getElementById('tab<%= $i-1 %>').style.display="none";
           document.getElementById('tab<%= $i %>').style.display="none";
       };
+      $(function(){
+        $("a.blueu").click(function(){
+          $('a.current').removeClass("current").addClass('blueu');
+          $(this).removeClass('blueu').addClass('current');
+
+        })
+      }
+      )
     </script>
   </body>
 </html>
