@@ -21,9 +21,9 @@ private
     deliveries.map do |delivery|
       [
         link_to(delivery.id, delivery),
-        delivery.to,
+        delivery.client,
         delivery.goods,
-        h(delivery.created_at),
+        delivery.created_at,
         delivery.id
       ]
     end
@@ -37,7 +37,7 @@ private
     deliveries=Delivery.order("#{sort_column} #{sort_direction}")
     deliveries = deliveries.page(page).per_page(per_page)
     if params[:sSearch].present?
-      deliveries = deliveries.where("deliveries.id like :search or deliveries.created_at like :search", search: "%#{params[:sSearch]}%")
+      deliveries = deliveries.where("deliveries.client like :search or deliveries.goods like :search", search: "%#{params[:sSearch]}%")
     end
     deliveries
   end
@@ -51,7 +51,7 @@ private
   end
 
   def sort_column
-    columns = %w[deliveries.id deliveries.to deliveries.goods deliveries.created_at]
+    columns = %w[deliveries.id deliveries.client deliveries.goods deliveries.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 

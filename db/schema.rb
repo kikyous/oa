@@ -65,7 +65,8 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
 
   create_table "deliveries", :force => true do |t|
     t.string   "caption"
-    t.string   "to"
+    t.string   "client"
+    t.string   "goods"
     t.string   "attach_ids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
 
   create_table "in_stores", :force => true do |t|
     t.string   "caption"
+    t.string   "name"
     t.string   "attach_ids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -141,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
 
   create_table "out_stores", :force => true do |t|
     t.string   "caption"
+    t.string   "name"
+    t.string   "person"
     t.string   "attach_ids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -159,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
   create_table "sales_contracts", :force => true do |t|
     t.decimal  "money"
     t.string   "name"
-    t.string   "to"
+    t.string   "client"
     t.text     "caption"
     t.string   "attach_ids"
     t.datetime "created_at", :null => false

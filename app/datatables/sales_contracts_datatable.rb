@@ -22,7 +22,7 @@ private
         link_to(contract.id, contract),
         contract.name,
         contract.money,
-        h(contract.to),
+        contract.client,
         h(contract.created_at),
         contract.id
       ]
@@ -52,7 +52,7 @@ private
 
   def sort_column
     columns = %w[sales_contracts.id sales_contracts.name sales_contracts.money 
-    sales_contracts.to sales_contracts.created_at]
+    sales_contracts.client sales_contracts.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 
