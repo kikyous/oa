@@ -8,18 +8,8 @@ class AttendancesController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.js {
-        user_session[:for_month]||=Attendance.order("for_month DESC").first.for_month
-        render :js => "filter('#{user_session[:for_month]}',true); " 
-      }
+      format.js
       format.json { render json: AttendancesDatatable.new(view_context) }
-    end
-  end
-
-  def personal
-    respond_to do |format|
-      format.html
-      format.json { render json: AttendancesDatatable.new(view_context,current_user) }
     end
   end
 
@@ -38,13 +28,6 @@ class AttendancesController < ApplicationController
   # GET /attendances/new.json
   def new
     @attendance = Attendance.new
-    @attendance.for_month=user_session[:for_month]
-
-    @unattendance_user=Attendance.unattendance_user(@attendance.for_month)
-    if @unattendance_user.length==0
-      redirect_to attendances_url, notice: '本月所有人员都已有考勤记录.'
-    end
-
   end
 
   # GET /attendances/1/edit
@@ -54,18 +37,6 @@ class AttendancesController < ApplicationController
 
   # POST /attendances
   # POST /attendances.json
-  def create_all
-    
-    User.all.each do |u|
-      u.attendances.create(:for_month=>params[:for_month])
-    end
-    respond_to do |format|
-      format.js {
-        render :js => "filter('#{params[:for_month]}',true); " 
-      }
-    end
-
-  end
 
   def create
     begin

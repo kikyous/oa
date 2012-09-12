@@ -16,7 +16,7 @@
               
           <% def index() $i||=0;$i+=1 end %>
 
-          <%= render "tree_item", { :item => [index,'办公桌' ,{'发送信件'=>'/messages/new'},{'查看信件'=>'/messages'} ,'个人考勤'=>'/attendances/personal'] } %>
+          <%= render "tree_item", { :item => [index,'办公桌' ,{'发送信件'=>'/messages/new'},{'查看信件'=>'/messages'} ] } %>
 
           <%= render "tree_item", { :item => [index,'供销部' ,{'供应商'=>'/suppliers'},
             {'销售合同'=>'/sales_contracts'},

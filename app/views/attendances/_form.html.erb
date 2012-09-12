@@ -49,27 +49,10 @@
       <% end %>
   </div>
 
-
-  <label>月份</label>
-  <%= @attendance.for_month %>
-  <%= c.hidden_field(:for_month) %>
-
-
-  <% if @attendance.new_record? %>
-    <div class="field">
-      <%= c.label "人员" %>
-      <%= c.collection_select(:user_id, @unattendance_user, :id, :username ,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
-    </div>
-  <% else %>
-    <div class="field">
-      <%= c.label "人员" %>
-      <%= c.collection_select(:user_id, [@attendance.user], :id, :username ,{} ,{:class=>"chzn-select"}) %>
-    </div>
-    <div class="field">
-      <%= c.label "工资" %>
-      <%= c.text_field :money %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= c.label '月份' %>
+    <%= c.date_select :for_month ,{:discard_day => true},:style=>'width:70px'%>
+  </div>
 
   <div class="field">
     <%= c.label "说明" %>
