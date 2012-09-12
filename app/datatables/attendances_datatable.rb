@@ -6,7 +6,6 @@ class AttendancesDatatable
 
   def initialize(view,personal=nil)
     @view = view
-    @personal=personal
   end
 
   def as_json(options = {})
@@ -24,9 +23,7 @@ private
     attendances.map do |attendance|
       [
         link_to(getStatus(attendance), attendance),
-        attendance.for_month,
-        h(attendance.user.username),
-        attendance.money,
+        attendance.for_month.strftime('%Y-%m'),
         attendance.created_at,
         attendance.id
       ]
@@ -47,19 +44,7 @@ private
   end
 
   def fetch_attendances
-    if @personal
-      attendances = @personal.attendances.includes("user").order("#{sort_column} #{sort_direction}")
-    else
-      attendances = Attendance.includes("user").order("#{sort_column} #{sort_direction}")
-      if params[:sSearch_1].present?
-        user_session[:for_month]=params[:sSearch_1]
-        attendances = attendances.where("attendances.for_month = ?",params[:sSearch_1])
-      else
-        att = []
-        def att.total_entries;0;end
-        return att
-      end
-    end
+    attendances = Attendance.order("#{sort_column} #{sort_direction}")
     attendances = attendances.page(page).per_page(per_page)
     if params[:sSearch].present?
       attendances = attendances.where("users.username like :search or attendances.created_at like :search", search: "%#{params[:sSearch]}%")
@@ -76,7 +61,7 @@ private
   end
 
   def sort_column
-    columns = %w[attendances.id attendances.for_month users.username attendances.money attendances.created_at]
+    columns = %w[attendances.id attendances.for_month attendances.created_at]
     columns[params[:iSortCol_0].to_i]
   end
 
