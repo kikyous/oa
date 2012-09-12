@@ -24,12 +24,7 @@ Oa::Application.routes.draw do
   resources :out_stores
   resources :in_stores
 
-  resources :attendances do
-    collection do
-      post 'create_all'
-      get 'personal'
-    end
-  end
+  resources :attendances
 
   resources :messages do
      collection do

@@ -45,15 +45,11 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
 
   create_table "attendances", :force => true do |t|
     t.text     "caption"
-    t.integer  "user_id"
     t.string   "attach_ids"
-    t.string   "for_month"
-    t.decimal  "money",      :default => 0.0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.date     "for_month"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "attendances", ["user_id"], :name => "index_attendances_on_user_id"
 
   create_table "bank_accounts", :force => true do |t|
     t.string   "bankname"
@@ -64,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
   end
 
   create_table "deliveries", :force => true do |t|
-    t.string   "caption"
+    t.text     "caption"
     t.string   "client"
     t.string   "goods"
     t.string   "attach_ids"
@@ -104,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
   end
 
   create_table "in_stores", :force => true do |t|
-    t.string   "caption"
+    t.text     "caption"
     t.string   "name"
     t.string   "attach_ids"
     t.datetime "created_at", :null => false
@@ -142,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
   add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
   create_table "out_stores", :force => true do |t|
-    t.string   "caption"
+    t.text     "caption"
     t.string   "name"
     t.string   "person"
     t.string   "attach_ids"
@@ -171,7 +167,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
   end
 
   create_table "supl_contracts", :force => true do |t|
-    t.string   "caption"
+    t.text     "caption"
     t.string   "name"
     t.decimal  "money"
     t.integer  "supplier_id"
@@ -193,7 +189,7 @@ ActiveRecord::Schema.define(:version => 20120827095238) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.string   "caption"
+    t.text     "caption"
     t.string   "attach_ids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
