@@ -1,7 +1,7 @@
 class CreateOutStores < ActiveRecord::Migration
   def change
     create_table :out_stores do |t|
-      t.string :caption
+      t.text :caption
       t.string :name
       t.string :person
 

@@ -1,7 +1,7 @@
 class CreateSuplContracts < ActiveRecord::Migration
   def change
     create_table :supl_contracts do |t|
-      t.string :caption
+      t.text :caption
       t.string :name
       t.decimal :money
       t.references :supplier

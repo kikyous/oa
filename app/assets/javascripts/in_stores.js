@@ -9,12 +9,12 @@
             var item=$(e);
             that.fnUpdate('<a href=/in_stores/'+item.text()+'/edit>[修改]</a> '+' <a href=/in_stores/'+item.text()+' data-confirm="确定删除 ?" data-method="delete" rel="nofollow">[删除]</a>' ,
             
-             this.parentNode, 2, false, false );
+             this.parentNode, 3, false, false );
           } );
         }
       },
       "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 2 ] }
+        { "bSortable": false, "aTargets": [ 3 ] }
       ],
 
     });
