@@ -16,11 +16,11 @@ Oa::Application.configure do
 announcements.js         in_comes.js                 supl_contracts.js
 application.js           in_stores.js                suppliers.js
 attendances.js           tasks.js                    fileupload.js
-attendances_personal.js  transfers.js
+attendances_personal.js  transfers.js                sales_contracts.js
 bank_accounts.js         messages.js                 unpaid_debts.js
 datatable.js             notes.js                    users.js
-deliveries.js            out_stores.js
-expenditures.js          rails.js)
+deliveries.js            out_stores.js               bootstrap.css
+expenditures.js          rails.js                    table.css)
 
   
 
