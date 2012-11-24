@@ -49,11 +49,18 @@
       <% end %>
   </div>
 
+<<<<<<< HEAD
   <%= c.label "客户" %>
   <%= c.collection_select(:client_id, Client.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
 
   <%= link_to('添加新客户', "/clients/new") if c.object.new_record? %> 
 
+=======
+  <div class="field">
+    <%= c.label "客户" %>
+    <%= c.text_field :client %>
+  </div>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   <div class="field">
     <%= c.label "合同名称" %>
     <%= c.text_field :name %>

@@ -17,7 +17,14 @@
       <%= f.label status(@acceptance.status) %>
     </div>
   <% end %>
+<<<<<<< HEAD
 
+=======
+  <div class="field">
+    <%= f.label '金额' %>
+    <%= f.text_field :money %>
+  </div>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   <div class="field">
     <%= f.label '银行' %>
     <%= f.text_field :bank %>
@@ -27,6 +34,7 @@
     <%= f.date_select :expire ,{},:style=>'width:70px'%>
   </div>
   <div class="field">
+<<<<<<< HEAD
     <%= f.label '票号' %>
     <%= f.text_field :number %>
   </div>
@@ -36,5 +44,10 @@
     <%= f.submit '提交修改' ,:class=>'btn btn-success' %>
     </div>
   <% end %>
+=======
+    <%= f.label '单位' %>
+    <%= f.text_field :unit %>
+  </div>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
 <% end %>
 

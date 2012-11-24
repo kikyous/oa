@@ -15,6 +15,13 @@
       <td>金额</td>
       <td><%= @expenditure.money %></td>
     </tr>
+<<<<<<< HEAD
+=======
+    <tr>
+      <td>支付人</td>
+      <td><%= @expenditure.payer %></td>
+    </tr>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   </table>
 <% elsif @expenditure.mode==2 %>
   <div id='acceptance'></div>
@@ -25,11 +32,14 @@
     })
   </script>
 <% end %>
+<<<<<<< HEAD
   <table class="table table-bordered show_table">
       <td>付款单位</td>
       <td><%= @expenditure.payto %></td>
     </tr>
   </table>
+=======
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
 
 <%= link_to '编辑', edit_expenditure_path(@expenditure) %> |
 <%= link_to '返回', expenditures_path %>

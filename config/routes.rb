@@ -40,7 +40,10 @@ Oa::Application.routes.draw do
   resources :supl_contracts
   resources :sales_contracts
 
+<<<<<<< HEAD
   resources :clients
+=======
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   resources :suppliers
 
   resources :groups

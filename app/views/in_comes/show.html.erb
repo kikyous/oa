@@ -1,12 +1,32 @@
 <% if @in_come.mode==1 %><p>
   <table class="table show_table table-bordered">
     <tr>
+<<<<<<< HEAD
+=======
+      <td>金额</td>
+      <td><%= @in_come.money %></td>
+    </tr>
+    <tr>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
       <td>帐号</td>
       <td><%=link_to @in_come.bank_account.name,bank_account_path(@in_come.bank_account) %></td>
     </tr>
   </table>
 <% elsif @in_come.mode==0 %>
+<<<<<<< HEAD
 
+=======
+  <table class="table show_table table-bordered">
+    <tr>
+      <td>金额</td>
+      <td><%= @in_come.money %></td>
+    </tr>
+    <tr>
+      <td>付款人</td>
+      <td><%= @in_come.payer %></td>
+    </tr>
+  </table>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
 <% elsif @in_come.mode==2 %>
   <div id='acceptance'></div>
   <%= javascript_include_tag "application" %>
@@ -16,6 +36,7 @@
     })
   </script>
 <% end %>
+<<<<<<< HEAD
   <table class="table show_table table-bordered">
     <tr>
       <td>金额</td>
@@ -30,6 +51,8 @@
       <td><%= @in_come.fromtime %></td>
     </tr>
   </table>
+=======
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
 
 <%= link_to '编辑', edit_in_come_path(@in_come) %> |
 <%= link_to '返回', in_comes_path %>

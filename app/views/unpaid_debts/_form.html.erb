@@ -12,7 +12,11 @@
   <% end %>
 
   <div class="field">
+<<<<<<< HEAD
     <%= f.label '部门' %>
+=======
+    <%= f.label '单位' %>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
     <%= f.collection_select(:group_id, Group.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
   </div>
   <div class="field">
@@ -29,12 +33,15 @@
           <%= f.select(:status, debts_status_select ) %>
       </div>
   <% end %>
+<<<<<<< HEAD
   <% if @unpaid_debt.status ==1 %>
       <div class="field">
           <%= f.label "凭证编号" %>
           <%= f.text_field :number %>
       </div>
   <% end %>
+=======
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   <div class="actions">
     <%= f.submit '提交挂帐单'  ,:class=>'btn btn-success' %>
   </div>

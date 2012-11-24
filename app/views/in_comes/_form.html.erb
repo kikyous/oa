@@ -20,7 +20,18 @@
   </div>
   <div>
     <div id="other">
+<<<<<<< HEAD
 
+=======
+      <div class="field" id="money">
+        <%= f.label '金额' %>
+        <%= f.text_field :money %>
+      </div>
+      <div class="field">
+        <%= f.label '付款人' %>
+        <%= f.text_field :payer %>
+      </div>
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
     </div>
     <div id="cash">
       <div class="field">
@@ -35,6 +46,7 @@
     <div id="acceptance">
     </div>
   </div>
+<<<<<<< HEAD
       <div class="field" >
         <%= f.label '金额' %>
         <%= f.text_field :money %>
@@ -47,6 +59,8 @@
        <%= f.label '收款日期' %>
        <%= f.date_select :fromtime ,{},:style=>'width:70px'%>
       </div>
+=======
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   <br />
   <div class="actions">
     <%= f.submit '提交收入单'  ,:class=>'btn btn-success' %>
@@ -56,14 +70,22 @@
   $(function(){
     function toogle(value){
       if (value=="1"){
+<<<<<<< HEAD
        // $('#cash').append($("#money"));
+=======
+        $('#cash').append($("#money"));
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
         $('#cash').show().siblings().hide();
       }
       else if (value=="2"){
         $('#acceptance').show().siblings().hide();
       }
       else if (value=="0"){
+<<<<<<< HEAD
       //  $('#other').prepend($("#money"));
+=======
+        $('#other').prepend($("#money"));
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
         $('#other').show().siblings().hide();
       }
     };
@@ -71,6 +93,10 @@
     $("#in_come_mode").change(function(e){
       toogle(e.target.value);
     });
+<<<<<<< HEAD
     $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new?hassubmit=no":"/acceptances/#{@in_come.acceptance.id}/edit/hassubmit=no" %>');
+=======
+    $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new":"/acceptances/#{@in_come.acceptance.id}/edit" %>');
+>>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   })
 </script>
