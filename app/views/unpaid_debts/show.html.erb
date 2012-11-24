@@ -1,0 +1,16 @@
+<table class="table show_table table-bordered">
+  <tr>
+    <td>金额</td>
+    <td><%= @unpaid_debt.money %></td>
+  </tr>
+  <tr>
+    <td>说明</td>
+    <td><%= @unpaid_debt.caption %></td>
+  </tr>
+  <tr>
+    <td>状态</td>
+    <td><%= debts_status @unpaid_debt.status %></td>
+  </tr>
+</table>
+<%= link_to '编辑', edit_unpaid_debt_path(@unpaid_debt) %> |
+<%= link_to '返回', unpaid_debts_path %>

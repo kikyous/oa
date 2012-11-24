@@ -1,0 +1,39 @@
+<table class="table show_table table-bordered">
+  <tr>
+    <td>状态</td>
+    <td><%= status @acceptance.status %></td>
+  </tr>
+  <tr>
+    <td>创建时间</td>
+    <td><%= @acceptance.in_come.fromtime %></td>
+  </tr>
+  <tr>
+    <td>金额</td>
+    <td><%= @acceptance.in_come.money %></td>
+  </tr>
+  <tr>
+    <td>收款单位</td>
+    <td><%= @acceptance.in_come.from %></td>
+  </tr>
+  <tr>
+    <td>收款日期</td>
+    <td><%= @acceptance.in_come.fromtime %></td>
+  </tr>
+  <tr>
+    <td>付款单位</td>
+    <td><%= showpayto(@acceptance.expenditure) %></td>
+  </tr>
+  <tr>
+    <td>银行</td>
+    <td><%=@acceptance.bank %></td>
+  </tr>
+  <tr>
+    <td>到期时间</td>
+    <td><%= @acceptance.expire %></td>
+  </tr>
+  <tr>
+    <td>单位</td>
+    <td><%= @acceptance.unit %></td>
+  </tr>
+
+</table>

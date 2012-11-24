@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+<style type="text/css">
+
+body {
+margin-left: 0px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+}
+textarea {
+resize: none;
+}
+
+.close {
+  color: #999999;
+  float: right;
+}
+.close_img {
+
+  cursor: pointer;
+  height: 20px;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 20px;
+}
+
+.STYLE1 {font-size: 12px}
+.STYLE4 {
+font-size: 12px;
+color: #1F4A65;
+font-weight: bold;
+}
+#floatBox
+{
+    position:absolute;
+    width:400px;
+    height:300px;
+    /*border:1px solid #333333;*/
+    /*background-color:#777788;*/
+    text-align:center;
+    line-height:400%;
+    font-size:13px;
+    left:150px;
+    top:40px;
+}
+
+</style>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" language="javascript">
+var _move=false;
+var _x,_y;
+$(document).ready(function(){
+    $(".flbc").click(function(){
+        $("#floatBox").hide();
+    });
+    $("#titleBar").click(function(){
+        }).mousedown(function(e){
+        _move=true;
+        _x=e.pageX-parseInt($("#floatBox").css("left"));
+        _y=e.pageY-parseInt($("#floatBox").css("top"));
+
+    });
+    $(document).mousemove(function(e){
+        if(_move){
+            var x=e.pageX-_x;
+            var y=e.pageY-_y;
+            $("#floatBox").css({top:y,left:x});
+        }
+    }).mouseup(function(){
+    _move=false;
+ 
+  });
+});
+</script>
+</head>
+<body>
+    <div id="floatBox">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+            <tr id="titleBar">
+                <td width="15px" height="30px"><img width="15px" height="30px" src="<%= asset_path("tab/images/tab_03.gif") %>">
+                </td>
+                <td background="<%= asset_path("tab/images/tab_05.gif") %>" ><img width="16px" height="16px" src="{{ static_url("tab/images/311.gif") }}"> <span class="STYLE4">日志编辑</span>
+                
+                <span class="close">
+                    <a title="关闭" class="flbc" href="javascript:;">
+                        <img class="close_img" src="<%= asset_path("tab/images/cls.gif") %>" alt=""/>
+
+
+
+                    </a>
+                </span>
+
+                </td>
+
+                <td width="14px"><img width="14px" height="30px" src="<%= asset_path("tab/images/tab_07.gif") %>"></td>
+            </tr>
+            <tr>
+                <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                    <tr>
+                        <td background="<%= asset_path("tab/images/tab_16.gif") %>" width="9"></td>
+                        <td class="m_c">
+                            <form action="/a/message/new" method="post" id="messageform">
+                                    <textarea name="body" id="message" rows="15" cols="76" tabindex="3" style="width: 381px; height: 238px;"></textarea><br>
+                                    <input type="submit" value="发送(Ctrl+Enter)" class='btn btn-success'/>
+                                    <input type="hidden" name="next" value="{{ request.path }}"/>
+                                    <!-- {{ xsrf_form_html() }} -->
+                            </form>
+                        </td>
+                        <td background="<%= asset_path("tab/images/tab_16.gif") %>" width="9"></td>
+                    </tr>
+                </table>
+
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

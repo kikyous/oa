@@ -1,0 +1,35 @@
+<% if @in_come.mode==1 %><p>
+  <table class="table show_table table-bordered">
+    <tr>
+      <td>帐号</td>
+      <td><%=link_to @in_come.bank_account.name,bank_account_path(@in_come.bank_account) %></td>
+    </tr>
+  </table>
+<% elsif @in_come.mode==0 %>
+
+<% elsif @in_come.mode==2 %>
+  <div id='acceptance'></div>
+  <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+    $(function(){
+      $("#acceptance").load('<%= "/acceptances/#{@in_come.acceptance.id}" %>');
+    })
+  </script>
+<% end %>
+  <table class="table show_table table-bordered">
+    <tr>
+      <td>金额</td>
+      <td><%= @in_come.money %></td>
+    </tr>
+    <tr>
+      <td>付款单位</td>
+      <td><%= @in_come.from %></td>
+    </tr>
+    <tr>
+      <td>付款日期</td>
+      <td><%= @in_come.fromtime %></td>
+    </tr>
+  </table>
+
+<%= link_to '编辑', edit_in_come_path(@in_come) %> |
+<%= link_to '返回', in_comes_path %>

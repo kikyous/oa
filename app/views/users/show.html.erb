@@ -1,0 +1,16 @@
+<table class="table show_table table-bordered">
+  <tr>
+    <td>用户名</td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td>姓名</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>所属机构</td>
+    <td><%= @user.groups.map(&:name).join(" ") %></td>
+  </tr>
+</table>
+<%= link_to '编辑', edit_user_path(@user) %> |
+<%= link_to '返回', users_path %>

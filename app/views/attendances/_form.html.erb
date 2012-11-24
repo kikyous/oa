@@ -1,0 +1,152 @@
+<style type="text/css">
+  #file_upload_progress {
+    background: url(<%= asset_path("uploads/progressbar.gif") %>);
+  }
+
+  #file_upload_progress  {
+    display: none;
+    width: 150px;
+    height: 15px;
+  }
+  #doneFile {
+    background-color: #E9E1D4;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+  #attach_picture {display:none;}
+  #a {
+    color: #4C5C7C;
+  }
+  body ,#doneFile{
+    color: black;
+    font-size: 12px;
+    line-height: 166.6%;
+  }
+  table td {
+    border: 2px;
+    padding: 1px 7px 1px 7px;
+  }
+</style>
+
+
+<%= form_for(@attendance, :html=>{:id => 'mainform' }) do |c| %>
+  <% if @attendance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+      <ul>
+        <% @attendance.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div id="hiddenfile">
+      <% unless c.object.new_record? or c.object.attach_ids.nil? %>
+        <% c.object.attach_ids.split(',').each do |e| %>
+          <input name="attendance[attach_ids][]"" type="hidden" value= "<%= e %>" />
+        <% end %>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= c.label '月份' %>
+    <%= c.date_select :for_month ,{:discard_day => true},:style=>'width:70px'%>
+  </div>
+
+  <div class="field">
+    <%= c.label "说明" %>
+    <%= c.text_area :caption  ,:size => "20x5" %>
+  </div>
+
+<% end %>
+
+<%= form_tag "/attaches",  :id => "fileupload", :multipart => true  do |c| %>
+  <div title="可以添加任意附件">
+    附件:
+    <a id="addAttach" href="/#">添加附件</a>
+    <%= file_field_tag 'attach[picture]', :multiple => true %>
+  </div>
+
+  <div id="file_upload_progress"></div>
+<% end %>
+
+<div>
+  <table id="doneFile">
+    <tbody>
+      <% unless @attendance.new_record? or @attendance.attach_ids.nil? %>
+         <% Attach.where(:id => @attendance.attach_ids.split(',')).each do |a|  %>
+          <tr class="template-upload fade in">
+            <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
+            <td class="size"><span size=<%= a.picture_file_size %> >
+                wait...</span></td>
+            <td class="progess"><span>100 %</span></td>
+            <td class="download">
+              <%= link_to '下载', a.picture.url%>
+            </td>
+            <td class="destroy">  
+              <%= link_to '删除', a%>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<input id="submit" name="commit" type="submit" value="提交考勤信息" class='btn btn-success'/>
+
+<%= javascript_include_tag "fileupload" %>
+
+<script>
+  $(document).ready(function(){
+  $("#doneFile").click(function(){
+    var e=e||window.event;
+    var obj=e.target||e.srcElement;
+    var item=$(obj);
+    if (item.is('td.destroy>a'))
+    {
+    var id=item.attr("href").match(/\d+/);
+      item.parents('tr').remove();
+      if (id==null) return false;
+      var select="#hiddenfile input[value=" +id[0]+ "]";
+      $(select).attr("name","unneed_attach[attach_ids][]");
+      return false;
+    }
+  });
+
+
+  $("#submit").click(function(){$("#mainform").submit()});
+  $("#addAttach").click(function(){$("#attach_picture").trigger("click");return false;});
+    function d(b){
+      if ( isNaN(b))
+      return;
+      dws=['b','Kb','Mb'];
+      for(i=0;i<3;i++){
+        dw=dws[i];
+        if (b<1024) break;
+        b=b/1024;
+      }
+      return b.toFixed(2)+dw;
+    };
+    var size=$("#doneFile td.size span");
+    size.text(d(parseInt(size.attr("size"))));
+    $('#fileupload').fileupload({
+      done: function (e, data) {
+      if (data.result.error==true){
+      $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.msg+'</span></td> <td class="size"><span></span></td> <td class="progess"><span></span></td> <td></td> <td class="destroy"><a href="/#">删除</a></td></tr>');
+        return;
+      }
+        $("#hiddenfile").append('<input type="hidden" name="attendance[attach_ids][]" value='+data.result.id+'\>')
+        $("#doneFile>tbody").append('<tr class="template-upload fade in"><td class="name"><span>'+data.result.name+'</span></td> <td class="size"><span>'+d(data.result.size)+'</span></td> <td class="progess"><span>100 %</span></td> <td class="download"><a href="'+ data.result.a_path +'">下载</a></td> <td class="destroy"><a href="/attaches/'+data.result.id+'">删除</a></td></tr>');
+      },
+      start: function (e) {
+        $("#file_upload_progress").fadeIn();
+      },
+      stop:function (e) {
+        $("#file_upload_progress").fadeOut();
+      },
+
+    });
+  });
+</script>

@@ -1,0 +1,40 @@
+<%= form_for(@acceptance) do |f| %>
+  <% if @acceptance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@acceptance.errors.count, "error") %> prohibited this acceptance from being saved:</h2>
+
+      <ul>
+      <% @acceptance.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% unless @acceptance.new_record? %>
+    <div class="field">
+      <%= f.label '状态' %>
+      <%= f.label status(@acceptance.status) %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '银行' %>
+    <%= f.text_field :bank %>
+  </div>
+  <div class="field">
+    <%= f.label '到期时间' %>
+    <%= f.date_select :expire ,{},:style=>'width:70px'%>
+  </div>
+  <div class="field">
+    <%= f.label '票号' %>
+    <%= f.text_field :number %>
+  </div>
+
+  <% unless params[:hassubmit] == "no" %>
+    <div class="actions">
+    <%= f.submit '提交修改' ,:class=>'btn btn-success' %>
+    </div>
+  <% end %>
+<% end %>
+

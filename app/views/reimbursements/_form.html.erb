@@ -1,0 +1,39 @@
+<%= form_for(@reimbursement) do |f| %>
+  <% if @reimbursement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reimbursement.errors.count, "error") %> prohibited this reimbursement from being saved:</h2>
+
+      <ul>
+      <% @reimbursement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '报销人' %>
+    <%= f.collection_select(:user_id, User.all, :id, :username, {:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+  </div>
+  <div class="field">
+    <%= f.label '金额' %>
+    <%= f.text_field :money %>
+  </div>
+  <div class="field">
+    <%= f.label '说明' %>
+    <%= f.text_area :caption ,:size => "20x5" %>
+  </div>
+  <div class="field">
+    <%= f.label '类别' %>
+    <%= f.text_field :category %>
+  </div>
+  <% unless @reimbursement.new_record? or !isManager? %>
+      <div class="field">
+          <%= f.label "状态" %>
+          <%= f.select(:status, debts_status_select ) %>
+      </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit '提交报销单' ,:class=>'btn btn-success' %>
+  </div>
+<% end %>

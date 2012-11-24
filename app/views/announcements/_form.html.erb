@@ -1,0 +1,21 @@
+<%= form_for(@announcement) do |f| %>
+  <% if @announcement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
+
+      <ul>
+      <% @announcement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '内容' %>
+    <%= f.text_area :content ,:size => "20x5" %>
+  </div>
+  <div class="actions">
+    <%= f.submit '发布公告' ,:class=>'btn btn-success' %>
+  </div>
+<% end %>

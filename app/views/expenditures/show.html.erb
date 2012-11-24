@@ -1,0 +1,35 @@
+<% if @expenditure.mode==1 %><p>
+  <table class="table table-bordered show_table">
+    <tr>
+      <td>金额</td>
+      <td><%= @expenditure.money %></td>
+    </tr>
+    <tr>
+      <td>帐号</td>
+      <td><%= link_to @expenditure.bank_account.name,bank_account_path(@expenditure.bank_account) %></td>
+    </tr>
+  </table>
+<% elsif @expenditure.mode==0 %>
+  <table class="table table-bordered show_table">
+    <tr>
+      <td>金额</td>
+      <td><%= @expenditure.money %></td>
+    </tr>
+  </table>
+<% elsif @expenditure.mode==2 %>
+  <div id='acceptance'></div>
+  <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+    $(function(){
+      $("#acceptance").load('<%= "/acceptances/#{@expenditure.acceptance.id}" %>');
+    })
+  </script>
+<% end %>
+  <table class="table table-bordered show_table">
+      <td>付款单位</td>
+      <td><%= @expenditure.payto %></td>
+    </tr>
+  </table>
+
+<%= link_to '编辑', edit_expenditure_path(@expenditure) %> |
+<%= link_to '返回', expenditures_path %>

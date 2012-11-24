@@ -1,0 +1,39 @@
+<h2>编辑 <%= @user.username %></h2>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>发生<%= @user.errors.count %>条错误</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for(@user,:html => { :method => :put }) do |f| %>
+
+  <div><%= f.label "姓名" %>
+  <%= f.text_field :name %></div>
+
+  <div>
+    <% for g in @groups %>
+      <label>
+      <%= check_box_tag "user[group_ids][]",
+      g.id, (checked = true if @user.groups.include?g) %>
+      <%= g.name %>
+      </label>
+    <% end %>
+  </div>
+
+  <div><%= f.label "密码" %> <i>(留空，如果你不想改变它)</i><br />
+  <%= f.password_field :password, :autocomplete => "off" %></div>
+
+  <div><%= f.label "确认密码" %>
+  <%= f.password_field :password_confirmation %></div>
+
+<div><%= f.submit "修改"  ,:class=>'btn btn-success' %></div>
+<% end %>
+
+<br />
+<%= link_to "Back", :back %>

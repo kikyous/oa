@@ -1,0 +1,76 @@
+<%= form_for(@in_come) do |f| %>
+  <% if @in_come.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@in_come.errors.count, "error") %> prohibited this in_come from being saved:</h2>
+      <ul>
+        <% @in_come.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '方式' %>
+    <% if @in_come.new_record? %>
+      <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
+    <% else %>
+      <%= f.select(:mode, [[mode(@in_come.mode),@in_come.mode]],{} ,{:class=>"chzn-select"}) %>
+    <% end %>
+  </div>
+  <div>
+    <div id="other">
+
+    </div>
+    <div id="cash">
+      <div class="field">
+        <%= f.label "帐号" %>
+        <% if @in_come.new_record? %>
+          <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+        <% elsif @in_come.bank_account %>
+          <%= f.collection_select(:bank_account_id, [@in_come.bank_account], :id, :name,{},{:class=>"chzn-select"}) %>
+        <% end %>
+      </div>
+    </div>
+    <div id="acceptance">
+    </div>
+  </div>
+      <div class="field" >
+        <%= f.label '金额' %>
+        <%= f.text_field :money %>
+      </div>
+      <div class="field">
+        <%= f.label '收款单位' %>
+        <%= f.text_field :from %>
+      </div>
+      <div class="field">
+       <%= f.label '收款日期' %>
+       <%= f.date_select :fromtime ,{},:style=>'width:70px'%>
+      </div>
+  <br />
+  <div class="actions">
+    <%= f.submit '提交收入单'  ,:class=>'btn btn-success' %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(function(){
+    function toogle(value){
+      if (value=="1"){
+       // $('#cash').append($("#money"));
+        $('#cash').show().siblings().hide();
+      }
+      else if (value=="2"){
+        $('#acceptance').show().siblings().hide();
+      }
+      else if (value=="0"){
+      //  $('#other').prepend($("#money"));
+        $('#other').show().siblings().hide();
+      }
+    };
+    toogle($("#in_come_mode").val());
+    $("#in_come_mode").change(function(e){
+      toogle(e.target.value);
+    });
+    $("#acceptance").load('<%= (@in_come.new_record? or @in_come.mode!=2) ? "/acceptances/new?hassubmit=no":"/acceptances/#{@in_come.acceptance.id}/edit/hassubmit=no" %>');
+  })
+</script>

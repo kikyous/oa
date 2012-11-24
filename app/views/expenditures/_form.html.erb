@@ -1,0 +1,80 @@
+<%= form_for(@expenditure) do |f| %>
+  <% if @expenditure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@expenditure.errors.count, "error") %> prohibited this expenditure from being saved:</h2>
+
+      <ul>
+        <% @expenditure.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '方式' %>
+    <% if @expenditure.new_record? %>
+      <%= f.select(:mode, modeList,{} ,{:class=>"chzn-select"}) %>
+    <% else %>
+      <%= f.select(:mode, [[mode(@expenditure.mode),@expenditure.mode]],{} ,{:class=>"chzn-select"}) %>
+    <% end %>
+  </div>
+  <div>
+    <div id="other">
+      <div class="field" id='money'>
+        <%= f.label '金额' %>
+        <%= f.text_field :money %>
+      </div>
+    </div>
+    <div id="cash">
+      <div class="field">
+        <%= f.label "帐号" %>
+        <% if @expenditure.new_record? %>
+          <%= f.collection_select(:bank_account_id, BankAccount.all, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+        <% elsif @expenditure.bank_account %>
+          <%= f.collection_select(:bank_account_id, [@expenditure.bank_account], :id, :name,{},{:class=>"chzn-select"}) %>
+        <% end %>
+      </div>
+    </div>
+    <div id="acceptance">
+      <div class="field">
+        <%= f.label "承兑" %>
+        <% if @expenditure.new_record? %>
+          <%= collection_select(:acceptance, :id, Acceptance.All, :id, :name,{:prompt=>''} ,{:class=>"chzn-select","data-placeholder"=>"请选择"}) %>
+        <% elsif @expenditure.acceptance %>
+          <%= collection_select(:acceptance, :id, [@expenditure.acceptance], :id, :name,{} ,{:class=>"chzn-select"}) %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+    <div class="field">
+        <%= f.label '付款单位' %>
+        <%= f.text_field :payto %>
+    </div>
+  <br />
+  <div class="actions">
+    <%= f.submit '提交支出单'  ,:class=>'btn btn-success' %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(function(){
+    function toogle(value){
+      if (value=="1"){
+        $('#cash').append($("#money"));
+        $('#cash').show().siblings().hide();
+      }
+      else if (value=="2"){
+        $('#acceptance').show().siblings().hide();
+      }
+      else if (value=="0"){
+        $('#other').prepend($("#money"));
+        $('#other').show().siblings().hide();
+      }
+    };
+    toogle($("#expenditure_mode").val());
+    $("#expenditure_mode").change(function(e){
+      toogle(e.target.value);
+    });
+  })
+</script>

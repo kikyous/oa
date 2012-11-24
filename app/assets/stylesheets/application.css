@@ -1,0 +1,8 @@
+/* = require chosen */
+.style3 {color: #528311; font-size: 12px; }
+.style4 {
+  color: #42870a;
+  font-size: 12px;
+}
+
+.show_table tr td:first-child {width:100px;}

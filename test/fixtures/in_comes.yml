@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  money: 9.99
+  payer: MyString
+  mode: MyString
+
+two:
+  money: 9.99
+  payer: MyString
+  mode: MyString

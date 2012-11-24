@@ -1,0 +1,28 @@
+<table width="150"  border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="6"></td>
+  </tr>
+</table>
+<table width="150" height="22" border="0" cellpadding="3" cellspacing="0"  bgcolor="#8ecc3d" onClick="table_display(<%= "'tab#{i=item.shift}','i#{i}'" %>)  " style="cursor:pointer">
+  <tr>
+    <td width="23" align="right"><img src="<%= asset_path("main/left_open.gif") %>" id="<%= "i#{i}" %>"></td>
+    <td width="115" class="white"> <%= item.shift %> </td>
+  </tr>
+</table>
+<table width="150" border="0" cellpadding="3" cellspacing="0" ID="<%= "tab#{i}" %>">
+  <tr>
+    <td height="5"></td>
+  </tr>
+  <% item.each do |e| %>
+
+  <tr>
+      <td><img src="<%= asset_path("main/arrow_1.gif") %>" width="15" height="15" align="absmiddle">
+          <% value=e.values.last;e.each do |k,v| %>
+              <%= link_to(k ,v,{:class=>"blueu" ,:target=>"I1"}) %> <%= '|' unless v==value %>
+          <% end %>
+      </td>
+  </tr>
+
+  <% end %>
+</table>
+

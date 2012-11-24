@@ -1,0 +1,86 @@
+<style type="text/css">
+
+  #file_upload_progress  {
+    display: none;
+    width: 150px;
+    height: 15px;
+  }
+  #doneFile {
+    background-color: #E9E1D4;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+  #attach_picture {display:none;}
+  #a {
+    color: #4C5C7C;
+  }
+  #doneFile{
+    color: black;
+    font-size: 12px;
+    line-height: 166.6%;
+  }
+  #doneFile td {
+    border: 2px;
+    padding: 1px 7px 1px 7px;
+  }
+</style>
+
+<table class="table show_table table-bordered">
+  <tr>
+    <td>客户</td>
+    <td><%= @sales_contract.client %></td>
+  </tr>
+  <tr>
+    <td>合同名称</td>
+    <td><%= @sales_contract.name %></td>
+  </tr>
+  <tr>
+    <td>合同金额</td>
+    <td><%= @sales_contract.money %></td>
+  </tr>
+  <tr>
+    <td>说明</td>
+    <td><%= @sales_contract.caption %></td>
+  </tr>
+</table>
+<div>
+  <table id="doneFile">
+    <b>附件:</b>
+    <tbody>
+      <% unless @sales_contract.new_record? or @sales_contract.attach_ids.nil? %>
+        <% Attach.where(:id => @sales_contract.attach_ids.split(',')).each do |a|  %>
+          <tr class="template-upload fade in">
+            <td class="name"><span>  <%= a.picture_file_name %> </span></td> 
+            <td class="size"><span size=<%= a.picture_file_size %> >
+                wait...</span></td>
+            <td class="progess"><span>100 %</span></td>
+            <td class="download">
+              <%= link_to '下载', a.picture.url%>
+            </td>
+            <td class="destroy">  
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+  $(document).ready(function(){
+    function d(b){
+      if ( isNaN(b))
+      return;
+      dws=['b','Kb','Mb'];
+      for(i=0;i<3;i++){
+        dw=dws[i];
+        if (b<1024) break;
+        b=b/1024;
+      }
+      return b.toFixed(2)+dw;
+    };
+    var size=$("#doneFile td.size span");
+    size.text(d(parseInt(size.attr("size"))));
+  });
+</script>
+

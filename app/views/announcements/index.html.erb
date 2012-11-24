@@ -1,0 +1,12 @@
+<div class="span3 thumbnail">
+  <div class='caption'>
+    <h4>公告:</h4>
+    <h3>
+      <%= @announcement.content unless @announcement.nil? %>
+    </h3>
+    <br />
+    <% if can? :manage, Announcement %>
+      <a href='/announcements/new'><i class='icon-plus'></i>发布公告</a>
+    <%end%>
+  </div>
+</div>
