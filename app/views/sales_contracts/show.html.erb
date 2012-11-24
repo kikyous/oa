@@ -29,7 +29,7 @@
 <table class="table show_table table-bordered">
   <tr>
     <td>客户</td>
-    <td><%= @sales_contract.client %></td>
+    <td><%= link_to(@sales_contract.client.name, client_path(@sales_contract.client)) %></td>
   </tr>
   <tr>
     <td>合同名称</td>

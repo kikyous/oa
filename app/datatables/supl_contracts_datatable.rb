@@ -1,5 +1,5 @@
 class SuplContractsDatatable
-  delegate :params, :h, :link_to, to: :@view
+  delegate :params, :h, :link_to, :supplier_path ,to: :@view
 
   def initialize(view)
     @view = view
@@ -22,7 +22,7 @@ private
         link_to(contract.id, contract),
         contract.name,
         contract.money,
-        h(contract.supplier.name),
+        link_to(contract.supplier.name, supplier_path(contract.supplier)),
         h(contract.created_at),
         contract.id
       ]
