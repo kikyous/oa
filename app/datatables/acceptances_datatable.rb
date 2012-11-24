@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 #!/bin/env ruby
 # encoding: utf-8
 
 class AcceptancesDatatable
 
   delegate :params, :h, :link_to, :status ,:showpayto,to: :@view
-=======
-class AcceptancesDatatable
-
-  delegate :params, :h, :link_to, :status ,to: :@view
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
 
   def initialize(view)
     @view = view
@@ -26,26 +20,16 @@ class AcceptancesDatatable
 
 private
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
   def data
     acceptances.map do |acceptance|
       [
         link_to(status(acceptance.status), acceptance),
-<<<<<<< HEAD
         h(acceptance.created_at),
         h(acceptance.in_come.money),
         showpayto(acceptance.expenditure),
         acceptance.in_come.from,      
         h(acceptance.expire),
-=======
-        h(acceptance.money),
-        h(acceptance.bank),
-        h(acceptance.expire),
-        h(acceptance.created_at),
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
         acceptance.id
       ]
     end

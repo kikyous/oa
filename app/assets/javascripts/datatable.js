@@ -19,7 +19,9 @@ lang.oPaginate={
 
 $(function(){
   $(document).on("click","table tbody tr>td:first-child",function(e){
-  window.location.href = $(this).children("a").attr("href");
+  	var child=$(this).children("a");
+  	if (child.length!=0)
+  		window.location.href = child.attr("href");
   e.stopPropagation();
   });
 })

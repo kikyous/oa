@@ -18,11 +18,7 @@
 
           <%= render "tree_item", { :item => [index,'办公桌' ,{'发送信件'=>'/messages/new'},{'查看信件'=>'/messages'} ] } %>
 
-<<<<<<< HEAD
           <%= render "tree_item", { :item => [index,'供销部' ,{'客户'=>'/clients'},{'供应商'=>'/suppliers'},
-=======
-          <%= render "tree_item", { :item => [index,'供销部' ,{'供应商'=>'/suppliers'},
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
             {'销售合同'=>'/sales_contracts'},
             {'供应合同'=>'/supl_contracts' }] } if can? :manage ,Supplier %>
 

@@ -43,11 +43,7 @@ class Ability
 
       #供销部
       if gids.include?3
-<<<<<<< HEAD
         can :manage, [Client,Supplier,SuplContract,SalesContract]
-=======
-        can :manage, [Supplier,SuplContract,SalesContract]
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
       end
 
       #财务部

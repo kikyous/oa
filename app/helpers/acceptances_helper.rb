@@ -8,11 +8,8 @@ module AcceptancesHelper
             return '未支付'
         end
     end
-<<<<<<< HEAD
     def showpayto(key)
       return "无" unless key
       key.payto
     end
-=======
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
 end

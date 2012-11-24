@@ -53,11 +53,7 @@ class InComesController < ApplicationController
       account.over+=(params[:in_come][:money]).to_i
       account.save
     elsif params[:in_come][:mode].to_i==2
-<<<<<<< HEAD
       #params[:in_come][:money]=params[:acceptance][:money]
-=======
-      params[:in_come][:money]=params[:acceptance][:money]
->>>>>>> 52e895809e1fa20ec8e303d95a8774b418fd75cb
       @in_come = InCome.create(params[:in_come])
       @acceptance=@in_come.create_acceptance(params[:acceptance])
     else
