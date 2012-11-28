@@ -20,7 +20,7 @@ attendances_personal.js  transfers.js                sales_contracts.js
 bank_accounts.js         messages.js                 unpaid_debts.js
 datatable.js             notes.js                    users.js
 deliveries.js            out_stores.js               bootstrap.css
-expenditures.js          rails.js                    client.js
+expenditures.js          rails.js                    clients.js
 tree.css                 table.css)
 
   
